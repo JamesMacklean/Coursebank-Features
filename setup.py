@@ -112,6 +112,14 @@ setup(
         include=['coursebank_features', 'coursebank_features.*'],
         exclude=["*tests"],
     ),
+    
+    entry_points={
+        "lms.djangoapp": [
+            "my_app = coursebank-features.apps:CoursebankFeaturesConfig",
+        ],
+        "cms.djangoapp": [
+        ],
+    },
 
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
