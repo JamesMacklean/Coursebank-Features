@@ -37,9 +37,9 @@ class CoursebankFeaturesConfig(AppConfig):
         #         }],
         #     }
         # },
-        'view_context_config': {
-            'lms.djangoapp': {
-                'course_dashboard': 'my_app.context_api.get_dashboard_context'
-            }
-        },
+        # 'view_context_config': {
+        #     'lms.djangoapp': {
+        #         'course_dashboard': 'my_app.context_api.get_dashboard_context'
+        #     }
+        # },
     }
