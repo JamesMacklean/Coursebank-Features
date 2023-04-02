@@ -115,7 +115,7 @@ setup(
     
     entry_points={
         "lms.djangoapp": [
-            "my_app = coursebank_features.apps:CoursebankFeaturesConfig",
+            "features = coursebank_features.apps:CoursebankFeaturesConfig",
         ],
         "cms.djangoapp": [
         ],
