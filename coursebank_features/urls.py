@@ -9,5 +9,5 @@ from .views import views
 
 urlpatterns = [
     # TODO: Fill in URL patterns and views here.
-    path('features/', views.features_dashboard, name='features_dashboard'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

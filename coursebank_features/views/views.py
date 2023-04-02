@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
-def features_dashboard(request):
-    return render(request, 'features_dashboard.html')
+def dashboard(request):
+    return render(request, 'dashboard.html')
