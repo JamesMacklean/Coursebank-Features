@@ -6,9 +6,7 @@ Django applications, so these settings will not be used.
 """
 
 from os.path import abspath, dirname, join
-import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def root(*args):
     """
@@ -53,8 +51,7 @@ MIDDLEWARE = (
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'DIRS': [join(BASE_DIR, 'templates')],
-    'APP_DIRS': True,
+    'APP_DIRS': False,
     'OPTIONS': {
         'context_processors': [
             'django.contrib.auth.context_processors.auth',  # this is required for admin
