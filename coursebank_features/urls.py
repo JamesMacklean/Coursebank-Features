@@ -5,7 +5,7 @@ URLs for coursebank_features.
 # from django.views.generic import TemplateView  # pylint: disable=unused-import
 
 from django.urls import path
-from . import views
+from .views import views
 
 urlpatterns = [
     # TODO: Fill in URL patterns and views here.
