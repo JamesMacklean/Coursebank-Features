@@ -10,7 +10,7 @@ class CoursebankFeaturesConfig(AppConfig):
     Configuration for the coursebank_features Django application.
     """
 
-    name = 'features'
+    name = 'coursebank_features'
 
     plugin_app = {
         'url_config': {
