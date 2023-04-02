@@ -10,13 +10,13 @@ class CoursebankFeaturesConfig(AppConfig):
     Configuration for the coursebank_features Django application.
     """
 
-    name = 'features'
+    name = 'coursebank_features'
 
     plugin_app = {
         'url_config': {
             'lms.djangoapp': {
-                'namespace': 'features',
-                'regex': '^api/features/',
+                'namespace': 'my_app',
+                'regex': '^api/my_app/',
                 'relative_path': 'urls',
             }
         },
