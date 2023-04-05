@@ -13,7 +13,5 @@ def dashboard(request):
             context['profile'] = request.user
         except:
             context['profile'] = profile
-
-    context['profile'] = profile
     
     return render(request, template_name, context)
