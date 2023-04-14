@@ -16,7 +16,7 @@ class CoursebankFeaturesConfig(AppConfig):
         'url_config': {
             'lms.djangoapp': {
                 'namespace': 'features',
-                'regex': '^features/',
+                # 'regex': '^features/',
                 'relative_path': 'urls',
             }
         },
