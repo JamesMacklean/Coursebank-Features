@@ -5,3 +5,5 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
 class CourseOverviewTags(CourseOverview):
     
     tags = TaggableManager()
+
+    
