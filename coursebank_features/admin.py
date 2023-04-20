@@ -1,10 +1,32 @@
 from django.contrib import admin
 from .models import (CourseTopic, CourseSkill, CourseSubTopic, CourseOrganization)
 
-admin.site.register(CourseTopic)
-admin.site.register(CourseSkill)
-admin.site.register(CourseSubTopic)
-admin.site.register(CourseOrganization)
+@admin.register(CourseTopic)
+class CourseTopicAdmin (admin.ModelAdmin):
+    list_display = ['course', 'primary_topic']
+    
+    def primary_topic(self, obj):
+        return ", ".join(o for o in obj.tags.names())
+    
+@admin.register(CourseSkill)
+class CourseSkillAdmin (admin.ModelAdmin):
+    list_display = ['course', 'skills']
+    
+    def skills(self, obj):
+        return ", ".join(o for o in obj.tags.names())
+    
+@admin.register(CourseSubTopic)
+class CourseSubTopicAdmin (admin.ModelAdmin):
+    list_display = ['course', 'subtopics']
+    
+    def subtopics(self, obj):
+        return ", ".join(o for o in obj.tags.names())
+@admin.register(CourseOrganization)
+class CourseOrganizationAdmin (admin.ModelAdmin):
+    list_display = ['course', 'organization']
+    
+    def organization(self, obj):
+        return ", ".join(o for o in obj.tags.names())
 
 
 
