@@ -12,7 +12,8 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
 @staff_member_required
 def dashboard(request):
     template_name = 'features/dashboard.html'
-
+    context = {}
+    
     profile = None
     if request.user.is_authenticated:
         try:
