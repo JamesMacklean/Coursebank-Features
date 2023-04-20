@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import *
 
-@admin.register(CourseOverviewExtended)
-class CourseOverviewExtendedAdmin (admin.ModelAdmin):
+@admin.register(CourseTag)
+class CourseTagAdmin (admin.ModelAdmin):
     list_display = ['course', 'primary_topic', 'get_subtopics', 'get_skills', 'get_organization']
 
     # def get_queryset(self, request):
@@ -17,9 +17,8 @@ class CourseOverviewExtendedAdmin (admin.ModelAdmin):
     def get_organization(self, obj):
         return ", ".join([str(organization) for organization in obj.organization.all()])
     
-@admin.register(PrimaryTopic)
-class PrimaryTopicAdmin (admin.ModelAdmin):
-    list_display = ('__str__',)
+    class Meta:
+        verbose_name = "Course Tags"
     
 @admin.register(Subtopic)
 class SubTopicAdmin (admin.ModelAdmin):

@@ -12,7 +12,7 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
 #     def __str__(self):
 #         return "{}: {}".format(self.course, self.topic)
 
-class CourseOverviewExtended(models.Model):
+class CourseTag(models.Model):
     course = models.ForeignKey(CourseOverview, on_delete=models.CASCADE)
     primary_topic = models.CharField(max_length=255, null=True, blank=True)
     subtopic = models.ManyToManyField('Subtopic', blank=True)
