@@ -5,7 +5,7 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
 class CourseTag(models.Model):
     
     course = models.ForeignKey(
-        CourseOverview, on_delete=models.CASCADE,
+        CourseOverview, on_delete=models.CASCADE
         )
     tags = TaggableManager()
 
