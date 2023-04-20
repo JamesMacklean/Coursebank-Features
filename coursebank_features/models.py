@@ -6,7 +6,6 @@ class CourseTag(models.Model):
     
     course = models.ForeignKey(
         CourseOverview, on_delete=models.CASCADE,
-        null=True, blank=True,
         )
     tags = TaggableManager()
 
