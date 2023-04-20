@@ -25,7 +25,7 @@ def dashboard(request):
     course_tags = CourseTag.objects.all()
     course_display_names = {}
     for course_tag in course_tags:
-        course_display_names[course_tag.course.id] = course_tag.course.display_name
+        course_display_names = course_tag.course.display_name
     context = {
         'course_tags': course_tags,
         'course_display_names': course_display_names
