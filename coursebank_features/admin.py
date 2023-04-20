@@ -3,7 +3,7 @@ from .models import *
 
 @admin.register(CourseOverviewExtended)
 class CourseOverviewExtendedAdmin (admin.ModelAdmin):
-    list_display = ['course', 'primary_topic', 'get_subtopics', 'get_skills', 'organization']
+    list_display = ['course', 'primary_topic', 'get_subtopics', 'get_skills', 'get_organization']
 
     # def get_queryset(self, request):
     #     return super().get_queryset(request).prefetch_related('topic')
@@ -13,6 +13,9 @@ class CourseOverviewExtendedAdmin (admin.ModelAdmin):
     
     def get_skills(self, obj):
         return ", ".join([str(skill) for skill in obj.skills.all()])
+    
+    def get_organization(self, obj):
+        return ", ".join([str(organization) for organization in obj.organization.all()])
     
 @admin.register(PrimaryTopic)
 class PrimaryTopicAdmin (admin.ModelAdmin):
