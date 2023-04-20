@@ -1,44 +1,35 @@
 from django.contrib import admin
-from .models import (CourseTopic, CourseSkill, CourseSubTopic, CourseOrganization)
+from .models import *
 
-@admin.register(CourseTopic)
-class CourseTopicAdmin (admin.ModelAdmin):
-    list_display = ['course', 'primary_topic']
+@admin.register(CourseOverviewExtended)
+class CourseOverviewExtendedAdmin (admin.ModelAdmin):
+    list_display = ['course', 'primary_topic', 'get_subtopics', 'get_skills', 'organization']
 
-    def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related('topic')
+    # def get_queryset(self, request):
+    #     return super().get_queryset(request).prefetch_related('topic')
     
-    def primary_topic(self, obj):
-        return ", ".join(o for o in obj.topic.names())
+    def get_subtopics(self, obj):
+        return ", ".join([str(subtopic) for subtopic in obj.subtopic.all()])
     
-@admin.register(CourseSkill)
-class CourseSkillAdmin (admin.ModelAdmin):
-    list_display = ['course', 'skills']
+    def get_skills(self, obj):
+        return ", ".join([str(skill) for skill in obj.skills.all()])
+    
+@admin.register(PrimaryTopic)
+class PrimaryTopicAdmin (admin.ModelAdmin):
+    list_display = ('__str__',)
+    
+@admin.register(Subtopic)
+class SubTopicAdmin (admin.ModelAdmin):
+    list_display = ('__str__',)
 
-    def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related('skills')
     
-    def skills(self, obj):
-        return ", ".join(o for o in obj.skills.names())
-    
-@admin.register(CourseSubTopic)
-class CourseSubTopicAdmin (admin.ModelAdmin):
-    list_display = ['course', 'subtopics']
+@admin.register(Skill)
+class SkillAdmin (admin.ModelAdmin):
+    list_display = ('__str__',)
 
-    def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related('subtopics')
-    
-    def subtopics(self, obj):
-        return ", ".join(o for o in obj.subtopics.names())
-@admin.register(CourseOrganization)
-class CourseOrganizationAdmin (admin.ModelAdmin):
-    list_display = ['course', 'organization']
-
-    def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related('organization')
-    
-    def organization(self, obj):
-        return ", ".join(o for o in obj.organization.names())
+@admin.register(Organization)
+class OrganizationAdmin (admin.ModelAdmin):
+    list_display = ('__str__',)
 
 
 
