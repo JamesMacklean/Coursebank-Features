@@ -17,16 +17,13 @@ class CourseTagAdmin (admin.ModelAdmin):
     def get_organization(self, obj):
         return ", ".join([str(organization) for organization in obj.organization.all()])
     
-    # class Meta:
-    #     verbose_name = "Course Tags"
     
+@admin.register(PrimaryTopic)
+class PrimaryTopicAdmin (admin.ModelAdmin):
+    list_display = ('__str__',)
 @admin.register(SubTopic)
 class SubTopicAdmin (admin.ModelAdmin):
     list_display = ('__str__',)
-    
-    class Meta:
-        verbose_name = "Subtopics"
-
     
 @admin.register(Skill)
 class SkillAdmin (admin.ModelAdmin):

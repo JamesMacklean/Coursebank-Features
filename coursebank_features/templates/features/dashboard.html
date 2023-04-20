@@ -1,10 +1,41 @@
+{% comment %} COURSE TAGS {% endcomment %}
 <html>
-<head>
-    <title>Coursebank Features Dashboard</title>
-</head>
-<body>
-    <h1>Welcome to Coursebank Features Dashboard</h1>
-    <p>This is the landing page for coursebank's features.</p>
+  <head>
+    <meta charset="utf-8">
+    <title>Course Tagging Dashboard</title>
+  </head>
+  <body>
     <p>Hello user {{ profile }} </p>
-</body>
+
+    <h1>Course Tagging</h1>
+    <a href="{% url 'create_form' %}">Create Course Tag</a>
+    <h2>List of Course Tags</h2>
+    <ul>
+      {% for course_tag in course_tags %}
+        <li>
+          <strong>Course: </strong>{{ course_display_names[course_tag.course.id] }}<br>
+          <strong>Primary Topic: </strong>{{ course_tag.primary_topic }}<br>
+          <strong>Subtopics: </strong>
+          <ul>
+            {% for subtopic in course_tag.subtopic.all %}
+              <li>{{ subtopic }}</li>
+            {% endfor %}
+          </ul>
+          <strong>Skills: </strong>
+          <ul>
+            {% for skill in course_tag.skills.all %}
+              <li>{{ skill }}</li>
+            {% endfor %}
+          </ul>
+          <strong>Organizations: </strong>
+          <ul>
+            {% for organization in course_tag.organization.all %}
+              <li>{{ organization }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
 </html>
+{% comment %} COURSE TAGS {% endcomment %}
