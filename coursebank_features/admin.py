@@ -17,8 +17,8 @@ class CourseTagAdmin (admin.ModelAdmin):
     def get_organization(self, obj):
         return ", ".join([str(organization) for organization in obj.organization.all()])
     
-    class Meta:
-        verbose_name = "Course Tags"
+    # class Meta:
+    #     verbose_name = "Course Tags"
     
 @admin.register(Subtopic)
 class SubTopicAdmin (admin.ModelAdmin):
