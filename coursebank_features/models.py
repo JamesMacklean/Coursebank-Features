@@ -10,7 +10,7 @@ class CourseTopic(models.Model):
     topics = TaggableManager()
 
     def __str__(self):
-        return self.name
+        return "{}: {}".format(self.course,self.topics)
     
 class CourseSkill(models.Model):
     
@@ -20,17 +20,17 @@ class CourseSkill(models.Model):
     skills = TaggableManager()
 
     def __str__(self):
-        return self.name
+        return "{}: {}".format(self.course,self.skills)
 
 class CourseSubTopic(models.Model):
     
     course = models.ForeignKey(
         CourseOverview, on_delete=models.CASCADE
         )
-    subtopic = TaggableManager()
+    subtopics = TaggableManager()
 
     def __str__(self):
-        return self.name
+        return "{}: {}".format(self.course,self.subtopics)
 
 class CourseOrganization(models.Model):
     
@@ -40,4 +40,4 @@ class CourseOrganization(models.Model):
     organization = TaggableManager()
     
     def __str__(self):
-        return self.name
+        return "{}: {}".format(self.course,self.organization)
