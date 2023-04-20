@@ -5,3 +5,7 @@ admin.site.register(CourseTopic)
 admin.site.register(CourseSkill)
 admin.site.register(CourseSubTopic)
 admin.site.register(CourseOrganization)
+
+
+
+
