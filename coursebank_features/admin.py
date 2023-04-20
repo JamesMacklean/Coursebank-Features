@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import CourseTags
+from .models import CourseTag
 
-admin.site.register(CourseTags)
+admin.site.register(CourseTag)
