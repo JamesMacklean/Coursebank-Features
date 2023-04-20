@@ -4,6 +4,12 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
 
 class CourseTag(models.Model):
     
-    course = models.ForeignKey(CourseOverview, on_delete=models.CASCADE)
+    course = models.ForeignKey(
+        CourseOverview, on_delete=models.CASCADE,
+        null=True, blank=True,
+        )
     tags = TaggableManager()
 
+    def __str__(self):
+        return self.name
+    
