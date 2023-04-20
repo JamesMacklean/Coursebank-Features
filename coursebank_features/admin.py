@@ -20,9 +20,12 @@ class CourseTagAdmin (admin.ModelAdmin):
     # class Meta:
     #     verbose_name = "Course Tags"
     
-@admin.register(Subtopic)
+@admin.register(SubTopic)
 class SubTopicAdmin (admin.ModelAdmin):
     list_display = ('__str__',)
+    
+    class Meta:
+        verbose_name = "Subtopics"
 
     
 @admin.register(Skill)
