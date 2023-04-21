@@ -1,11 +1,12 @@
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 
 from coursebank_features.models import *
 from coursebank_features.forms import *
@@ -54,57 +55,65 @@ def add_course_tag(request):
 
 # FOR ADDING PRIMARY TOPICS
 def add_primary_topic(request):
+    template_name = 'course_tags/add_primary_topic.html'
     if request.method == 'POST':
         form = PrimaryTopicForm(request.POST)
         if form.is_valid():
-            form.save()
-            form = PrimaryTopicForm()
+            primary_topics = form.save()
+            messages.success(request, f"Added primary topics: {', '.join(str(s) for s in primary_topics)}")
+            return redirect('add_primary_topic')
     else:
         form = PrimaryTopicForm()
 
     primary_topics = PrimaryTopic.objects.all()
 
-    return render(request, 'course_tags/add_tag.html', {'form': form, 'primary_topics': primary_topics})
+    return render(request, template_name, {'form': form, 'primary_topics': primary_topics})
 
 # FOR ADDING SUBTOPICS
 def add_subtopic(request):
+    template_name = 'course_tags/add_subtopic.html'
     if request.method == 'POST':
         form = SubTopicForm(request.POST)
         if form.is_valid():
-            form.save()
-            form = SubTopicForm()
+            subtopics = form.save()
+            messages.success(request, f"Added subtopics: {', '.join(str(s) for s in subtopics)}")
+            return redirect('add_subtopic')
     else:
         form = SubTopicForm()
 
     subtopics = SubTopic.objects.all()
 
-    return render(request, 'course_tags/add_tag.html', {'form': form, 'subtopics': subtopics})
+    return render(request, template_name, {'form': form, 'subtopics': subtopics})
 
 # FOR ADDING SKILLS
 def add_skill(request):
+    template_name = 'course_tags/add_skill.html'
     if request.method == 'POST':
         form = SkillForm(request.POST)
         if form.is_valid():
-            form.save()
-            form = SkillForm()
+            skills = form.save()
+            messages.success(request, f"Added skills: {', '.join(str(s) for s in skills)}")
+            return redirect('add_skill')
     else:
         form = SkillForm()
 
     skills = Skill.objects.all()
 
-    return render(request, 'course_tags/add_tag.html', {'form': form, 'skills': skills})
+    return render(request, template_name, {'form': form, 'skills': skills})
 
 # FOR ADDING ORGANIZATIONS
 def add_organization(request):
+    template_name = 'course_tags/add_organization.html'
     if request.method == 'POST':
         form = OrganizationForm(request.POST)
         if form.is_valid():
-            form.save()
-            form = OrganizationForm()
+            organizations = form.save()
+            messages.success(request, f"Added organizations: {', '.join(str(s) for s in organizations)}")
+            return redirect('add_organization')
     else:
         form = OrganizationForm()
 
     organizations = Organization.objects.all()
 
-    return render(request, 'course_tags/add_tag.html', {'form': form, 'organizations': organizations})
+    return render(request, template_name, {'form': form, 'organizations': organizations})
 ####################### COURSE TAGS #######################
