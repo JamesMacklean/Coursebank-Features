@@ -9,7 +9,7 @@ from .views import views
 
 urlpatterns = [
     # TODO: Fill in URL patterns and views here.
-    path('features-dashboard/', views.dashboard, name='dashboard'),
+    path('features/', views.main, name='main'),
     
     ####################### COURSE TAGS #######################
     path('add_course_tag/',  views.add_course_tag, name='add_course_tag'),
