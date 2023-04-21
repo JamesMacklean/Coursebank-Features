@@ -8,7 +8,6 @@ from django.urls import path
 from .views import views
 
 urlpatterns = [
-    # TODO: Fill in URL patterns and views here.
     path('features/', views.main, name='main'),
     
     ####################### COURSE TAGS #######################

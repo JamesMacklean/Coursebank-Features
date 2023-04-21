@@ -23,10 +23,7 @@ def main(request):
             context['profile'] = profile
 
     course_tags = CourseTag.objects.all()
-
-    context = {
-        'course_tags': course_tags,
-    }
+    context['course_tags'] = course_tags
     
     return render(request, template_name, context)
 

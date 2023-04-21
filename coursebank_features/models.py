@@ -1,5 +1,5 @@
-from django.db import models
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
+from django.db import models
 
 ####################### COURSE TAGS #######################
 class CourseTag(models.Model):
@@ -32,5 +32,4 @@ class Organization(models.Model):
     
     def __str__(self):
         return self.name
-
 ####################### COURSE TAGS #######################
