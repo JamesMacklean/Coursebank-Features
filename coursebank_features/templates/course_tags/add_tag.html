@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-6">
       <h4>Add Primary Topic</h4>
-      <form method="POST" action="{% url 'add_primary_topic' %}">
+      <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Add Primary Topic</button>
@@ -20,7 +20,7 @@
       </div>
     <div class="col-md-6">
 <h4>Add Subtopic</h4>
-<form method="POST" action="{% url 'add_subtopic' %}">
+<form method="POST">
 {% csrf_token %}
 {{ form.as_p }}
 <button type="submit" class="btn btn-primary">Add Subtopic</button>
@@ -39,7 +39,7 @@
   <div class="row">
     <div class="col-md-6">
       <h4>Add Skill</h4>
-      <form method="POST" action="{% url 'add_skill' %}">
+      <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Add Skill</button>
@@ -55,7 +55,7 @@
     </div>
     <div class="col-md-6">
       <h4>Add Organization</h4>
-      <form method="POST" action="{% url 'add_organization' %}">
+      <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Add Organization</button>
