@@ -47,7 +47,7 @@ def add_course_tag(request):
         form = CourseTagForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('course_tag')
+            form = CourseTagForm()
     else:
         form = CourseTagForm()
     
