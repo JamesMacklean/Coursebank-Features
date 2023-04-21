@@ -17,22 +17,31 @@ class PrimaryTopic(models.Model):
     
     def __str__(self):
         return self.name
+    class Meta:
+        ordering = ['name']    
     
 class SubTopic(models.Model):
     name = models.CharField(max_length=255, unique= True)
     
     def __str__(self):
         return self.name
-    
+    class Meta:
+        ordering = ['name']
+            
 class Skill(models.Model):
     name = models.CharField(max_length=255, unique= True)
     
     def __str__(self):
         return self.name
-    
+    class Meta:
+        ordering = ['name']   
+         
 class Organization(models.Model):
     name = models.CharField(max_length=255, unique= True)
     
     def __str__(self):
         return self.name
+    class Meta:
+        ordering = ['name']
+        
 ####################### COURSE TAGS #######################

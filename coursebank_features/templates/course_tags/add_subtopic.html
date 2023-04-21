@@ -11,7 +11,7 @@
       </form>
       <hr>
       <ul>
-        {% for subtopic in subtopics %}
+        {% for subtopic in subtopics|order_by:'name' %}
         <li>{{ subtopic.name }}</li>
         {% empty %}
         <li>No subtopics yet.</li>

@@ -4,9 +4,9 @@ from .models import *
 ####################### COURSE TAGS #######################
 class CourseTagForm(forms.ModelForm):
     
-    subtopic = forms.ModelMultipleChoiceField(queryset=SubTopic.objects.all(), required=False, widget=forms.SelectMultiple)
-    skills = forms.ModelMultipleChoiceField(queryset=Skill.objects.all(), required=False, widget=forms.SelectMultiple)
-    organization = forms.ModelMultipleChoiceField(queryset=Organization.objects.all(), required=False, widget=forms.SelectMultiple)
+    subtopic = forms.ModelMultipleChoiceField(queryset=SubTopic.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
+    skills = forms.ModelMultipleChoiceField(queryset=Skill.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
+    organization = forms.ModelMultipleChoiceField(queryset=Organization.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
     class Meta:
         model = CourseTag
         fields = ['course', 'primary_topic', 'subtopic', 'skills', 'organization']

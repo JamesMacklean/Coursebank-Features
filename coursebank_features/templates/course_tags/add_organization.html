@@ -11,7 +11,7 @@
       </form>
       <hr>
       <ul>
-        {% for organization in organizations %}
+        {% for organization in organizations|order_by:'name' %}
         <li>{{ organization.name }}</li>
         {% empty %}
         <li>No organizations yet.</li>
