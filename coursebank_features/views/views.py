@@ -61,7 +61,7 @@ def add_primary_topic(request):
         if form.is_valid():
             primary_topics = form.save()
             messages.success(request, f"Added primary topics: {', '.join(str(s) for s in primary_topics)}")
-            return redirect('add_primary_topic')
+            form = PrimaryTopicForm()
     else:
         form = PrimaryTopicForm()
 
@@ -77,7 +77,7 @@ def add_subtopic(request):
         if form.is_valid():
             subtopics = form.save()
             messages.success(request, f"Added subtopics: {', '.join(str(s) for s in subtopics)}")
-            return redirect('add_subtopic')
+            form = SubTopicForm()
     else:
         form = SubTopicForm()
 
@@ -93,7 +93,7 @@ def add_skill(request):
         if form.is_valid():
             skills = form.save()
             messages.success(request, f"Added skills: {', '.join(str(s) for s in skills)}")
-            return redirect('add_skill')
+            form = SkillForm()
     else:
         form = SkillForm()
 
@@ -109,7 +109,7 @@ def add_organization(request):
         if form.is_valid():
             organizations = form.save()
             messages.success(request, f"Added organizations: {', '.join(str(s) for s in organizations)}")
-            return redirect('add_organization')
+            form = OrganizationForm()
     else:
         form = OrganizationForm()
 
