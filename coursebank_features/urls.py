@@ -11,7 +11,11 @@ urlpatterns = [
     path('features/', main, name='main'),
     
     ####################### COURSE TAGS #######################
+    path('course_tag/', course_tag, name='course_tag'),
     path('course_tag/add/', add_course_tag, name='add_course_tag'),
-    path('course_tag/create/', CourseTagCreateView.as_view(), name='course_tag_create'),
+    path('course_tag/add/primary_topic/', add_primary_topic, name='add_primary_topic'),
+    path('course_tag/add/subtopic/', add_subtopic, name='add_subtopic'),
+    path('course_tag/add/skill/', add_skill, name='add_skill'),
+    path('course_tag/add/organization/', add_organization, name='add_organization'),
     ####################### COURSE TAGS #######################
 ]

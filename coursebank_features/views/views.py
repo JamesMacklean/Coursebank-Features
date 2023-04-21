@@ -9,34 +9,36 @@ from django.contrib.auth.decorators import user_passes_test
 
 from coursebank_features.models import *
 from coursebank_features.forms import *
+
 @user_passes_test(lambda u: u.is_staff)
 @staff_member_required
 def main(request):
     template_name = 'features/main.html'
     context = {}
-    
-    profile = None
+
     if request.user.is_authenticated:
         try:
             # uname = User.objects.get(username=request.user)
             context['profile'] = request.user
         except:
-            context['profile'] = profile
+            context['profile'] = None
 
+    
+    return render(request, template_name, context)
+
+####################### COURSE TAGS #######################
+
+# FOR VIEWING COURSE TAGS
+def course_tag(request):
+    template_name = 'course_tags/course_tag.html'
+    context = {}
+    
     course_tags = CourseTag.objects.all()
     context['course_tags'] = course_tags
     
     return render(request, template_name, context)
 
-####################### COURSE TAGS #######################
-@user_passes_test(lambda u: u.is_staff)
-@staff_member_required
-class CourseTagCreateView(CreateView):
-    model = CourseTag
-    form_class = CourseTagForm
-    template_name = 'course_tags/add_course_tag.html'
-    success_url = reverse_lazy('main')
-    
+# FOR ADDING TAGS ON A COURSE
 def add_course_tag(request):
     template_name = 'course_tags/add_course_tag.html'
     
@@ -44,49 +46,65 @@ def add_course_tag(request):
         form = CourseTagForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('main')
+            return redirect('course_tag')
     else:
         form = CourseTagForm()
     
     return render(request, template_name, {'form': form})
 
+# FOR ADDING PRIMARY TOPICS
 def add_primary_topic(request):
     if request.method == 'POST':
         form = PrimaryTopicForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('add_course_tag')
+            form = PrimaryTopicForm()
     else:
         form = PrimaryTopicForm()
-    return render(request, 'course_tags/add_primary_topic.html', {'form': form})
 
+    primary_topics = PrimaryTopic.objects.all()
+
+    return render(request, 'course_tags/add_tag.html', {'form': form, 'tags': primary_topics})
+
+# FOR ADDING SUBTOPICS
 def add_subtopic(request):
     if request.method == 'POST':
         form = SubTopicForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('add_course_tag')
+            form = SubTopicForm()
     else:
         form = SubTopicForm()
-    return render(request, 'course_tags/add_subtopic.html', {'form': form})
 
+    subtopics = SubTopic.objects.all()
+
+    return render(request, 'course_tags/add_tag.html', {'form': form, 'tags': subtopics})
+
+# FOR ADDING SKILLS
 def add_skill(request):
     if request.method == 'POST':
         form = SkillForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('add_course_tag')
+            form = SkillForm()
     else:
         form = SkillForm()
-    return render(request, 'course_tags/add_skill.html', {'form': form})
 
+    skills = Skill.objects.all()
+
+    return render(request, 'course_tags/add_tag.html', {'form': form, 'tags': skills})
+
+# FOR ADDING ORGANIZATIONS
 def add_organization(request):
     if request.method == 'POST':
         form = OrganizationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('add_course_tag')
+            form = OrganizationForm()
     else:
         form = OrganizationForm()
-    return render(request, 'course_tags/add_organization.html', {'form': form})
+
+    organizations = Organization.objects.all()
+
+    return render(request, 'course_tags/add_tag.html', {'form': form, 'tags': organizations})
 ####################### COURSE TAGS #######################

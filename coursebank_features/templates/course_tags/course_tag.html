@@ -1,0 +1,39 @@
+{% block content %}
+    <h1>Course Tags List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Course Display Name</th>
+                <th>Primary Topic</th>
+                <th>Subtopics</th>
+                <th>Skills</th>
+                <th>Organizations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course_tag in course_tags %}
+                <tr>
+                    <td>{{ course_tag.course.display_name }}</td>
+                    <td>{{ course_tag.primary_topic }}</td>
+                    <td>
+                        {% for subtopic in course_tag.subtopic.all %}
+                            {{ subtopic }},
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for skill in course_tag.skills.all %}
+                            {{ skill }},
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for organization in course_tag.organization.all %}
+                            {{ organization }},
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
