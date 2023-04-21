@@ -12,9 +12,6 @@ urlpatterns = [
     path('features-dashboard/', views.dashboard, name='dashboard'),
     
     ####################### COURSE TAGS #######################
-    path('create/subtopic', views.SubtopicCreateView, name='create_subtopic'),
-    path('create/primarytopic', views.PrimaryTopicCreateView, name='create_primarytopic'),
-    path('create/skill', views.SkillCreateView, name='create_skill'),
-    path('create/organization', views.OrganizationCreateView, name='create_organization'),
+    path('add_course_tag/',  views.add_course_tag, name='add_course_tag'),
     ####################### COURSE TAGS #######################
 ]

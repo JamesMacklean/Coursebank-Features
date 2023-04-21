@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
 from coursebank_features.models import *
-
+from coursebank_features.forms import CourseTagForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
@@ -23,12 +23,9 @@ def dashboard(request):
             context['profile'] = profile
 
     course_tags = CourseTag.objects.all()
-    course_display_names = {}
-    for course_tag in course_tags:
-        course_display_names[course_tag.course.id] = course_tag.course.display_name
+
     context = {
         'course_tags': course_tags,
-        'course_display_names': course_display_names
     }
     
     return render(request, template_name, context)
@@ -36,33 +33,16 @@ def dashboard(request):
 ####################### COURSE TAGS #######################
 @user_passes_test(lambda u: u.is_staff)
 @staff_member_required
-class SubtopicCreateView(CreateView):
-    model = SubTopic
-    fields = ['name']
-    template_name = 'course_tags/create_form.html'
-    success_url = reverse_lazy('create_subtopic')
-
-@user_passes_test(lambda u: u.is_staff)
-@staff_member_required
-class PrimaryTopicCreateView(CreateView):
-    model = PrimaryTopic
-    fields = ['name']
-    template_name = 'course_tags/create_form.html'
-    success_url = reverse_lazy('create_primarytopic')
-
-@user_passes_test(lambda u: u.is_staff)
-@staff_member_required
-class SkillCreateView(CreateView):
-    model = Skill
-    fields = ['name']
-    template_name = 'course_tags/create_form.html'
-    success_url = reverse_lazy('create_skill')
-
-@user_passes_test(lambda u: u.is_staff)
-@staff_member_required
-class OrganizationCreateView(CreateView):
-    model = Organization
-    fields = ['name']
-    template_name = 'course_tags/create_form.html'
-    success_url = reverse_lazy('create_organization')
+def add_course_tag(request):
+    template_name = 'course_tags/add_course_tag.html'
+    
+    if request.method == 'POST':
+        form = CourseTagForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = CourseTagForm()
+    
+    return render(request, template_name, {'form': form})
 ####################### COURSE TAGS #######################
