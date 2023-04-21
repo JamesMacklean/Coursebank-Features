@@ -64,7 +64,7 @@ def add_primary_topic(request):
 
     primary_topics = PrimaryTopic.objects.all()
 
-    return render(request, 'course_tags/add_tag.html', {'form': form, 'tags': primary_topics})
+    return render(request, 'course_tags/add_tag.html', {'form': form, 'primary_topics': primary_topics})
 
 # FOR ADDING SUBTOPICS
 def add_subtopic(request):
@@ -78,7 +78,7 @@ def add_subtopic(request):
 
     subtopics = SubTopic.objects.all()
 
-    return render(request, 'course_tags/add_tag.html', {'form': form, 'tags': subtopics})
+    return render(request, 'course_tags/add_tag.html', {'form': form, 'subtopics': subtopics})
 
 # FOR ADDING SKILLS
 def add_skill(request):
@@ -92,7 +92,7 @@ def add_skill(request):
 
     skills = Skill.objects.all()
 
-    return render(request, 'course_tags/add_tag.html', {'form': form, 'tags': skills})
+    return render(request, 'course_tags/add_tag.html', {'form': form, 'skills': skills})
 
 # FOR ADDING ORGANIZATIONS
 def add_organization(request):
@@ -106,5 +106,5 @@ def add_organization(request):
 
     organizations = Organization.objects.all()
 
-    return render(request, 'course_tags/add_tag.html', {'form': form, 'tags': organizations})
+    return render(request, 'course_tags/add_tag.html', {'form': form, 'organizations': organizations})
 ####################### COURSE TAGS #######################
