@@ -10,36 +10,5 @@ class CourseTagForm(forms.ModelForm):
     class Meta:
         model = CourseTag
         fields = ['course', 'primary_topic', 'subtopic', 'skills', 'organization']
-        
-class PrimaryTopicForm(forms.ModelForm):
-    class Meta:
-        model = PrimaryTopic
-        fields = ['name']
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add primary topic'}),
-        }
 
-class SubTopicForm(forms.ModelForm):
-    class Meta:
-        model = SubTopic
-        fields = ['name']
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add subtopic'}),
-        }
-
-class SkillForm(forms.ModelForm):
-    class Meta:
-        model = Skill
-        fields = ['name']
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add skill'}),
-        }
-
-class OrganizationForm(forms.ModelForm):
-    class Meta:
-        model = Organization
-        fields = ['name']
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add organization'}),
-        }
 ####################### COURSE TAGS #######################
