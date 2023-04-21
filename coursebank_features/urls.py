@@ -5,12 +5,13 @@ URLs for coursebank_features.
 # from django.views.generic import TemplateView  # pylint: disable=unused-import
 
 from django.urls import path
-from .views import views
+from .views.views import *
 
 urlpatterns = [
-    path('features/', views.main, name='main'),
+    path('features/', main, name='main'),
     
     ####################### COURSE TAGS #######################
-    path('add_course_tag/',  views.add_course_tag, name='add_course_tag'),
+    path('course_tag/add/', add_course_tag, name='add_course_tag'),
+    path('course_tag/create/', CourseTagCreateView.as_view(), name='course_tag_create'),
     ####################### COURSE TAGS #######################
 ]
