@@ -12,7 +12,7 @@ class CourseTagForm(forms.ModelForm):
         fields = ['course', 'primary_topic', 'subtopic', 'skills', 'organization']
         
 class PrimaryTopicForm(forms.ModelForm):
-    primary_topics = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add primary topics separated by commas'}))
+    primary_topics = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add primary topics separated by commas'}))
     class Meta:
         model = PrimaryTopic
         fields = []
@@ -27,7 +27,7 @@ class PrimaryTopicForm(forms.ModelForm):
         return primary_topics
 
 class SubTopicForm(forms.ModelForm):
-    subtopics = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add subtopics separated by commas'}))
+    subtopics = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add subtopics separated by commas'}))
     class Meta:
         model = SubTopic
         fields = []
@@ -42,7 +42,7 @@ class SubTopicForm(forms.ModelForm):
         return subtopics
 
 class SkillForm(forms.ModelForm):
-    skills = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add skills separated by commas'}))
+    skills = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add skills separated by commas'}))
     class Meta:
         model = Skill
         fields = []
@@ -57,7 +57,7 @@ class SkillForm(forms.ModelForm):
         return skills
 
 class OrganizationForm(forms.ModelForm):
-    organizations = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add organizations separated by commas'}))
+    organizations = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add organizations separated by commas'}))
     class Meta:
         model = Organization
         fields = []
