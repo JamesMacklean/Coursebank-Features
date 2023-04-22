@@ -23,6 +23,8 @@ class OrganizationSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CourseTagSerializer(serializers.ModelSerializer):
+    course_id = serializers.UUIDField(source='course.course_id')
+    course_display_name = serializers.CharField(source='course.display_name')
     primary_topic = PrimaryTopicSerializer()
     subtopic = SubTopicSerializer(many=True)
     skills = SkillSerializer(many=True)
@@ -30,5 +32,4 @@ class CourseTagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CourseTag
-        # fields = '__all__'
-        exclude = ['course_locator']
+        fields = ['id','course_id', 'course_display_name', 'primary_topic', 'subtopic', 'skills', 'organization']
