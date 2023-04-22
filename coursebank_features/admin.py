@@ -32,7 +32,6 @@ class SkillAdmin (admin.ModelAdmin):
 @admin.register(Organization)
 class OrganizationAdmin (admin.ModelAdmin):
     list_display = ('__str__',)
-####################### COURSE TAGS #######################
 
 
 

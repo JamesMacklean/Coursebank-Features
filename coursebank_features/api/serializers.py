@@ -31,4 +31,3 @@ class CourseTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseTag
         fields = '__all__'
-####################### COURSE TAGS #######################

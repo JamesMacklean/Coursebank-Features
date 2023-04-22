@@ -56,7 +56,6 @@ class CourseTagForm(forms.ModelForm):
             organization, _ = Organization.objects.get_or_create(name=name)
             organizations.append(organization)
         return organizations
-    ############### CommaSeparatedCharField ###############
     
 class PrimaryTopicForm(forms.ModelForm):
     primary_topics = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add primary topics separated by commas'}))
@@ -117,4 +116,3 @@ class OrganizationForm(forms.ModelForm):
                 organization, _ = Organization.objects.get_or_create(name=name)
                 organizations.append(organization)
         return organizations
-####################### COURSE TAGS #######################

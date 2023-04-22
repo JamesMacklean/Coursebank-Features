@@ -118,4 +118,3 @@ def add_organization(request):
     organizations = Organization.objects.all()
 
     return render(request, template_name, {'form': form, 'organizations': organizations})
-####################### COURSE TAGS #######################

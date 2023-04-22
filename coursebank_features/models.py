@@ -43,5 +43,3 @@ class Organization(models.Model):
         return self.name
     class Meta:
         ordering = ['name']
-        
-####################### COURSE TAGS #######################

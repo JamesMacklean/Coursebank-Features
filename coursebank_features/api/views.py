@@ -7,4 +7,3 @@ from coursebank_features.models import *
 class CourseTagViewSet(viewsets.ModelViewSet):
     queryset = CourseTag.objects.all()
     serializer_class = CourseTagSerializer 
-####################### COURSE TAGS ####################### 
