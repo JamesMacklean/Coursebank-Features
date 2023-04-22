@@ -30,5 +30,5 @@ class CourseTagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CourseTag
-        fields = '__all__'
+        # fields = '__all__'
         exclude = ['course_locator']
