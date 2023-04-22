@@ -2,15 +2,62 @@ from django import forms
 from .models import *
 
 ####################### COURSE TAGS #######################
-class CourseTagForm(forms.ModelForm):
+class CommaSeparatedCharField(forms.CharField):
+    def to_python(self, value):
+        if not value:
+            return []
+        return [item.strip() for item in value.split(',') if item.strip()]
     
-    subtopic = forms.ModelMultipleChoiceField(queryset=SubTopic.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
-    skills = forms.ModelMultipleChoiceField(queryset=Skill.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
-    organization = forms.ModelMultipleChoiceField(queryset=Organization.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
+class CourseTagForm(forms.ModelForm):
+    subtopic = CommaSeparatedCharField(required=False)
+    skills = CommaSeparatedCharField(required=False)
+    organization = CommaSeparatedCharField(required=False)
+    
+    # subtopic = forms.ModelMultipleChoiceField(queryset=SubTopic.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
+    # skills = forms.ModelMultipleChoiceField(queryset=Skill.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
+    # organization = forms.ModelMultipleChoiceField(queryset=Organization.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
     class Meta:
         model = CourseTag
         fields = ['course', 'primary_topic', 'subtopic', 'skills', 'organization']
-        
+    
+    ############### CommaSeparatedCharField ###############
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['subtopic'].widget.attrs['placeholder'] = 'Subtopic 1, Subtopic 2, ...'
+        self.fields['skills'].widget.attrs['placeholder'] = 'Skill 1, Skill 2, ...'
+        self.fields['organization'].widget.attrs['placeholder'] = 'Organization 1, Organization 2, ...'    
+
+    def clean_subtopic(self):
+        data = self.cleaned_data['subtopic']
+        if not data:
+            return []
+        subtopics = []
+        for name in data:
+            subtopic, _ = SubTopic.objects.get_or_create(name=name)
+            subtopics.append(subtopic)
+        return subtopics
+
+    def clean_skills(self):
+        data = self.cleaned_data['skills']
+        if not data:
+            return []
+        skills = []
+        for name in data:
+            skill, _ = Skill.objects.get_or_create(name=name)
+            skills.append(skill)
+        return skills
+
+    def clean_organization(self):
+        data = self.cleaned_data['organization']
+        if not data:
+            return []
+        organizations = []
+        for name in data:
+            organization, _ = Organization.objects.get_or_create(name=name)
+            organizations.append(organization)
+        return organizations
+    ############### CommaSeparatedCharField ###############
+    
 class PrimaryTopicForm(forms.ModelForm):
     primary_topics = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add primary topics separated by commas'}))
     class Meta:
