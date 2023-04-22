@@ -1,33 +1,26 @@
-from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
-
 from rest_framework import serializers
 from coursebank_features.models import *
 
 ####################### COURSE TAGS #######################
-# class CourseOverviewSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = CourseOverview
-#         fields = ('id', 'display_name')
-
 class PrimaryTopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrimaryTopic
-        fields = '__all__'
+        fields = ['name']
 
 class SubTopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubTopic
-        fields = '__all__'
+        fields = ['name']
 
 class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skill
-        fields = '__all__'
+        fields = ['name']
 
 class OrganizationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Organization
-        fields = '__all__'
+        fields = ['name']
 
 class CourseTagSerializer(serializers.ModelSerializer):
     course_id = serializers.UUIDField(source='course.id')
