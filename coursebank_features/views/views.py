@@ -4,9 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.shortcuts import render
 
 from coursebank_features.models import *
 from coursebank_features.forms import *
