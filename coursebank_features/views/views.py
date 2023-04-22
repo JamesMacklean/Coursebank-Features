@@ -3,13 +3,11 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 
 from coursebank_features.models import *
 from coursebank_features.forms import *
 
-@user_passes_test(lambda u: u.is_staff)
 @staff_member_required
 def main(request):
     template_name = 'features/main.html'
@@ -28,6 +26,7 @@ def main(request):
 ####################### COURSE TAGS #######################
 
 # FOR VIEWING COURSE TAGS
+@staff_member_required
 def course_tag(request):
     template_name = 'course_tags/course_tag.html'
     context = {}
@@ -38,6 +37,7 @@ def course_tag(request):
     return render(request, template_name, context)
 
 # FOR ADDING TAGS ON A COURSE
+@staff_member_required
 def add_course_tag(request):
     template_name = 'course_tags/add_course_tag.html'
     
@@ -52,6 +52,7 @@ def add_course_tag(request):
     return render(request, template_name, {'form': form})
 
 # FOR ADDING PRIMARY TOPICS
+@staff_member_required
 def add_primary_topic(request):
     template_name = 'course_tags/add_primary_topic.html'
     if request.method == 'POST':
@@ -68,6 +69,7 @@ def add_primary_topic(request):
     return render(request, template_name, {'form': form, 'primary_topics': primary_topics})
 
 # FOR ADDING SUBTOPICS
+@staff_member_required
 def add_subtopic(request):
     template_name = 'course_tags/add_subtopic.html'
     if request.method == 'POST':
@@ -84,6 +86,7 @@ def add_subtopic(request):
     return render(request, template_name, {'form': form, 'subtopics': subtopics})
 
 # FOR ADDING SKILLS
+@staff_member_required
 def add_skill(request):
     template_name = 'course_tags/add_skill.html'
     if request.method == 'POST':
@@ -100,6 +103,7 @@ def add_skill(request):
     return render(request, template_name, {'form': form, 'skills': skills})
 
 # FOR ADDING ORGANIZATIONS
+@staff_member_required
 def add_organization(request):
     template_name = 'course_tags/add_organization.html'
     if request.method == 'POST':

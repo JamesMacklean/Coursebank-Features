@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from coursebank_features.models import *
 
+####################### COURSE TAGS #######################
 class PrimaryTopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrimaryTopic
@@ -30,3 +31,4 @@ class CourseTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseTag
         fields = '__all__'
+####################### COURSE TAGS #######################
