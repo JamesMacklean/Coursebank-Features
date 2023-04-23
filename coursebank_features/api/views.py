@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 
 from coursebank_features.api.serializers import *
 from coursebank_features.models import *
-from student.models import CourseEnrollment
+# from student.models import CourseEnrollment
+from lms.djangoapps.course_enrollments.models import CourseEnrollment
 
 ####################### COURSE TAGS #######################
 class CourseTagViewSet(viewsets.ModelViewSet):
