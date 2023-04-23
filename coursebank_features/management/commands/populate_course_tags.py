@@ -8,6 +8,7 @@ import logging
 
 from django.core.management.base import BaseCommand, CommandError
 from coursebank_features.models import *
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 
 log = logging.getLogger(__name__)
 
@@ -29,9 +30,9 @@ class Command(BaseCommand):
             reader = csv.DictReader(f)
             for row in reader:
                 try:
+                    course_overview = CourseOverview.objects.get(id=row['course'])
                     primary_topic, _ = PrimaryTopic.objects.get_or_create(name=row['primary topic'])
-
-                    course_tag = CourseTag.objects.get_or_create(course=row['course'], primary_topic=primary_topic)
+                    course_tag, _ = CourseTag.objects.get_or_create(course=course_overview, primary_topic=primary_topic)
 
                     for subtopic_name in row['subtopics'].split(','):
                         subtopic, _ = SubTopic.objects.get_or_create(name=subtopic_name.strip())
