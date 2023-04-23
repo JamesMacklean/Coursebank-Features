@@ -5,27 +5,23 @@ from django.shortcuts import render
 from coursebank_features.forms import *
 from coursebank_features.models import *
 
-# Generic View for staff members
 @staff_member_required
 def staff_view(request, template_name, context):
     if request.user.is_authenticated:
         context['profile'] = request.user
     return render(request, template_name, context)
 
-# Main view for the app
 def main(request):
     template_name = 'features/main.html'
     context = {}
     return staff_view(request, template_name, context)
 
 ####################### COURSE TAGS #######################
-# View course tags
 def course_tag(request):
     template_name = 'course_tags/course_tag.html'
     context = {'course_tags': CourseTag.objects.all()}
     return staff_view(request, template_name, context)
 
-# Add tags to a course
 def add_course_tag(request):
     template_name = 'course_tags/add_course_tag.html'
     if request.method == 'POST':
@@ -37,7 +33,6 @@ def add_course_tag(request):
         form = CourseTagForm()
     return staff_view(request, template_name, {'form': form})
 
-# Add primary topics
 def add_primary_topic(request):
     template_name = 'course_tags/add_primary_topic.html'
     if request.method == 'POST':
@@ -51,7 +46,6 @@ def add_primary_topic(request):
     primary_topics = PrimaryTopic.objects.all()
     return staff_view(request, template_name, {'form': form, 'primary_topics': primary_topics})
 
-# Add subtopics
 def add_subtopic(request):
     template_name = 'course_tags/add_subtopic.html'
     if request.method == 'POST':
@@ -65,7 +59,6 @@ def add_subtopic(request):
     subtopics = SubTopic.objects.all()
     return staff_view(request, template_name, {'form': form, 'subtopics': subtopics})
 
-# Add skills
 def add_skill(request):
     template_name = 'course_tags/add_skill.html'
     if request.method == 'POST':
@@ -79,7 +72,6 @@ def add_skill(request):
     skills = Skill.objects.all()
     return staff_view(request, template_name, {'form': form, 'skills': skills})
 
-# Add organizations
 def add_organization(request):
     template_name = 'course_tags/add_organization.html'
     if request.method == 'POST':

@@ -18,21 +18,17 @@ class CourseTagAdmin(admin.ModelAdmin):
 class CourseTagAdmin (CourseTagAdmin):
     pass
 
-
 @admin.register(PrimaryTopic)
 class PrimaryTopicAdmin(admin.ModelAdmin):
     list_display = ('__str__',)
 
-
 @admin.register(SubTopic)
 class SubTopicAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
-    
+    list_display = ('__str__',)    
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
     list_display = ('__str__',)
-
 
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):

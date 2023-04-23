@@ -1,5 +1,5 @@
-# IMPORTANT NOTE!
-# CREATE a csv file with the corresponding columns:
+# IMPORTANT INSTRUCTIONS!
+# Create a csv file with the corresponding columns:
 # course, primary topic, skills, subtopics, organization
 
 import os
