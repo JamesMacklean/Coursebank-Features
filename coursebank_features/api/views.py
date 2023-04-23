@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 
 from coursebank_features.api.serializers import *
 from coursebank_features.models import *
-# from student.models import CourseEnrollment
-from lms.djangoapps.course_enrollments.models import CourseEnrollment
+from common.djangoapps.course_modes.models import CourseMode
+from common.djangoapps.student.models import CourseEnrollment
 
 ####################### COURSE TAGS #######################
 class CourseTagViewSet(viewsets.ModelViewSet):
@@ -24,7 +24,9 @@ class FreeCoursesAPI(generics.ListAPIView):
     serializer_class = CourseSerializer
     
     def get_queryset(self):
-        return CourseEnrollment.objects.filter(mode='audit').values('course_id', 'course_id__name')
+        audit_mode = CourseMode.AUDIT
+        return CourseMode.objects.filter(mode=audit_mode).values('course_id', 'course_id__name')
+
 class TrendingCoursesAPI(generics.ListAPIView):
     serializer_class = CourseSerializer
     

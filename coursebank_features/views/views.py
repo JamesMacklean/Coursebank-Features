@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 from coursebank_features.forms import *
 from coursebank_features.models import *
+
+# tutor local run lms python -c "from django.conf import settings; print(settings.INSTALLED_APPS)"
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 
 # Generic View for staff members
