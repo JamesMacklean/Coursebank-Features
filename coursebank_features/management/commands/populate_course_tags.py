@@ -1,6 +1,7 @@
 # IMPORTANT NOTE!
 # CREATE a csv file with the corresponding columns:
 # course, primary topic, skills, subtopics, organization
+
 import os
 import csv
 import logging
@@ -14,7 +15,7 @@ class Command(BaseCommand):
     help = 'Populate CourseTag model with data from a CSV file'
 
     def add_arguments(self, parser):
-        parser.add_argument('csv_file', type=str, help='Path to CSV file', required=True)
+        parser.add_argument('csv_file', type=str, help='Path to CSV file')
 
     def handle(self, *args, **kwargs):
         csv_file = kwargs['csv_file']

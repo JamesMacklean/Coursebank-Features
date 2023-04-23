@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-####################### COURSE TAGS #######################
 class CourseTagAdmin(admin.ModelAdmin):
     list_display = ['course', 'primary_topic', 'get_subtopics', 'get_skills', 'get_organization']
 
@@ -14,7 +13,7 @@ class CourseTagAdmin(admin.ModelAdmin):
     def get_organization(self, obj):
         return ", ".join([str(organization) for organization in obj.organization.all()]) 
 
-
+####################### COURSE TAGS #######################
 @admin.register(CourseTag)
 class CourseTagAdmin (CourseTagAdmin):
     pass

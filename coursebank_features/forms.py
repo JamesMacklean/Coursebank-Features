@@ -1,13 +1,13 @@
 from django import forms
 from .models import *
 
-####################### COURSE TAGS #######################
 class CommaSeparatedCharField(forms.CharField):
     def to_python(self, value):
         if not value:
             return []
         return [item.strip() for item in value.split(',') if item.strip()]
     
+####################### COURSE TAGS #######################
 class CourseTagForm(forms.ModelForm):
     subtopic = CommaSeparatedCharField(required=False)
     skills = CommaSeparatedCharField(required=False)
@@ -16,7 +16,6 @@ class CourseTagForm(forms.ModelForm):
         model = CourseTag
         fields = ['course', 'primary_topic', 'subtopic', 'skills', 'organization']
     
-    ############### CommaSeparatedCharField ###############
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['subtopic'].widget.attrs['placeholder'] = 'Subtopic 1, Subtopic 2, ...'
