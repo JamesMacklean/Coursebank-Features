@@ -16,7 +16,7 @@ class MostPopularCoursesAPI(generics.ListAPIView):
     serializer_class = CourseSerializer
     
     def get_queryset(self):
-        return CourseEnrollment.objects.values('course_id', 'course_id__name') \
+        return CourseEnrollment.objects.values('course', 'course__name') \
                 .annotate(enrollment_count=Count('id')) \
                 .order_by('-enrollment_count')
                 
@@ -25,7 +25,7 @@ class FreeCoursesAPI(generics.ListAPIView):
     
     def get_queryset(self):
         audit_mode = CourseMode.AUDIT
-        return CourseMode.objects.filter(mode=audit_mode).values('course_id', 'course_id__name')
+        return CourseMode.objects.filter(mode=audit_mode).values('course', 'course__name')
 
 class TrendingCoursesAPI(generics.ListAPIView):
     serializer_class = CourseSerializer
@@ -34,6 +34,6 @@ class TrendingCoursesAPI(generics.ListAPIView):
         current_month = datetime.now().month
         current_year = datetime.now().year
         return CourseEnrollment.objects.filter(created__year=current_year, created__month=current_month) \
-                .values('course_id', 'course_id__name') \
+                .values('course', 'course__name') \
                 .annotate(enrollment_count=Count('id')) \
                 .order_by('-enrollment_count')
