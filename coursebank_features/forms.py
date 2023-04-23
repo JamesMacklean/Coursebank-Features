@@ -12,10 +12,6 @@ class CourseTagForm(forms.ModelForm):
     subtopic = CommaSeparatedCharField(required=False)
     skills = CommaSeparatedCharField(required=False)
     organization = CommaSeparatedCharField(required=False)
-    
-    # subtopic = forms.ModelMultipleChoiceField(queryset=SubTopic.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
-    # skills = forms.ModelMultipleChoiceField(queryset=Skill.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
-    # organization = forms.ModelMultipleChoiceField(queryset=Organization.objects.all().order_by('name'), required=False, widget=forms.SelectMultiple)
     class Meta:
         model = CourseTag
         fields = ['course', 'primary_topic', 'subtopic', 'skills', 'organization']

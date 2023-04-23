@@ -1,46 +1,34 @@
-from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
-
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 
-from coursebank_features.models import *
 from coursebank_features.forms import *
+from coursebank_features.models import *
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 
+# Generic View for staff members
 @staff_member_required
+def staff_view(request, template_name, context):
+    if request.user.is_authenticated:
+        context['profile'] = request.user
+    return render(request, template_name, context)
+
+# Main view for the app
 def main(request):
     template_name = 'features/main.html'
     context = {}
-
-    if request.user.is_authenticated:
-        try:
-            # uname = User.objects.get(username=request.user)
-            context['profile'] = request.user
-        except:
-            context['profile'] = None
-
-    
-    return render(request, template_name, context)
+    return staff_view(request, template_name, context)
 
 ####################### COURSE TAGS #######################
-
-# FOR VIEWING COURSE TAGS
-@staff_member_required
+# View course tags
 def course_tag(request):
     template_name = 'course_tags/course_tag.html'
-    context = {}
-    
-    course_tags = CourseTag.objects.all()
-    context['course_tags'] = course_tags
-    
-    return render(request, template_name, context)
+    context = {'course_tags': CourseTag.objects.all()}
+    return staff_view(request, template_name, context)
 
-# FOR ADDING TAGS ON A COURSE
-@staff_member_required
+# Add tags to a course
 def add_course_tag(request):
     template_name = 'course_tags/add_course_tag.html'
-    
     if request.method == 'POST':
         form = CourseTagForm(request.POST)
         if form.is_valid():
@@ -48,11 +36,9 @@ def add_course_tag(request):
             form = CourseTagForm()
     else:
         form = CourseTagForm()
-    
-    return render(request, template_name, {'form': form})
+    return staff_view(request, template_name, {'form': form})
 
-# FOR ADDING PRIMARY TOPICS
-@staff_member_required
+# Add primary topics
 def add_primary_topic(request):
     template_name = 'course_tags/add_primary_topic.html'
     if request.method == 'POST':
@@ -63,13 +49,10 @@ def add_primary_topic(request):
             form = PrimaryTopicForm()
     else:
         form = PrimaryTopicForm()
-
     primary_topics = PrimaryTopic.objects.all()
+    return staff_view(request, template_name, {'form': form, 'primary_topics': primary_topics})
 
-    return render(request, template_name, {'form': form, 'primary_topics': primary_topics})
-
-# FOR ADDING SUBTOPICS
-@staff_member_required
+# Add subtopics
 def add_subtopic(request):
     template_name = 'course_tags/add_subtopic.html'
     if request.method == 'POST':
@@ -80,13 +63,10 @@ def add_subtopic(request):
             form = SubTopicForm()
     else:
         form = SubTopicForm()
-
     subtopics = SubTopic.objects.all()
+    return staff_view(request, template_name, {'form': form, 'subtopics': subtopics})
 
-    return render(request, template_name, {'form': form, 'subtopics': subtopics})
-
-# FOR ADDING SKILLS
-@staff_member_required
+# Add skills
 def add_skill(request):
     template_name = 'course_tags/add_skill.html'
     if request.method == 'POST':
@@ -97,13 +77,10 @@ def add_skill(request):
             form = SkillForm()
     else:
         form = SkillForm()
-
     skills = Skill.objects.all()
+    return staff_view(request, template_name, {'form': form, 'skills': skills})
 
-    return render(request, template_name, {'form': form, 'skills': skills})
-
-# FOR ADDING ORGANIZATIONS
-@staff_member_required
+# Add organizations
 def add_organization(request):
     template_name = 'course_tags/add_organization.html'
     if request.method == 'POST':
@@ -114,7 +91,5 @@ def add_organization(request):
             form = OrganizationForm()
     else:
         form = OrganizationForm()
-
     organizations = Organization.objects.all()
-
-    return render(request, template_name, {'form': form, 'organizations': organizations})
+    return staff_view(request, template_name, {'form': form, 'organizations': organizations})

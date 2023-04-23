@@ -6,8 +6,8 @@ URLs for coursebank_features.
 
 from django.urls import path, include
 from rest_framework import routers
-from coursebank_features.views.views import *
-from coursebank_features.api.views import *
+from .views.views import *
+from .api.views import *
 
 router = routers.DefaultRouter()
 router.register(r'course_tag', CourseTagViewSet)
