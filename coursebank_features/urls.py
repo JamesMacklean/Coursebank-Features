@@ -11,7 +11,7 @@ from .api.views import *
 urlpatterns = [
     path('features/', main, name='main'),
     ########################### API ###########################
-    path('api/', include('coursebank_features.api.urls')),
+    path('api/v1/', include('coursebank_features.api.urls')),
     ####################### COURSE TAGS #######################
     path('course-tag/', course_tag, name='course-tag'),
     path('course-tag/add/', add_course_tag, name='add-course-tag'),
