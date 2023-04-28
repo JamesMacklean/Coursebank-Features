@@ -34,3 +34,12 @@ class CourseTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseTag
         fields = ['id', 'course_id', 'course_display_name', 'primary_topic', 'subtopic', 'skills', 'organization']
+        
+class CourseOverviewSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the CourseOverview model.
+    """
+
+    class Meta:
+        model = CourseOverview
+        fields = ('id', 'display_name', 'enrollment_count')        
