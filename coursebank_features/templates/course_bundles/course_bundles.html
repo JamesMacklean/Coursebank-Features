@@ -1,0 +1,15 @@
+{% extends 'features/base.html' %}
+
+{% block content %}
+  <h1>{{ bundle.name }}</h1>
+  <p>{{ bundle.short_description }}</p>
+
+  {% for course in courses %}
+    <div class="course">
+      <h2>{{ course.name }}</h2>
+      <p>{{ course.short_description }}</p>
+      <p>{{ course.long_description }}</p>
+      <img src="{{ course.image_url }}" alt="{{ course.name }}">
+    </div>
+  {% endfor %}
+{% endblock %}

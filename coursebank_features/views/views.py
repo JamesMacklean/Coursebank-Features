@@ -84,3 +84,13 @@ def add_organization(request):
         form = OrganizationForm()
     organizations = Organization.objects.all()
     return staff_view(request, template_name, {'form': form, 'organizations': organizations})
+
+##### COURSE BUNDLES #####
+
+def bundles(request,slug):
+    template_name = 'course_bundles/course_bundles.html'
+    bundle = CourseBundle.objects.get(slug=slug)
+    courses = bundle.courses.filter(is_active=True).order_by('order')
+    context = {'bundle': bundle, 'special_courses': courses}
+
+    return render(request, template_name, context)
