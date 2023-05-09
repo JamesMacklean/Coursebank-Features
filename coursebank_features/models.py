@@ -74,7 +74,7 @@ class SpecialCourse(models.Model):
         verbose_name_plural = "Special Courses"
 
     def __str__(self):
-        return "{}: {}: {}".format(self.name, self.course_id, self.group.name)
+        return "{}: {}: {}".format(self.name, self.course_id, self.course_bundle.name)
     
 
 class CourseBundle(models.Model):
