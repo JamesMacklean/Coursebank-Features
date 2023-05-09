@@ -20,5 +20,5 @@ urlpatterns = [
     path('course-tag/add/skill/', add_skill, name='add-skill'),
     path('course-tag/add/organization/', add_organization, name='add-organization'),
     #####  COURSE BUNDLES #####
-    re_path(r'^bundles/(?P<bundle_slug>[\w-]+)/$', bundles, name='bundles'),
+    re_path(r'^bundles/(?P<slug>[\w-]+)/$', bundles, name='bundles'),
 ]
