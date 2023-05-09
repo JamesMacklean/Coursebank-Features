@@ -89,9 +89,6 @@ class CourseBundle(models.Model):
     class Meta:
         ordering = ['order']
         verbose_name_plural = "Bundles"
-    
-    def get_absolute_url(self):
-        return reverse('bundles', kwargs={"slug": self.slug})
-    
+        
     def __str__(self):
         return self.name
