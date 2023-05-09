@@ -91,7 +91,7 @@ class CourseBundle(models.Model):
         verbose_name_plural = "Bundles"
     
     def get_absolute_url(self):
-        return reverse("model_detail", kwargs={"slug": self.slug})
+        return reverse('bundles', kwargs={"slug": self.slug})
     
     def __str__(self):
         return self.name
