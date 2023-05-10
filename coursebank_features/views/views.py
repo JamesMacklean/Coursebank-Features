@@ -98,7 +98,7 @@ def bundles(request,slug):
     special_courses = bundle.courses.filter(is_active=True).order_by('order')
     courses = []
     for special_course in special_courses:
-        course = {'courses':courses}
+        course = {'special_course':special_course}
         course_key = CourseKey.from_string(course.course_id)
         courseoverview = CourseOverview.get_from_id(course_key)
         course['courseoverview'] = courseoverview
