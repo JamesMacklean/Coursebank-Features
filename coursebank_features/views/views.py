@@ -5,6 +5,9 @@ from django.shortcuts import render
 from coursebank_features.forms import *
 from coursebank_features.models import *
 
+from opaque_keys.edx.keys import CourseKey
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
+
 @staff_member_required
 def staff_view(request, template_name, context):
     if request.user.is_authenticated:
@@ -89,8 +92,17 @@ def add_organization(request):
 
 def bundles(request,slug):
     template_name = 'course_bundles/course_bundles.html'
-    bundle = CourseBundle.objects.get(slug=slug)
-    courses = bundle.courses.filter(is_active=True).order_by('order')
-    context = {'bundle': bundle, 'courses': courses}
+    context = {}
 
+    bundle = CourseBundle.objects.get(slug=slug)
+    special_courses = bundle.courses.filter(is_active=True).order_by('order')
+    courses = []
+    for special_course in special_courses:
+        course = {'courses':courses}
+        course_key = CourseKey.from_string(course.course_id)
+        courseoverview = CourseOverview.get_from_id(course_key)
+        course['courseoverview'] = courseoverview
+        courses.append(course)
+
+    context['bundle'] = bundle
     return render(request, template_name, context)

@@ -36,7 +36,7 @@ class OrganizationAdmin(admin.ModelAdmin):
 
 @admin.register(SpecialCourse)
 class SpecialCourseAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
+    pass
 @admin.register(CourseBundle)
 class CourseBundleAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
+    pass
