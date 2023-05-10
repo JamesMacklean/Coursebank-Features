@@ -91,6 +91,6 @@ def bundles(request,slug):
     template_name = 'course_bundles/course_bundles.html'
     bundle = CourseBundle.objects.get(slug=slug)
     courses = bundle.courses.filter(is_active=True).order_by('order')
-    context = {'bundle': bundle, 'special_courses': courses}
+    context = {'bundle': bundle, 'courses': courses}
 
     return render(request, template_name, context)
