@@ -95,7 +95,7 @@ def bundles(request,slug):
     context = {}
 
     bundle = CourseBundle.objects.get(slug=slug)
-    special_courses = bundle.courses.filter(is_active=True).order_by('order')
+    special_courses = SpecialCourse.objects.filter(is_active=True).filter(bundle=bundle)
     courses = []
     for special_course in special_courses:
         course = {'special_course':special_course}
@@ -103,7 +103,7 @@ def bundles(request,slug):
         courseoverview = CourseOverview.get_from_id(course_key)
         course['courseoverview'] = courseoverview
         courses.append(course)
-        
+
     context['courses'] = courses
     context['bundle'] = bundle
     return render(request, template_name, context)
