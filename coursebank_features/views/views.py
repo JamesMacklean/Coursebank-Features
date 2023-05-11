@@ -103,6 +103,7 @@ def bundles(request,slug):
         courseoverview = CourseOverview.get_from_id(course_key)
         course['courseoverview'] = courseoverview
         courses.append(course)
-
+        
+    context['courses'] = courses
     context['bundle'] = bundle
     return render(request, template_name, context)
