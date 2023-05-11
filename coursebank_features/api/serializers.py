@@ -42,4 +42,9 @@ class CourseOverviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CourseOverview
-        fields = ('id', 'display_name', 'enrollment_count')        
+        fields = ('id', 'display_name', 'enrollment_count')
+
+class CourseBundleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseBundle
+        fields = ('name', 'long_description', 'image_url')        

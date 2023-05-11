@@ -22,3 +22,9 @@ class MostPopularCoursesList(generics.ListAPIView):
 
     def get_queryset(self):
         return CourseOverview.objects.order_by('-enrollment_count')[:10]
+    
+class CourseBundleListAPIView(APIView):
+    def get(self, request):
+        bundles = CourseBundle.objects.all()
+        serializer = CourseBundleSerializer(bundles, many=True)
+        return Response(serializer.data)
