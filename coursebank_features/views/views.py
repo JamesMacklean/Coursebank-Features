@@ -95,7 +95,7 @@ def bundles(request,slug):
     context = {}
 
     bundle = CourseBundle.objects.get(slug=slug)
-    special_courses = SpecialCourse.objects.filter(is_active=True).filter(bundle=bundle)
+    special_courses = SpecialCourse.objects.filter(is_active=True).filter(course_bundle=bundle)
     courses = []
     for special_course in special_courses:
         course = {'special_course':special_course}
