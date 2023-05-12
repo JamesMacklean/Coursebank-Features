@@ -18,8 +18,8 @@ class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
             # Get all course overviews
-            course_overviews = CourseOverview.objects.all()
-
+            # course_overviews = CourseOverview.objects.all()
+            course_overviews = CourseOverview.objects.filter(is_active=True)
             # Get enrollment counts for each course
             enrollments = []
             for course_overview in course_overviews:
