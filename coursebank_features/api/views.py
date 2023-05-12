@@ -2,7 +2,6 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import AllowAny
 
 from coursebank_features.api.serializers import *
 from coursebank_features.models import *
@@ -15,19 +14,36 @@ class CourseTagAPIView(APIView):
         serializer = CourseTagSerializer(course_tags, many=True)
         return Response(serializer.data)
     
-class MostPopularCoursesAPIView(generics.ListAPIView):
-    """
-    API endpoint that returns top 10 most enrolled courses
-    """
-    permission_classes = (AllowAny,)
-    serializer_class = MostPopularCoursesSerializer
+class MostPopularCoursesAPIView(APIView):
+    def get(self, request):
+        try:
+            # Get all course overviews
+            course_overviews = CourseOverview.objects.all()
 
-    def get_queryset(self):
-        return CourseEnrollment.objects.filter(is_active=True).values('course_id').annotate(
-            enrollment_count=models.Count('id')
-        ).order_by('-enrollment_count')[:10].values_list('course_id', flat=True)
+            # Get enrollment counts for each course
+            enrollments = []
+            for course_overview in course_overviews:
+                enrollment_count = CourseEnrollment.objects.filter(
+                    course_id=course_overview.id,
+                    is_active=True
+                ).count()
+                enrollments.append({
+                    'course_id': course_overview.id,
+                    'course_name': course_overview.display_name,
+                    'enrollment_count': enrollment_count,
+                })
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+            # Sort the enrollments list by enrollment count in descending order
+            sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
+
+            # Return the top 10 courses with the highest enrollment count
+            top_enrollments = sorted_enrollments[:10]
+
+            # Serialize the enrollment data
+            serializer = MostPopularCoursesSerializer(top_enrollments, many=True)
+
+            # Return the enrollment data as a JSON response
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except CourseOverview.DoesNotExist:
+            return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
