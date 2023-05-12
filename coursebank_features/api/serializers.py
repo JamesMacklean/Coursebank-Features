@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from coursebank_features.models import *
+
+from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 
 ####################### COURSE TAGS #######################
@@ -35,11 +37,23 @@ class CourseTagSerializer(serializers.ModelSerializer):
         model = CourseTag
         fields = ['id', 'course_id', 'course_display_name', 'primary_topic', 'subtopic', 'skills', 'organization']
         
-class CourseOverviewSerializer(serializers.ModelSerializer):
+class MostPopularCoursesSerializer(serializers.Serializer):
     """
-    Serializer for the CourseOverview model.
+    Serializer for the most enrolled courses.
     """
+    id = serializers.SerializerMethodField()
+    name = serializers.SerializerMethodField()
+    enrollment_count = serializers.SerializerMethodField()
 
     class Meta:
         model = CourseOverview
-        fields = ('id', 'display_name', 'enrollment_count')        
+        fields = ['id', 'name', 'enrollment_count']
+    
+    def get_id(self, obj):
+        return obj.id
+
+    def get_name(self, obj):
+        return obj.display_name
+
+    def get_enrollment_count(self, obj):
+        return CourseEnrollment.objects.filter(course_id=obj.id).count()
