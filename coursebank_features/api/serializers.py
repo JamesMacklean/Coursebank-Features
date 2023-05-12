@@ -39,21 +39,10 @@ class CourseTagSerializer(serializers.ModelSerializer):
         
 class MostPopularCoursesSerializer(serializers.Serializer):
     """
-    Serializer for the most enrolled courses.
+    Serializer for CourseOverview model that includes enrollment count
     """
-    id = serializers.SerializerMethodField()
-    name = serializers.SerializerMethodField()
-    enrollment_count = serializers.SerializerMethodField()
+    enrollment_count = serializers.IntegerField()
 
     class Meta:
         model = CourseOverview
-        fields = ['id', 'name', 'enrollment_count']
-    
-    def get_id(self, obj):
-        return obj.id
-
-    def get_name(self, obj):
-        return obj.display_name
-
-    def get_enrollment_count(self, obj):
-        return CourseEnrollment.objects.filter(course_id=obj.id).count()
+        fields = ('id', 'display_name', 'enrollment_count')
