@@ -54,3 +54,22 @@ class TrendingCoursesSerializer(serializers.Serializer):
     class Meta:
         model = CourseOverview
         fields = ('id', 'display_name', 'enrollment_count')
+        
+class FreeCoursesSerializer(serializers.Serializer):
+    course_id = serializers.CharField()
+    course_name = serializers.CharField()
+    enrollment_count = serializers.IntegerField()
+
+    class Meta:
+        model = CourseOverview
+        fields = ('id', 'display_name', 'enrollment_count')
+        
+class LatestCoursesSerializer(serializers.Serializer):
+    created_date = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CourseOverview
+        fields = ['id', 'display_name', 'created_date']
+
+    def get_created_date(self, obj):
+        return obj.created.strftime('%Y-%m-%d')
