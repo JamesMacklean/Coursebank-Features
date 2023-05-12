@@ -1,5 +1,5 @@
 from django.utils import timezone
-from datetime import timedelta
+from datetime import timedelta, datetime
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -25,15 +25,17 @@ class MostPopularCoursesAPIView(APIView):
             # Get enrollment counts for each course
             enrollments = []
             for course_overview in course_overviews:
-                enrollment_count = CourseEnrollment.objects.filter(
-                    course_id=course_overview.id,
-                    is_active=True
-                ).count()
-                enrollments.append({
-                    'course_id': course_overview.id,
-                    'course_name': course_overview.display_name,
-                    'enrollment_count': enrollment_count,
-                })
+                enrollment_end = course_overview.enrollment_end
+                if enrollment_end and enrollment_end >= datetime.now():
+                    enrollment_count = CourseEnrollment.objects.filter(
+                        course_id=course_overview.id,
+                        is_active=True
+                    ).count()
+                    enrollments.append({
+                        'course_id': course_overview.id,
+                        'course_name': course_overview.display_name,
+                        'enrollment_count': enrollment_count,
+                    })
 
             # Sort the enrollments list by enrollment count in descending order
             sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
@@ -59,16 +61,19 @@ class TrendingCoursesAPIView(APIView):
             # Get enrollments for each course in the last 30 days
             enrollments = []
             for course_overview in course_overviews:
-                enrollment_count = CourseEnrollment.objects.filter(
-                    course_id=course_overview.id,
-                    is_active=True,
-                    created__gte=timezone.now() - timedelta(days=30)
-                ).count()
-                enrollments.append({
-                    'course_id': course_overview.id,
-                    'course_name': course_overview.display_name,
-                    'enrollment_count': enrollment_count,
-                })
+                enrollment_end = course_overview.enrollment_end
+                if enrollment_end and enrollment_end >= datetime.now():
+                    enrollment_count = CourseEnrollment.objects.filter(
+                        course_id=course_overview.id,
+                        is_active=True,
+                        # created__gte=timezone.now() - timedelta(days=30)
+                        created=timezone.now() - timedelta(days=30)
+                    ).count()
+                    enrollments.append({
+                        'course_id': course_overview.id,
+                        'course_name': course_overview.display_name,
+                        'enrollment_count': enrollment_count,
+                    })
 
             # Sort the enrollments list by enrollment count in descending order
             sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
