@@ -26,7 +26,7 @@ class MostPopularCoursesAPIView(APIView):
             enrollments = []
             for course_overview in course_overviews:
                 enrollment_end = course_overview.enrollment_end
-                if enrollment_end and enrollment_end >= datetime.now():
+                if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
                         course_id=course_overview.id,
                         is_active=True
@@ -62,7 +62,7 @@ class TrendingCoursesAPIView(APIView):
             enrollments = []
             for course_overview in course_overviews:
                 enrollment_end = course_overview.enrollment_end
-                if enrollment_end and enrollment_end >= datetime.now():
+                if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
                         course_id=course_overview.id,
                         is_active=True,
