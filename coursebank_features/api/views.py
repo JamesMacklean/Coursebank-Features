@@ -66,8 +66,7 @@ class TrendingCoursesAPIView(APIView):
                     enrollment_count = CourseEnrollment.objects.filter(
                         course_id=course_overview.id,
                         is_active=True,
-                        # created__gte=timezone.now() - timedelta(days=30)
-                        created=timezone.now() - timedelta(days=30)
+                        created__gte=timezone.now() - timedelta(days=7)
                     ).count()
                     enrollments.append({
                         'course_id': course_overview.id,
@@ -78,14 +77,18 @@ class TrendingCoursesAPIView(APIView):
             # Sort the enrollments list by enrollment count in descending order
             sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
 
-            # Return the top 10 courses with the highest enrollment count
-            top_enrollments = sorted_enrollments[:10]
+            if sorted_enrollments:
+                # Get the most enrolled course in the last 30 days
+                most_enrolled_course = sorted_enrollments[:10]
 
-            # Serialize the enrollment data
-            serializer = TrendingCoursesSerializer(top_enrollments, many=True)
+                # Serialize the enrollment data
+                serializer = TrendingCoursesSerializer(most_enrolled_course, many=True)
 
             # Return the enrollment data as a JSON response
             return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except CourseOverview.DoesNotExist:
+            return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
 
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
