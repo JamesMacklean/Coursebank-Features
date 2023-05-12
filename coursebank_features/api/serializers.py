@@ -47,4 +47,4 @@ class CourseOverviewSerializer(serializers.ModelSerializer):
 class CourseBundleSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseBundle
-        fields = ('name', 'long_description', 'image_url')        
+        fields = ('name','slug', 'long_description', 'image_url')        
