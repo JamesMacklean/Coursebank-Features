@@ -1,3 +1,5 @@
+from django.utils import timezone
+from datetime import timedelta
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -18,8 +20,8 @@ class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
             # Get all course overviews
-            # course_overviews = CourseOverview.objects.all()
-            course_overviews = CourseOverview.objects.filter(is_active=True)
+            course_overviews = CourseOverview.objects.all()
+            
             # Get enrollment counts for each course
             enrollments = []
             for course_overview in course_overviews:
@@ -41,6 +43,41 @@ class MostPopularCoursesAPIView(APIView):
 
             # Serialize the enrollment data
             serializer = MostPopularCoursesSerializer(top_enrollments, many=True)
+
+            # Return the enrollment data as a JSON response
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except CourseOverview.DoesNotExist:
+            return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+class TrendingCoursesAPIView(APIView):
+    def get(self, request):
+        try:
+            # Get all course overviews
+            course_overviews = CourseOverview.objects.all()
+
+            # Get enrollments for each course in the last 30 days
+            enrollments = []
+            for course_overview in course_overviews:
+                enrollment_count = CourseEnrollment.objects.filter(
+                    course_id=course_overview.id,
+                    is_active=True,
+                    created__gte=timezone.now() - timedelta(days=30)
+                ).count()
+                enrollments.append({
+                    'course_id': course_overview.id,
+                    'course_name': course_overview.display_name,
+                    'enrollment_count': enrollment_count,
+                })
+
+            # Sort the enrollments list by enrollment count in descending order
+            sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
+
+            # Return the top 10 courses with the highest enrollment count
+            top_enrollments = sorted_enrollments[:10]
+
+            # Serialize the enrollment data
+            serializer = TrendingCoursesSerializer(top_enrollments, many=True)
 
             # Return the enrollment data as a JSON response
             return Response(serializer.data, status=status.HTTP_200_OK)
