@@ -1,9 +1,9 @@
 {% extends 'bundles_base.html' %}
 {% load static %}
+{% block title %}{{bundle.name}} | {% endblock %}
 {% block headextra %}{% endblock %}
 
 {% block body %}
-<div id="content" dir="ltr">
   <div class="full-width-wrapper">
     <section class="page-banner page-banner-1">
       <div class="contained-wrapper h-100">
@@ -42,7 +42,7 @@
       </div>
       <div class="col-12 col-md-6 order-0 order-md-1">
         <div class="d-flex h-100 align-items-center">
-          <img height="auto" width="100%" src="/images/softskill-placdeholder.png" />
+          <img height="auto" width="100%" src="{% static 'images/softskill-placdeholder.png' %}" />
         </div>
       </div>
     </div>
@@ -141,8 +141,8 @@
                     <img class="img-item" height="auto" width="100%" src="{{ course.courseoverview.course_image_url }}" />
                     <div class="course-details-container">
                     <div class="d-flex align-items-center">
-                    <img class="me-1" height="auto" width="32px" src="{{ course.image_url }}" />
-                    <h2 class="course-title" style="font-size: 14px !important; font-family: sans-serif !important;">
+                    <img class="me-1" height="auto" width="32px" src="{{ course.courseimage }}" />
+                    <h2 class="course-title" style="font-size: 13px !important; font-family: sans-serif !important;">
                         {% if course.courseoverview.display_org_with_default != None %}
                         {{course.courseoverview.display_org_with_default}}
                         {% else %}
@@ -376,15 +376,13 @@
             cupidatat non proident.
           </p>
           <form class="d-flex">
-            <input type="text" class="form-control me-3" placeholder="Enter your email" />
+            <input type="text" class="form-control me-3"/>
             <button class="btn text-primary">Subscribe</button>
           </form>
         </div>
       </div>
-    </div>
   </section>
-</div>
-<script src="/js/scripts.js"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
   crossorigin="anonymous"></script>
