@@ -99,7 +99,6 @@ def bundles(request,slug):
     courses = []
     for special_course in special_courses:
         course = {'special_course':special_course}
-        courseimage = special_course.image_url
         course_key = CourseKey.from_string(special_course.course_id)
         courseoverview = CourseOverview.get_from_id(course_key)
         course['courseoverview'] = courseoverview
