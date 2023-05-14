@@ -3,13 +3,13 @@
 {% block headextra %}{% endblock %}
 
 {% block body %}
-
+<div id="content" dir="ltr">
   <div class="full-width-wrapper">
     <section class="page-banner page-banner-1">
-      <div class="contained-wrapper">
+      <div class="contained-wrapper h-100">
         <div class="d-flex align-items-center h-100">
           <div class="col-12 col-md-8 d-flex flex-column">
-            <h1 class="pagebanner-title">{{ bundle.name }}</h1>
+            <h1 class="pagebanner-title mb-3 text-left">{{ bundle.name }}</h1>
             <p class="pagebanner-desc mt-2">
                 {{ bundle.short_description }}
             </p>
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder">
+  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="overview">
     <div class="row">
       <div class="col-12 col-md-6 order-1 order-md-0">
         <div class="d-flex flex-column justify-content-center h-100">
@@ -56,7 +56,7 @@
       <div class="row pt-3 gy-2 gy-md-3 gx-3">
         <div class="col-12 col-md-4">
           <div class="learn-item">
-            <img src="/images/learn-icons/communication.png" height="48px" width="48px" />
+            <img src="{% static 'images/learn-icons/communication.png' %}" height="48px" width="48px" />
             <h4>Communication Skills</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -66,7 +66,7 @@
         </div>
         <div class="col-12 col-md-4">
           <div class="learn-item">
-            <img src="/images/learn-icons/leadership.png" height="48px" width="48px" />
+            <img src="{% static 'images/learn-icons/leadership.png' %}" height="48px" width="48px" />
             <h4>Leadership & Management</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -76,7 +76,7 @@
         </div>
         <div class="col-12 col-md-4">
           <div class="learn-item">
-            <img src="/images/learn-icons/intelligence.png" height="48px" width="48px" />
+            <img src="{% static 'images/learn-icons/intelligence.png' %}" height="48px" width="48px" />
             <h4>Emotional Intelligence</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -86,7 +86,7 @@
         </div>
         <div class="col-12 col-md-4">
           <div class="learn-item">
-            <img src="/images/learn-icons/customer-service.png" height="48px" width="48px" />
+            <img src="{% static 'images/learn-icons/customer-service.png' %}" height="48px" width="48px" />
             <h4>Customer Service</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -96,7 +96,7 @@
         </div>
         <div class="col-12 col-md-4">
           <div class="learn-item">
-            <img src="/images/learn-icons/time-management.png" height="48px" width="48px" />
+            <img src="{% static 'images/learn-icons/time-management.png' %}" height="48px" width="48px" />
             <h4>Time Management</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -106,7 +106,7 @@
         </div>
         <div class="col-12 col-md-4">
           <div class="learn-item">
-            <img src="/images/learn-icons/team-building.png" height="48px" width="48px" />
+            <img src="{% static 'images/learn-icons/team-building.png' %}" height="48px" width="48px" />
             <h4>Team Building</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -119,7 +119,7 @@
   </div>
 
   <div class="bg-light-1">
-    <div class="contained-wrapper pt-6 pb-6">
+    <div class="contained-wrapper pt-6 pb-6" id="courses">
       <section class="section-courses-container">
         <div class="section-header d-flex align-items-center">
           <h3 class="section-title me-auto">{{ bundle.name }}</h3>
@@ -138,11 +138,11 @@
                     <div class="category-badge" style="background-color: #387aa6">
                     Information Technology
                     </div>
-                    <img height="255px" width="100%" src="{{ course.courseoverview.course_image_url }}" />
+                    <img class="img-item" height="auto" width="100%" src="{{ course.courseoverview.course_image_url }}" />
                     <div class="course-details-container">
                     <div class="d-flex align-items-center">
-                    <img class="me-1" height="auto" width="32px" src="/images/course-company-placeholder.png" />
-                    <h2 class="course-title">
+                    <img class="me-1" height="auto" width="32px" src="{{ course.image_url }}" />
+                    <h2 class="course-title" style="font-size: 14px !important; font-family: sans-serif !important;">
                         {% if course.courseoverview.display_org_with_default != None %}
                         {{course.courseoverview.display_org_with_default}}
                         {% else %}
@@ -383,16 +383,16 @@
       </div>
     </div>
   </section>
+</div>
+<script src="/js/scripts.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
 
   {% endblock %}
-
-  <script src="/js/scripts.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
