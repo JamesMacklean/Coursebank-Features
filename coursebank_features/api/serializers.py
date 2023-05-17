@@ -65,6 +65,8 @@ class FreeCoursesSerializer(serializers.Serializer):
         fields = ('id', 'display_name', 'enrollment_count')
         
 class LatestCoursesSerializer(serializers.Serializer):
+    course_id = serializers.CharField()
+    course_name = serializers.CharField()
     created_date = serializers.SerializerMethodField()
 
     class Meta:
