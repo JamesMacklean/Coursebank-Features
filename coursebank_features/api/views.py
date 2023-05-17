@@ -137,9 +137,18 @@ class FreeCoursesAPIView(APIView):
 class LatestCoursesAPIView(APIView):
     def get(self, request):
         try:
+            
             # Get top 10 newest courses
             course_overviews = CourseOverview.objects.order_by('-created')[:10]
-
+            
+            courses = []
+            for course_overview in course_overviews:
+                courses.append({
+                    'course_id': course_overview.id,
+                    'course_name': course_overview.display_name,
+                    'date_created': course_overview.created.strftime('%Y-%m-%d %H:%M:%S'),
+                })
+                
             # Serialize course data
             serializer = LatestCoursesSerializer(course_overviews, many=True)
 
