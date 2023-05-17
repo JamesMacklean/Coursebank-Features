@@ -65,10 +65,13 @@ class FreeCoursesSerializer(serializers.Serializer):
         fields = ('id', 'display_name', 'enrollment_count')
         
 class LatestCoursesSerializer(serializers.Serializer):
-    course_id = serializers.CharField()
-    course_name = serializers.CharField()
+    course_id = serializers.CharField(source='id')
+    course_name = serializers.CharField(source='display_name')
     date_created = serializers.SerializerMethodField()
-
+    
     class Meta:
         model = CourseOverview
-        fields = ['id', 'display_name', 'date_created']
+        fields = ['course_id', 'course_name', 'date_created']
+
+    def get_date_created(self, instance):
+        return instance.created.strftime('%Y-%m-%d %H:%M:%S')
