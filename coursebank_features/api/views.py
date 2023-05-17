@@ -28,18 +28,18 @@ class MostPopularCoursesAPIView(APIView):
             for course_overview in course_overviews:
                 if course_overview.id in EXCLUDED_COURSES:
                     continue
-            
-                enrollment_end = course_overview.enrollment_end
-                if enrollment_end is None or enrollment_end > timezone.now():
-                    enrollment_count = CourseEnrollment.objects.filter(
-                        course_id=course_overview.id,
-                        is_active=True
-                    ).count()
-                    enrollments.append({
-                        'course_id': course_overview.id,
-                        'course_name': course_overview.display_name,
-                        'enrollment_count': enrollment_count,
-                    })
+                else:
+                    enrollment_end = course_overview.enrollment_end
+                    if enrollment_end is None or enrollment_end > timezone.now():
+                        enrollment_count = CourseEnrollment.objects.filter(
+                            course_id=course_overview.id,
+                            is_active=True
+                        ).count()
+                        enrollments.append({
+                            'course_id': course_overview.id,
+                            'course_name': course_overview.display_name,
+                            'enrollment_count': enrollment_count,
+                        })
 
             # Sort the enrollments list by enrollment count in descending order
             sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
@@ -67,19 +67,19 @@ class TrendingCoursesAPIView(APIView):
             for course_overview in course_overviews:
                 if course_overview.id in EXCLUDED_COURSES:
                     continue
-                
-                enrollment_end = course_overview.enrollment_end
-                if enrollment_end is None or enrollment_end > timezone.now():
-                    enrollment_count = CourseEnrollment.objects.filter(
-                        course_id=course_overview.id,
-                        is_active=True,
-                        created__gte=timezone.now() - timedelta(days=5)
-                    ).count()
-                    enrollments.append({
-                        'course_id': course_overview.id,
-                        'course_name': course_overview.display_name,
-                        'enrollment_count': enrollment_count,
-                    })
+                else:
+                    enrollment_end = course_overview.enrollment_end
+                    if enrollment_end is None or enrollment_end > timezone.now():
+                        enrollment_count = CourseEnrollment.objects.filter(
+                            course_id=course_overview.id,
+                            is_active=True,
+                            created__gte=timezone.now() - timedelta(days=5)
+                        ).count()
+                        enrollments.append({
+                            'course_id': course_overview.id,
+                            'course_name': course_overview.display_name,
+                            'enrollment_count': enrollment_count,
+                        })
 
             # Sort the enrollments list by enrollment count in descending order
             sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
@@ -111,19 +111,19 @@ class FreeCoursesAPIView(APIView):
             for course_overview in course_overviews:
                 if course_overview.id in EXCLUDED_COURSES:
                     continue
-                
-                enrollment_end = course_overview.enrollment_end
-                if enrollment_end is None or enrollment_end > timezone.now():
-                    enrollment_count = CourseEnrollment.objects.filter(
-                        course_id=course_overview.id,
-                        is_active=True,
-                        mode="honor",
-                    ).count()
-                    enrollments.append({
-                        'course_id': course_overview.id,
-                        'course_name': course_overview.display_name,
-                        'enrollment_count': enrollment_count,
-                    })
+                else:
+                    enrollment_end = course_overview.enrollment_end
+                    if enrollment_end is None or enrollment_end > timezone.now():
+                        enrollment_count = CourseEnrollment.objects.filter(
+                            course_id=course_overview.id,
+                            is_active=True,
+                            mode="honor",
+                        ).count()
+                        enrollments.append({
+                            'course_id': course_overview.id,
+                            'course_name': course_overview.display_name,
+                            'enrollment_count': enrollment_count,
+                        })
 
             # Sort the enrollments list by enrollment count in descending order
             sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
@@ -155,12 +155,12 @@ class LatestCoursesAPIView(APIView):
             for course_overview in course_overviews:
                 if course_overview.id in EXCLUDED_COURSES:
                     continue
-                
-                courses.append({
-                    'course_id': course_overview.id,
-                    'course_name': course_overview.display_name,
-                    'date_created': course_overview.created.strftime('%Y-%m-%d %H:%M:%S'),
-                })
+                else:
+                    courses.append({
+                        'course_id': course_overview.id,
+                        'course_name': course_overview.display_name,
+                        'date_created': course_overview.created.strftime('%Y-%m-%d %H:%M:%S'),
+                    })
                 
             # Serialize course data
             serializer = LatestCoursesSerializer(course_overviews, many=True)
