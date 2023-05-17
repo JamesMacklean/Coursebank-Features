@@ -26,7 +26,8 @@ class MostPopularCoursesAPIView(APIView):
             # Get enrollment counts for each course
             enrollments = []
             for course_overview in course_overviews:
-                if course_overview.id in EXCLUDED_COURSES:
+                course_id = course_overview.id
+                if course_id in EXCLUDED_COURSES:
                     continue
             
                 enrollment_end = course_overview.enrollment_end
@@ -65,7 +66,8 @@ class TrendingCoursesAPIView(APIView):
             # Get enrollments for each course in the last 30 days
             enrollments = []
             for course_overview in course_overviews:
-                if course_overview.id in EXCLUDED_COURSES:
+                course_id = course_overview.id
+                if course_id in EXCLUDED_COURSES:
                     continue
                 
                 enrollment_end = course_overview.enrollment_end
@@ -109,7 +111,8 @@ class FreeCoursesAPIView(APIView):
             # Get enrollments for each course in the last 30 days
             enrollments = []
             for course_overview in course_overviews:
-                if course_overview.id in EXCLUDED_COURSES:
+                course_id = course_overview.id
+                if course_id in EXCLUDED_COURSES:
                     continue
                 
                 enrollment_end = course_overview.enrollment_end
@@ -153,7 +156,8 @@ class LatestCoursesAPIView(APIView):
             
             courses = []
             for course_overview in course_overviews:
-                if course_overview.id in EXCLUDED_COURSES:
+                course_id = course_overview.id
+                if course_id in EXCLUDED_COURSES:
                     continue
                 
                 courses.append({
