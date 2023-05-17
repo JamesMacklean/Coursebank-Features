@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from coursebank_features.api.serializers import *
+from coursebank_features.api.variables import *
 from coursebank_features.models import *
 
 from common.djangoapps.student.models import CourseEnrollment
@@ -25,6 +26,9 @@ class MostPopularCoursesAPIView(APIView):
             # Get enrollment counts for each course
             enrollments = []
             for course_overview in course_overviews:
+                if course_overview.id in EXCLUDED_COURSES:
+                    continue
+            
                 enrollment_end = course_overview.enrollment_end
                 if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
@@ -61,6 +65,9 @@ class TrendingCoursesAPIView(APIView):
             # Get enrollments for each course in the last 30 days
             enrollments = []
             for course_overview in course_overviews:
+                if course_overview.id in EXCLUDED_COURSES:
+                    continue
+                
                 enrollment_end = course_overview.enrollment_end
                 if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
@@ -102,6 +109,9 @@ class FreeCoursesAPIView(APIView):
             # Get enrollments for each course in the last 30 days
             enrollments = []
             for course_overview in course_overviews:
+                if course_overview.id in EXCLUDED_COURSES:
+                    continue
+                
                 enrollment_end = course_overview.enrollment_end
                 if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
@@ -143,6 +153,9 @@ class LatestCoursesAPIView(APIView):
             
             courses = []
             for course_overview in course_overviews:
+                if course_overview.id in EXCLUDED_COURSES:
+                    continue
+                
                 courses.append({
                     'course_id': course_overview.id,
                     'course_name': course_overview.display_name,
