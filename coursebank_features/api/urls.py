@@ -5,6 +5,7 @@ from coursebank_features.api.views import *
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('course-tag/', CourseTagAPIView.as_view(), name='course-tag'),
+    path('course-bundles/', CourseBundleListAPIView.as_view(), name='course_bundle_list'),
     path('courses/most-popular/', MostPopularCoursesAPIView.as_view(), name='most-popular-courses'),
     path('courses/trending/', MostPopularCoursesAPIView.as_view(), name='trending-courses'),
     path('courses/free/', FreeCoursesAPIView.as_view(), name='free-courses'),

@@ -4,7 +4,7 @@ URLs for coursebank_features.
 # from django.urls import re_path  # pylint: disable=unused-import
 # from django.views.generic import TemplateView  # pylint: disable=unused-import
 
-from django.urls import path, include
+from django.urls import path, include, re_path
 from coursebank_features.views.views import *
 from .api.views import *
 
@@ -19,4 +19,6 @@ urlpatterns = [
     path('course-tag/add/subtopic/', add_subtopic, name='add-subtopic'),
     path('course-tag/add/skill/', add_skill, name='add-skill'),
     path('course-tag/add/organization/', add_organization, name='add-organization'),
+    #####  COURSE BUNDLES #####
+    re_path(r'^bundles/(?P<slug>[\w-]+)/$', bundles, name='bundles'),
 ]

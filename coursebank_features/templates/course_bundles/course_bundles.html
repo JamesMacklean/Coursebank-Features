@@ -1,0 +1,517 @@
+{% extends 'bundles_base.html' %}
+{% load static %}
+{% block title %}{{bundle.name}} | {% endblock %}
+{% block headextra %}{% endblock %}
+
+
+{% block body %}
+
+{% if bundle.slug == "advanced-graphic-design" %}
+<div class="bg-light-1">
+  <div class="contained-wrapper">
+    <div class="d-flex gap-4 align-items-center page-banner-v2">
+      <div class="col-6">
+        <h1 class="pagebanner-title">{{bundle.name}}</h1>
+        <p class="pagebanner-desc mt-2">
+          {{bundle.short_description}}
+        </p>
+        <a class="btn btn-primary mt-2" href="#">Enroll Now!</a>
+      </div>
+      <div class="col-6">
+        <img
+          height="auto"
+          width="100%"
+          src="{% static 'images/page-banners/page-banner-3.png' %}"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="full-width-wrapper sticky-page-nav">
+  <div class="contained-wrapper">
+    <div class="sticky-nav-content">
+      <a href="" class="active">Overview </a>
+      <a href="">Courses </a>
+      <a href="">FAQ’s </a>
+    </div>
+  </div>
+</div>
+
+<div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder">
+  <div class="row">
+    <div class="col-12 col-md-6 order-1 order-md-0">
+      <div class="d-flex flex-column justify-content-center h-100">
+        <h2 class="font-42px pb-0 pb-md-3 mt-4 mt-md-0">
+          About This Specialization Track
+        </h2>
+        <p>
+          {{bundle.long_description}}
+        </p>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 order-0 order-md-1">
+      <div class="d-flex h-100 align-items-center">
+        <img
+          height="auto"
+          width="100%"
+          src="{% static 'images/specialization-course-placeholder-1.png' %}"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contained-wrapper pt-6 pb-6">
+  <section class="will-learn-section">
+    <div class="section-header d-flex align-items-center">
+      <h3 class="section-title pb-3">Skills You Will Gain</h3>
+    </div>
+    <div class="row pt-3 gy-2 gy-md-3 gx-3">
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/wireframe.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>Wireframing</h4>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/user-journey.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>User Journey</h4>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/digital-marketing.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>Communication & Collaboration</h4>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/user-research.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>User Research</h4>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/prototyping.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>Prototyping</h4>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/design-thinking.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>Design Thinking</h4>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/design.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>Design</h4>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/analysis.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>Market Research</h4>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="learn-item mb-3">
+          <img
+            src="{% static 'images/learn-icons/creativity.png' %}"
+            height="48px"
+            width="48px"
+          />
+          <h4>Emphatic Design</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="bg-light-1">
+  <div class="contained-wrapper pt-6 pb-6">
+    <section class="section-courses-container">
+      <div class="section-header d-flex align-items-center">
+        <h3 class="section-title me-auto">Courses</h3>
+        <a href="" class="fw-bold">View All Courses</a>
+      </div>
+      
+      <div class="row pt-3 gutter-2rem">
+        {% for course in courses %}
+        <div class="col-12">
+          <a href="{% url 'about_course' course_id=course.courseoverview.id %}">
+            <div class="course-item course-item-row">
+              <img class="img-item" height="100%" width="320px" src="{{course.courseoverview.course_image_url}}"/>
+              <div class="course-details-container w-100">
+                <span class="course-number mb-1">COURSE {{course.special_course.order}}</span>
+
+                <p class="course-description mb-1">
+                  {{course.courseoverview.display_name}}
+                </p>
+                <p class="text-black mb-1">
+                  {{course.special_course.long_description}}
+                </p>
+                <div class="d-flex align-items-center pb-3">
+                  <img class="me-1" height="auto" width="32px" src="/images/course-company-placeholder.png"/>
+                  <h2 class="course-title">{{course.courseoverview.org}}</h2>
+                </div>
+                <a class="fw-bold" href="{% url 'about_course' course_id=course.courseoverview.id %}">Read More</a>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="d-flex d-lg-none justify-content-center mt-5">
+        <a href="" class="fw-bold">View all Courses</a>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% else %}
+
+  <div class="full-width-wrapper">
+    <section class="page-banner page-banner-1">
+      <div class="contained-wrapper h-100">
+        <div class="d-flex align-items-center h-100">
+          <div class="col-12 col-md-8 d-flex flex-column">
+            <h1 class="pagebanner-title mb-3 text-left">{{ bundle.name }}</h1>
+            <p class="pagebanner-desc mt-2">
+                {{ bundle.short_description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="full-width-wrapper sticky-page-nav">
+    <div class="contained-wrapper">
+      <div class="sticky-nav-content">
+        <a href="#overview">Overview </a>
+        <a href="#courses">Courses </a>
+        <a href="#faq">FAQ’s </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="overview">
+  {% if bundle.name == "Future Skills Courses" %}
+    {% include "course_bundles/future_skills_overview.html" %}
+  {% elif bundle.name == "Soft Skills Courses" %}
+    {% include "course_bundles/soft_skills_overview.html" %}
+  {% endif %}
+  </div>
+
+  <div class="bg-light-1">
+    <div class="contained-wrapper pt-6 pb-6" id="courses">
+      <section class="section-courses-container">
+        <div class="section-header d-flex align-items-center">
+          <h3 class="section-title me-auto">{{ bundle.name }}</h3>
+          <a href="" class="fw-bold">View All {{ bundle.name }}</a>
+        </div>
+        <div class="section-tabs d-flex mt-4 pb-4">
+          <button class="btn btn-primary">Most Popular</button>
+          <button class="btn">Free</button>
+          <button class="btn">Trending</button>
+        </div>
+        <div class="row pt-3 gutter-2rem">
+            {% for course in courses %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <a href="{% url 'about_course' course_id=course.courseoverview.id %}">
+                    <div class="course-item">
+                    <div class="category-badge" style="background-color: #387aa6">
+                    Information Technology
+                    </div>
+                    <img class="img-item" height="auto" width="100%" src="{{ course.courseoverview.course_image_url }}" />
+                    <div class="course-details-container">
+                    <div class="d-flex align-items-center">
+                    <img class="me-1" height="auto" width="32px" src="{{ course.special_course.image_url }}" />
+                    <h2 class="course-title" style="font-size: 13px !important; font-family: sans-serif !important;">
+                        {% if course.courseoverview.display_org_with_default != None %}
+                        {{course.courseoverview.display_org_with_default}}
+                        {% else %}
+                        {{course.courseoverview.org}}
+                        {% endif %}
+                    </h2>
+                    </div>
+                    <p class="course-description mt-2 pb-3">
+                    {{ course.courseoverview.display_name }}
+                    </p>
+                    <div class="course-start">Class Starts:</div>
+                    <span class="course-start-date">          
+                        {% if course.courseoverview.start_display != None %}
+                        Starts: {{course.courseoverview.start_display}}
+                        {% else %}
+                        Starts: {{course.courseoverview.start}}
+                        {% endif %}</span>
+                    </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="d-flex d-lg-none justify-content-center mt-5">
+          <a href="" class="fw-bold">View all Courses</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="" id="faq">
+    <div class="contained-wrapper pt-6 pb-6">
+      <section class="section-courses-container">
+        <div class="section-header d-flex align-items-center">
+          <h3 class="section-title me-auto">Frequently Asked Questions</h3>
+        </div>
+        <div class="accordion mt-4" id="accordionQuestions">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="accordion-button d-flex">
+                  <span class="me-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                  </span>
+                  <div>
+                    <div class="icon-container">
+                      <i class="bi bi-chevron-down"></i>
+                    </div>
+                  </div>
+
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+              data-bs-parent="#collapseOne">
+              <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is shown by default, until
+                the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes
+                control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                this with
+                custom CSS or overriding our default variables. It's also worth noting that just about
+                any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <button class="accordion-button d-flex">
+                  <span class="me-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                  </span>
+                  <div>
+                    <div class="icon-container">
+                      <i class="bi bi-chevron-down"></i>
+                    </div>
+                  </div>
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              data-bs-parent="#collapseTwo">
+              <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is shown by default, until
+                the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes
+                control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                this with
+                custom CSS or overriding our default variables. It's also worth noting that just about
+                any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                <button class="accordion-button d-flex">
+                  <span class="me-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                  </span>
+                  <div>
+                    <div class="icon-container">
+                      <i class="bi bi-chevron-down"></i>
+                    </div>
+                  </div>
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+              data-bs-parent="#collapseThree">
+              <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is shown by default, until
+                the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes
+                control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                this with
+                custom CSS or overriding our default variables. It's also worth noting that just about
+                any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                <button class="accordion-button d-flex">
+                  <span class="me-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                  </span>
+                  <div>
+                    <div class="icon-container">
+                      <i class="bi bi-chevron-down"></i>
+                    </div>
+                  </div>
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+              data-bs-parent="#collapseFour">
+              <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is shown by default, until
+                the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes
+                control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                this with
+                custom CSS or overriding our default variables. It's also worth noting that just about
+                any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                <button class="accordion-button d-flex">
+                  <span class="me-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                  </span>
+                  <div>
+                    <div class="icon-container">
+                      <i class="bi bi-chevron-down"></i>
+                    </div>
+                  </div>
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+              data-bs-parent="#collapseFive">
+              <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is shown by default, until
+                the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes
+                control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                this with
+                custom CSS or overriding our default variables. It's also worth noting that just about
+                any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                <button class="accordion-button d-flex">
+                  <span class="me-auto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                  </span>
+                  <div>
+                    <div class="icon-container">
+                      <i class="bi bi-chevron-down"></i>
+                    </div>
+                  </div>
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+              data-bs-parent="#collapseSix">
+              <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is shown by default, until
+                the collapse
+                plugin adds the appropriate classes that we use to style each element. These classes
+                control the overall
+                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                this with
+                custom CSS or overriding our default variables. It's also worth noting that just about
+                any HTML can go
+                within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+  {% endif %}
+  
+  <section class="CTA-Main bg-cta-gradient">
+    <div class="contained-wrapper bg-overlay-img pt-6 pb-6">
+      <div class="col-12 col-md-12 col-lg-6 col-xl-5 h-100 d-flex align-items-center">
+        <div class="d-flex flex-column justify-content-center h-100">
+          <h1 class="text-left">Want to get the latest updates from us?</h1>
+          <p class="text-left">
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident.
+          </p>
+          <form class="d-flex">
+            <input type="text" class="form-control me-3"/>
+            <button class="btn text-primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  {% endblock %}

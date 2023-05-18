@@ -33,3 +33,10 @@ class SkillAdmin(admin.ModelAdmin):
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ('__str__',)
+
+@admin.register(SpecialCourse)
+class SpecialCourseAdmin(admin.ModelAdmin):
+    pass
+@admin.register(CourseBundle)
+class CourseBundleAdmin(admin.ModelAdmin):
+    pass

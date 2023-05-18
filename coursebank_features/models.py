@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 
 ####################### COURSE TAGS #######################
@@ -49,5 +50,45 @@ class Organization(models.Model):
     class Meta:
         ordering = ['name']
 
+    def __str__(self):
+        return self.name
+    
+##### COURSE BUNDLES #####
+
+class SpecialCourse(models.Model):
+    course_id = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    short_description = models.CharField(max_length=255, null=True, blank=True)
+    long_description = models.TextField(blank=True, default="")
+    image_url = models.CharField(max_length=255, default="")
+    order = models.PositiveSmallIntegerField(default=0)
+    course_bundle = models.ForeignKey(
+        'CourseBundle',
+        on_delete=models.CASCADE,
+        null=True, blank=True,
+        related_name="courses"
+    )
+    is_active = models.BooleanField(default=True)
+    class Meta:
+        ordering = ['order']
+        verbose_name_plural = "Special Courses"
+
+    def __str__(self):
+        return "{}: {}: {}".format(self.name, self.course_id, self.course_bundle.name)
+    
+
+class CourseBundle(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
+    short_description = models.CharField(max_length=255, null=True, blank=True)
+    long_description = models.TextField(blank=True, default="")
+    card_description = models.TextField(blank=True, default="")
+    image_url = models.CharField(max_length=255)
+    order = models.PositiveSmallIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    class Meta:
+        ordering = ['order']
+        verbose_name_plural = "Bundles"
+        
     def __str__(self):
         return self.name

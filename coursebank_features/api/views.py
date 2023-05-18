@@ -166,3 +166,17 @@ class LatestCoursesAPIView(APIView):
 
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
+    """
+    API endpoint that returns the top 10 most popular courses based on enrollment count.
+    """
+    serializer_class = CourseOverviewSerializer
+
+    def get_queryset(self):
+        return CourseOverview.objects.order_by('-enrollment_count')[:10]
+    
+class CourseBundleListAPIView(APIView):
+    def get(self, request):
+        bundles = CourseBundle.objects.all()
+        serializer = CourseBundleSerializer(bundles, many=True)
+        return Response(serializer.data)
+
