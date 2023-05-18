@@ -21,8 +21,8 @@ class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
             # Get all course overviews
-            course_overviews = CourseOverview.objects.all()
-            # course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
+            # course_overviews = CourseOverview.objects.all()
+            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
             
             # Get enrollment counts for each course
             enrollments = []
@@ -67,10 +67,12 @@ class TrendingCoursesAPIView(APIView):
             enrollments = {}
             for course_enrollment in course_enrollments:
                 course_id = course_enrollment.course.id
+                if course_id in EXCLUDED_COURSES:
+                    continue
                 enrollments[course_id] = enrollments.get(course_id, 0) + 1
 
             # Get course overviews for the enrolled courses
-            course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
+            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES).filter(id__in=enrollments.keys())
 
             # Create a list of course data with enrollment count
             trending_courses = []
@@ -166,7 +168,6 @@ class LatestCoursesAPIView(APIView):
 
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
-
 class CourseBundleListAPIView(APIView):
     def get(self, request):
         bundles = CourseBundle.objects.all()
