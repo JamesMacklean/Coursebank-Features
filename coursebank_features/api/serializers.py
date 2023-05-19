@@ -46,14 +46,14 @@ class MostPopularCoursesSerializer(serializers.Serializer):
         fields = ('id', 'display_name', 'enrollment_count')
 
 class TrendingCoursesSerializer(serializers.Serializer):
-    course_id = serializers.CharField()
-    course_name = serializers.CharField()
+    course_id = serializers.CharField(source='id')
+    course_name = serializers.CharField(source='display_name')
     enrollment_count = serializers.IntegerField()
 
     class Meta:
         model = CourseOverview
-        fields = ('id', 'display_name', 'enrollment_count')
-        
+        fields = ('course_id', 'course_name', 'enrollment_count')
+  
 class FreeCoursesSerializer(serializers.Serializer):
     course_id = serializers.CharField()
     course_name = serializers.CharField()

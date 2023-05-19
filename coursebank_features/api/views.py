@@ -58,33 +58,29 @@ class TrendingCoursesAPIView(APIView):
     def get(self, request):
         try:
             course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=30))
-            
-            # Count enrollments for each course in the last 30 days
+
             enrollments = {}
             for course_enrollment in course_enrollments:
                 course_id = course_enrollment.course.id
                 enrollments[course_id] = enrollments.get(course_id, 0) + 1
 
-            # Get course overviews for the enrolled courses
-            course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
-            # course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES).filter(id__in=enrollments.keys())
-            
-            # Create a list of course data with enrollment count
+            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES).filter(id__in=enrollments.keys())
+
             trending_courses = []
             for course_overview in course_overviews:
                 course_id = course_overview.id
                 enrollment_count = enrollments[course_id]
                 trending_courses.append({
-                    'course_id': course_id,
-                    'course_name': course_overview.display_name,
+                    'id': course_id,
+                    'display_name': course_overview.display_name,
                     'enrollment_count': enrollment_count,
                 })
 
-            # Sort the trending courses list by enrollment count in descending order
             sorted_courses = sorted(trending_courses, key=lambda x: x['enrollment_count'], reverse=True)
 
-            # Return the trending courses data as a JSON response
-            return Response(sorted_courses, status=status.HTTP_200_OK)
+            serializer = TrendingCoursesSerializer(sorted_courses, many=True)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
