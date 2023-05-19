@@ -126,9 +126,6 @@ class FreeCoursesAPIView(APIView):
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-        except CourseOverview.DoesNotExist:
-            return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
-
 class LatestCoursesAPIView(APIView):
     def get(self, request):
         try:
@@ -153,6 +150,7 @@ class LatestCoursesAPIView(APIView):
 
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
 class CourseBundleListAPIView(APIView):
     def get(self, request):
         bundles = CourseBundle.objects.all()
