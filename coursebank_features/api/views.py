@@ -21,7 +21,6 @@ class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
             # Get all course overviews
-            # course_overviews = CourseOverview.objects.all()
             course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
             
             # Get enrollment counts for each course
@@ -78,7 +77,9 @@ class TrendingCoursesAPIView(APIView):
 
             sorted_courses = sorted(trending_courses, key=lambda x: x['enrollment_count'], reverse=True)
 
-            serializer = TrendingCoursesSerializer(sorted_courses, many=True)
+            top_trending_courses = sorted_courses[:10]
+            
+            serializer = TrendingCoursesSerializer(top_trending_courses, many=True)
 
             return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -128,7 +129,7 @@ class LatestCoursesAPIView(APIView):
         try:
             
             # Get top 10 newest courses
-            course_overviews = CourseOverview.objects.order_by('-created')[:10].exclude(id__in=EXCLUDED_COURSES)
+            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES).order_by('-created')[:10]
             
             courses = []
             for course_overview in course_overviews:
