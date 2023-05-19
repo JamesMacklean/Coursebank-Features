@@ -27,10 +27,6 @@ class MostPopularCoursesAPIView(APIView):
             # Get enrollment counts for each course
             enrollments = []
             for course_overview in course_overviews:
-                course_id = course_overview.id
-                if course_id in EXCLUDED_COURSES:
-                    continue
-            
                 enrollment_end = course_overview.enrollment_end
                 if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
@@ -67,8 +63,6 @@ class TrendingCoursesAPIView(APIView):
             enrollments = {}
             for course_enrollment in course_enrollments:
                 course_id = course_enrollment.course.id
-                if course_id in EXCLUDED_COURSES:
-                    continue
                 enrollments[course_id] = enrollments.get(course_id, 0) + 1
 
             # Get course overviews for the enrolled courses
@@ -78,8 +72,6 @@ class TrendingCoursesAPIView(APIView):
             trending_courses = []
             for course_overview in course_overviews:
                 course_id = course_overview.id
-                if course_id in EXCLUDED_COURSES:
-                    continue
                 enrollment_count = enrollments[course_id]
                 trending_courses.append({
                     'course_id': course_id,
@@ -100,15 +92,11 @@ class FreeCoursesAPIView(APIView):
     def get(self, request):
         try:
             # Get all course overviews
-            course_overviews = CourseOverview.objects.all()
+            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
 
             # Get enrollments for each course in the last 30 days
             enrollments = []
             for course_overview in course_overviews:
-                course_id = course_overview.id
-                if course_id in EXCLUDED_COURSES:
-                    continue
-                
                 enrollment_end = course_overview.enrollment_end
                 if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
@@ -146,13 +134,10 @@ class LatestCoursesAPIView(APIView):
         try:
             
             # Get top 10 newest courses
-            course_overviews = CourseOverview.objects.order_by('-created')[:10]
+            course_overviews = CourseOverview.objects.order_by('-created')[:10].exclude(id__in=EXCLUDED_COURSES)
             
             courses = []
             for course_overview in course_overviews:
-                course_id = course_overview.id
-                if course_id in EXCLUDED_COURSES:
-                    continue
                 
                 courses.append({
                     'course_id': course_overview.id,
