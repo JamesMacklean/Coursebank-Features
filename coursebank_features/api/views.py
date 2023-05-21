@@ -1,13 +1,10 @@
 from django.utils import timezone
-from datetime import timedelta, datetime
-from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
 from coursebank_features.api.serializers import *
 from coursebank_features.api.variables import *
-from coursebank_features.models import *
 
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
@@ -70,7 +67,7 @@ class TrendingCoursesAPIView(APIView):
                 course_id = course_overview.id
                 enrollment_count = enrollments[course_id]
                 trending_courses.append({
-                    'id': course_id,
+                    'course_id': course_id,
                     'display_name': course_overview.display_name,
                     'enrollment_count': enrollment_count,
                 })

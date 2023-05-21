@@ -46,7 +46,7 @@ class MostPopularCoursesSerializer(serializers.Serializer):
         fields = ('id', 'display_name', 'enrollment_count')
 
 class TrendingCoursesSerializer(serializers.Serializer):
-    course_id = serializers.CharField(source='id')
+    course_id = serializers.CharField(source='course_id')
     course_name = serializers.CharField(source='display_name')
     enrollment_count = serializers.IntegerField()
 
