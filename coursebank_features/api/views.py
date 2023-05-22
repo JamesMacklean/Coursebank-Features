@@ -8,7 +8,7 @@ from coursebank_features.api.variables import *
 
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
-from openedx.core.djangoapps.content.course_overviews.models import CourseKey
+from opaque_keys.edx.keys import CourseKey
 class CourseTagAPIView(APIView):
     def get(self, request, *args, **kwargs):
         course_tags = CourseTag.objects.all()
