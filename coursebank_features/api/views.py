@@ -52,7 +52,7 @@ class MostPopularCoursesAPIView(APIView):
         
 class TrendingCoursesAPIView(APIView):
     def get(self, request):
-        try:
+        #try:
             course_enrollments = CourseEnrollment.objects.exclude(course__id__in=EXCLUDED_COURSES).filter(created__gte=timezone.now() - timezone.timedelta(days=30))
 
             enrollments = {}
@@ -80,8 +80,8 @@ class TrendingCoursesAPIView(APIView):
 
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        except CourseOverview.DoesNotExist:
-            return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
+        #except CourseOverview.DoesNotExist:
+        #    return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 class FreeCoursesAPIView(APIView):
     def get(self, request):
