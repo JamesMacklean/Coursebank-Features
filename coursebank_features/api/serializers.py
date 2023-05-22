@@ -43,16 +43,17 @@ class MostPopularCoursesSerializer(serializers.Serializer):
     enrollment_count = serializers.IntegerField()
 
     class Meta:
-        fields = ('id', 'display_name', 'enrollment_count')
+        model = CourseOverview
+        fields = ('id', 'course_name', 'enrollment_count')
 
 class TrendingCoursesSerializer(serializers.Serializer):
-    course_id = serializers.CharField(source='course_id')
-    course_name = serializers.CharField(source='display_name')
+    course_id = serializers.CharField
+    course_name = serializers.CharField
     enrollment_count = serializers.IntegerField()
 
     class Meta:
         model = CourseOverview
-        fields = ('course_id', 'course_name', 'enrollment_count')
+        fields = ('id', 'course_name', 'enrollment_count')
   
 class FreeCoursesSerializer(serializers.Serializer):
     course_id = serializers.CharField()
@@ -61,16 +62,16 @@ class FreeCoursesSerializer(serializers.Serializer):
 
     class Meta:
         model = CourseOverview
-        fields = ('id', 'display_name', 'enrollment_count')
+        fields = ('id', 'course_name', 'enrollment_count')
         
 class LatestCoursesSerializer(serializers.Serializer):
-    course_id = serializers.CharField(source='id')
-    course_name = serializers.CharField(source='display_name')
+    course_id = serializers.CharField
+    course_name = serializers.CharField
     date_created = serializers.SerializerMethodField()
     
     class Meta:
         model = CourseOverview
-        fields = ['course_id', 'course_name', 'date_created']
+        fields = ['id', 'course_name', 'date_created']
 
     def get_date_created(self, instance):
         return instance.created.strftime('%Y-%m-%d %H:%M:%S')
