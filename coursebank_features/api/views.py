@@ -60,21 +60,36 @@ class TrendingCoursesAPIView(APIView):
                 course_id = course_enrollment.course.id
                 enrollments[course_id] = enrollments.get(course_id, 0) + 1
 
-            course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
-
             trending_courses = []
-            for course_overview in course_overviews:
-                course_id = course_overview.id
-                enrollment_count = enrollments[course_id]
+            
+            for course_id in enrollments.keys():
+                # try:
+                    course_overview = CourseOverview.objects.get(id=course_id)
+
+                    if course_id in EXCLUDED_COURSES:
+                        continue
+
+                    trending_courses.append({
+                        'course_id': course_id,
+                        'course_name': course_overview.display_name,
+                        'enrollment_count': enrollments[course_id],
+                    })
+                # except CourseOverview.DoesNotExist:
+                    # continue
+            
+            # course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
+            # for course_overview in course_overviews:
+            #     course_id = course_overview.id
+            #     enrollment_count = enrollments[course_id]
                 
-                if course_id in EXCLUDED_COURSES:
-                    continue
+            #     if course_id in EXCLUDED_COURSES:
+            #         continue
                 
-                trending_courses.append({
-                    'course_id': course_id,
-                    'course_name': course_overview.display_name,
-                    'enrollment_count': enrollment_count,
-                })
+            #     trending_courses.append({
+            #         'course_id': course_id,
+            #         'course_name': course_overview.display_name,
+            #         'enrollment_count': enrollment_count,
+            #     })
 
             sorted_courses = sorted(trending_courses, key=lambda x: x['enrollment_count'], reverse=True)
 
