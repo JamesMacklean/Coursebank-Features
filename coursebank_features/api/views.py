@@ -8,6 +8,7 @@ from coursebank_features.api.variables import *
 
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
+from opaque_keys.edx.keys import CourseKey
 class CourseTagAPIView(APIView):
     def get(self, request, *args, **kwargs):
         course_tags = CourseTag.objects.all()
@@ -18,11 +19,15 @@ class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
             # Get all course overviews
-            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
+            course_overviews = CourseOverview.objects
             
             # Get enrollment counts for each course
             enrollments = []
             for course_overview in course_overviews:
+                course_id = CourseKey.from_string(course_overview.id)
+                if course_id in EXCLUDED_COURSES:
+                        continue
+                    
                 enrollment_end = course_overview.enrollment_end
                 if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
@@ -62,34 +67,20 @@ class TrendingCoursesAPIView(APIView):
 
             trending_courses = []
             
-            for course_id in enrollments.keys():
-                # try:
-                    course_overview = CourseOverview.objects.get(id=course_id)
-
-                    if course_id in EXCLUDED_COURSES:
-                        continue
-
-                    trending_courses.append({
-                        'course_id': course_id,
-                        'course_name': course_overview.display_name,
-                        'enrollment_count': enrollments[course_id],
-                    })
-                # except CourseOverview.DoesNotExist:
-                    # continue
-            
-            # course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
-            # for course_overview in course_overviews:
-            #     course_id = course_overview.id
-            #     enrollment_count = enrollments[course_id]
+            course_id = CourseKey.from_string(enrollments.keys())
+            course_overviews = CourseOverview.objects.filter(id__in=course_id)
+            for course_overview in course_overviews:
+                course_id = course_overview.id
+                enrollment_count = enrollments[course_id]
                 
-            #     if course_id in EXCLUDED_COURSES:
-            #         continue
+                if course_id in EXCLUDED_COURSES:
+                    continue
                 
-            #     trending_courses.append({
-            #         'course_id': course_id,
-            #         'course_name': course_overview.display_name,
-            #         'enrollment_count': enrollment_count,
-            #     })
+                trending_courses.append({
+                    'course_id': course_id,
+                    'course_name': course_overview.display_name,
+                    'enrollment_count': enrollment_count,
+                })
 
             sorted_courses = sorted(trending_courses, key=lambda x: x['enrollment_count'], reverse=True)
 
