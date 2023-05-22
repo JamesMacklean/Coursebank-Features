@@ -25,7 +25,8 @@ class MostPopularCoursesAPIView(APIView):
             enrollments = []
             for course_overview in course_overviews:
                 excluded_course_keys = [CourseKey.from_string(course_id) for course_id in EXCLUDED_COURSES]
-                if course_overview.id in excluded_course_keys:
+                course_key = CourseKey.from_string(course_overview.id)
+                if course_key in excluded_course_keys:
                         continue
                     
                 enrollment_end = course_overview.enrollment_end
