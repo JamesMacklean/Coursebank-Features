@@ -8,7 +8,7 @@ from coursebank_features.api.variables import *
 
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
-from opaque_keys.edx.keys import CourseKey
+from openedx.core.djangoapps.content.course_overviews.models import CourseKey
 class CourseTagAPIView(APIView):
     def get(self, request, *args, **kwargs):
         course_tags = CourseTag.objects.all()
@@ -24,8 +24,8 @@ class MostPopularCoursesAPIView(APIView):
             # Get enrollment counts for each course
             enrollments = []
             for course_overview in course_overviews:
-                course_id = CourseKey.from_string(course_overview.id)
-                if course_id in EXCLUDED_COURSES:
+                excluded_course_keys = [CourseKey.from_string(course_id) for course_id in EXCLUDED_COURSES]
+                if course_overview.id in excluded_course_keys:
                         continue
                     
                 enrollment_end = course_overview.enrollment_end
