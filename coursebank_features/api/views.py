@@ -19,7 +19,7 @@ class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
             # Get all course overviews
-            course_overviews = CourseOverview.objects
+            course_overviews = CourseOverview.objects.all()
             
             # Get enrollment counts for each course
             enrollments = []
@@ -67,18 +67,17 @@ class TrendingCoursesAPIView(APIView):
                 enrollments[course_id] = enrollments.get(course_id, 0) + 1
 
             trending_courses = []
-            
-            course_id = CourseKey.from_string(enrollments.keys())
-            course_overviews = CourseOverview.objects.filter(id__in=course_id)
+
+            course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
             for course_overview in course_overviews:
-                course_id = course_overview.id
-                enrollment_count = enrollments[course_id]
+                excluded_course_keys = [CourseKey.from_string(course_id) for course_id in EXCLUDED_COURSES]
+                course_key = CourseKey.from_string(course_overview.id)
+                if course_key in excluded_course_keys:
+                        continue
                 
-                if course_id in EXCLUDED_COURSES:
-                    continue
-                
+                enrollment_count = enrollments[course_key]
                 trending_courses.append({
-                    'course_id': course_id,
+                    'course_id': course_key,
                     'course_name': course_overview.display_name,
                     'enrollment_count': enrollment_count,
                 })
