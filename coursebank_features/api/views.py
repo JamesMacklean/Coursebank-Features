@@ -53,7 +53,7 @@ class MostPopularCoursesAPIView(APIView):
 class TrendingCoursesAPIView(APIView):
     def get(self, request):
         #try:
-            course_enrollments = CourseEnrollment.objects.exclude(course__id__in=EXCLUDED_COURSES).filter(created__gte=timezone.now() - timezone.timedelta(days=30))
+            course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=30))
 
             enrollments = {}
             for course_enrollment in course_enrollments:
@@ -66,6 +66,10 @@ class TrendingCoursesAPIView(APIView):
             for course_overview in course_overviews:
                 course_id = course_overview.id
                 enrollment_count = enrollments[course_id]
+                
+                if course_id in EXCLUDED_COURSES:
+                    continue
+                
                 trending_courses.append({
                     'course_id': course_id,
                     'course_name': course_overview.display_name,
