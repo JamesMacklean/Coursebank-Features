@@ -19,16 +19,11 @@ class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
             # Get all course overviews
-            course_overviews = CourseOverview.objects.all()
+            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
             
             # Get enrollment counts for each course
             enrollments = []
-            for course_overview in course_overviews:
-                excluded_course_keys = [CourseKey.from_string(course_id) for course_id in EXCLUDED_COURSES]
-                course_key = CourseKey.from_string(course_overview.id)
-                if course_key in excluded_course_keys:
-                        continue
-                    
+            for course_overview in course_overviews:                    
                 enrollment_end = course_overview.enrollment_end
                 if enrollment_end is None or enrollment_end > timezone.now():
                     enrollment_count = CourseEnrollment.objects.filter(
@@ -59,37 +54,44 @@ class MostPopularCoursesAPIView(APIView):
 class TrendingCoursesAPIView(APIView):
     def get(self, request):
         #try:
-            course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=30))
+            # Get the course enrollments in the last 120 days
+            course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=120))
 
+            # Count the enrollments for each course
             enrollments = {}
             for course_enrollment in course_enrollments:
-                course_id = course_enrollment.course.id
-                enrollments[course_id] = enrollments.get(course_id, 0) + 1
+                course_key = course_enrollment.course.id
+                enrollments[course_key] = enrollments.get(course_key, 0) + 1
 
-            trending_courses = []
-
+            # Get the course overviews for the enrolled courses
             course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
+            
+            # Filter and exclude courses from EXCLUDED_COURSES
+            excluded_course_keys = [CourseKey.from_string(course_id) for course_id in EXCLUDED_COURSES]
+            trending_courses = []
             for course_overview in course_overviews:
-                excluded_course_keys = [CourseKey.from_string(course_id) for course_id in EXCLUDED_COURSES]
                 course_key = CourseKey.from_string(course_overview.id)
                 if course_key in excluded_course_keys:
-                        continue
-                
+                    continue
+
                 enrollment_count = enrollments[course_key]
                 trending_courses.append({
-                    'course_id': course_key,
+                    'course_id': str(course_key),
                     'course_name': course_overview.display_name,
                     'enrollment_count': enrollment_count,
                 })
 
+            # Sort the trending courses by enrollment count in descending order
             sorted_courses = sorted(trending_courses, key=lambda x: x['enrollment_count'], reverse=True)
 
+            # Get the top 10 trending courses
             top_trending_courses = sorted_courses[:10]
-            
+
+            # Serialize the enrollment data
             serializer = TrendingCoursesSerializer(top_trending_courses, many=True)
 
+            # Return the enrollment data as a JSON response
             return Response(serializer.data, status=status.HTTP_200_OK)
-
         #except CourseOverview.DoesNotExist:
         #    return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
         
