@@ -65,7 +65,7 @@ class TrendingCoursesAPIView(APIView):
                 course_key = course_enrollment.course
                 print(course_key)
                 courses_enrolled.append({
-                    course_key
+                    str(course_key)
                 })
                 enrollments[course_key] = enrollments.get(course_key, 0) + 1
                 print(enrollments[course_key])
