@@ -56,12 +56,16 @@ class TrendingCoursesAPIView(APIView):
         #try:
             # Get the course enrollments in the last 120 days
             course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=120))
-
+            print("Number of enrollments:", course_enrollments.count())
+            
             # Count the enrollments for each course
             enrollments = {}
             for course_enrollment in course_enrollments:
                 course_key = course_enrollment.course.id
                 enrollments[course_key] = enrollments.get(course_key, 0) + 1
+
+            course_ids = enrollments.keys()
+            print("Course IDs:", course_ids)
 
             # Get the course overviews for the enrolled courses
             course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
