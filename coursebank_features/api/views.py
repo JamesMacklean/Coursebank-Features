@@ -70,7 +70,8 @@ class TrendingCoursesAPIView(APIView):
             course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
             
             for course_overview in course_overviews:
-                enrollment_count = enrollments[course_overview.id]
+                enrollment_count = enrollments[str(course_overview.id)]
+                print('########', enrollment_count)
                 if enrollment_count:
                     trending_courses.append({
                         'course_id': course_overview.id,
