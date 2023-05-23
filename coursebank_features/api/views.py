@@ -145,7 +145,7 @@ class LatestCoursesAPIView(APIView):
                 courses.append({
                     'course_id': course_overview.context_key,
                     'course_name': course_overview.title,
-                    'date_created': course_overview.published_at,
+                    'date_published': course_overview.published_at,
                 })
             print('########', courses)
             # Serialize course data
