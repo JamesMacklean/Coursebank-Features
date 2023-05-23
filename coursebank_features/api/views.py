@@ -70,18 +70,18 @@ class TrendingCoursesAPIView(APIView):
             course_overviews = CourseOverview.objects.filter(id__in=enrollments.keys())
             
             for course_overview in course_overviews:
-                enrollment_count = enrollments[str(course_overview.id)]
-                print('########', enrollment_count)
-                trending_courses.append({
-                    'course_id': course_overview.id,
-                    'course_name': course_overview.display_name,
-                    'enrollment_count': enrollment_count,
-                })
-            print(trending_courses)
+                enrollment_count = enrollments.get(str(course_overview.id),0)
+
+                if enrollment_count:
+                    trending_courses.append({
+                        'course_id': course_overview.id,
+                        'course_name': course_overview.display_name,
+                        'enrollment_count': enrollment_count,
+                    })
 
             # Sort the trending courses by enrollment count in descending order
             sorted_courses = sorted(trending_courses, key=lambda x: x['enrollment_count'], reverse=True)
-
+            print('########', sorted_courses)
             # Get the top 10 trending courses
             top_trending_courses = sorted_courses[:10]
 
