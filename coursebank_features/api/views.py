@@ -147,7 +147,7 @@ class LatestCoursesAPIView(APIView):
                     'course_name': course_overview.title,
                     'date_published': course_overview.published_at,
                 })
-            print('########', courses)
+                
             # Serialize course data
             serializer = LatestCoursesSerializer(courses, many=True)
 
