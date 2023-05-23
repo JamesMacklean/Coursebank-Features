@@ -59,30 +59,24 @@ class TrendingCoursesAPIView(APIView):
             print("Number of enrollments:", course_enrollments.count())
             
             # Count the enrollments for each course
-            # enrollments = {}
-            # for course_enrollment in course_enrollments:
-            #     course_key = course_enrollment.course
-            #     print(course_key)
-            #     enrollments[course_key] = enrollments.get(course_key, 0) + 1
-            #     print(enrollments[course_key])
+            enrollments = {}
+            for course_enrollment in course_enrollments:
+                course_key = course_enrollment.course
+                print(course_key)
+                enrollments[course_key] = enrollments.get(course_key, 0) + 1
+                print(enrollments[course_key])
             # Iterate over the course_overviews
             trending_courses = []
             course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
             for course_overview in course_overviews:
-                enrollments = {}
-                for course_enrollment in course_enrollments:
-                    course_key = course_overview.id
-                    if course_key == course_enrollment.course:
-                        print("##############", course_key)
-                        enrollments[course_key] = enrollments.get(course_key, 0) + 1
-                        print(enrollments[course_key])
-                        
-                        enrollment_count = enrollments[course_key]
-                        trending_courses.append({
-                            'course_id': course_overview.id,
-                            'course_name': course_overview.display_name,
-                            'enrollment_count': enrollment_count,
-                        })
+                # if course_overview.id in enrollments[course_key]:
+                    print("##############", course_overview.id)
+                    enrollment_count = enrollments[course_overview.id]
+                    trending_courses.append({
+                        'course_id': course_overview.id,
+                        'course_name': course_overview.display_name,
+                        'enrollment_count': enrollment_count,
+                    })
             print(trending_courses)
 
             # Sort the trending courses by enrollment count in descending order
