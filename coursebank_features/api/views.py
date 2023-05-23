@@ -8,7 +8,7 @@ from coursebank_features.api.variables import *
 
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
-from opaque_keys.edx.keys import CourseKey
+from openedx.core.djangoapps.content.learning_sequences.models import LearningContext
 class CourseTagAPIView(APIView):
     def get(self, request, *args, **kwargs):
         course_tags = CourseTag.objects.all()
@@ -136,15 +136,16 @@ class LatestCoursesAPIView(APIView):
         try:
             
             # Get top 10 newest courses
-            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES).order_by('-created')[:10]
+            course_overviews = LearningContext.objects.exclude(id__in=EXCLUDED_COURSES).order_by('published_at')[:10]
+            # course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES).order_by('-created')[:10]
             
             courses = []
             for course_overview in course_overviews:
                 
                 courses.append({
                     'course_id': course_overview.id,
-                    'course_name': course_overview.display_name,
-                    'date_created': course_overview.created.strftime('%Y-%m-%d %H:%M:%S'),
+                    'course_name': course_overview.title,
+                    'date_created': course_overview.published_at,
                 })
                 
             # Serialize course data
