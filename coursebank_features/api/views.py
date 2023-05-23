@@ -73,9 +73,9 @@ class TrendingCoursesAPIView(APIView):
             trending_courses = []
             course_enrolled_ids = [course['course_id'] for course in courses_enrolled]
             course_overviews = CourseOverview.objects.filter(id__in=course_enrolled_ids)
-            print(course_overviews)
             for course_overview in course_overviews:
                 enrollment_count = enrollments.get(course_overview.id, 0)
+                print('###############',enrollment_count)
                 if enrollment_count:
                     trending_courses.append({
                         'course_id': course_overview.id,
