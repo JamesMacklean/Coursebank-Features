@@ -55,7 +55,7 @@ class TrendingCoursesAPIView(APIView):
     def get(self, request):
         #try:
             # Get the course enrollments in the last 120 days
-            course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=120))
+            course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=10))
             print("Number of enrollments:", course_enrollments.count())
             
             # Count the enrollments for each course
@@ -65,29 +65,18 @@ class TrendingCoursesAPIView(APIView):
                 print(course_key)
                 enrollments[course_key] = enrollments.get(course_key, 0) + 1
 
-            course_ids = enrollments.keys()
-            print("Course IDs:", course_ids)
-            course_keys = [CourseKey.from_string(course_id) for course_id in course_ids]
-
-            
-
-            # Get the course overviews for the enrolled courses
-            course_overviews = CourseOverview.objects.filter(id__in=course_keys)
-            
-            # Filter and exclude courses from EXCLUDED_COURSES
-            excluded_course_keys = [CourseKey.from_string(course_id) for course_id in EXCLUDED_COURSES]
+            # Iterate over the course_overviews
             trending_courses = []
+            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
             for course_overview in course_overviews:
                 course_key = CourseKey.from_string(course_overview.id)
-                if course_key in excluded_course_keys:
-                    continue
-
-                enrollment_count = enrollments[course_key]
-                trending_courses.append({
-                    'course_id': str(course_key),
-                    'course_name': course_overview.display_name,
-                    'enrollment_count': enrollment_count,
-                })
+                if course_key in enrollments:
+                    enrollment_count = enrollments[course_key]
+                    trending_courses.append({
+                        'course_id': str(course_key),
+                        'course_name': course_overview.display_name,
+                        'enrollment_count': enrollment_count,
+                    })
 
             # Sort the trending courses by enrollment count in descending order
             sorted_courses = sorted(trending_courses, key=lambda x: x['enrollment_count'], reverse=True)
