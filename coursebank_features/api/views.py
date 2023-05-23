@@ -69,11 +69,10 @@ class TrendingCoursesAPIView(APIView):
             trending_courses = []
             course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
             for course_overview in course_overviews:
-                course_key = CourseKey.from_string(course_overview.id)
-                if course_key in enrollments:
-                    enrollment_count = enrollments[course_key]
+                if course_overview.id in enrollments:
+                    enrollment_count = enrollments[course_overview.id]
                     trending_courses.append({
-                        'course_id': str(course_key),
+                        'course_id': course_overview.id,
                         'course_name': course_overview.display_name,
                         'enrollment_count': enrollment_count,
                     })
