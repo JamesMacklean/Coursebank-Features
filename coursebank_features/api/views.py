@@ -14,7 +14,7 @@ class CourseTagAPIView(APIView):
         course_tags = CourseTag.objects.all()
         serializer = CourseTagSerializer(course_tags, many=True)
         return Response(serializer.data)
-    
+
 class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
@@ -58,12 +58,7 @@ class TrendingCoursesAPIView(APIView):
             course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=120))
 
             # Count the enrollments for each course
-            enrollments = {}
-            for course_enrollment in course_enrollments:
-                course_key = course_enrollment.course                
-                if str(course_key) in EXCLUDED_COURSES:
-                    continue
-                enrollments[str(course_key)] = enrollments.get(str(course_key), 0) + 1
+
             
             # Iterate over the course_overviews
             trending_courses = []
@@ -137,8 +132,7 @@ class LatestCoursesAPIView(APIView):
             
             # Get top 10 newest courses
             course_overviews = LearningContext.objects.exclude(context_key__in=EXCLUDED_COURSES).order_by('published_at')[:10]
-            # course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES).order_by('-created')[:10]
-            
+    
             courses = []
             for course_overview in course_overviews:
                 
