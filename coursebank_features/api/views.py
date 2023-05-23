@@ -1,5 +1,4 @@
 from django.utils import timezone
-from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,7 +9,6 @@ from coursebank_features.api.variables import *
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.content.learning_sequences.models import LearningContext
-
 class CourseTagAPIView(APIView):
     def get(self, request, *args, **kwargs):
         course_tags = CourseTag.objects.all()
@@ -156,7 +154,7 @@ class LatestCoursesAPIView(APIView):
             # Return course data
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        except ObjectDoesNotExist:
+        except LearningContext.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 class CourseBundleListAPIView(APIView):
