@@ -70,7 +70,7 @@ class LatestCoursesSerializer(serializers.Serializer):
     date_created = serializers.SerializerMethodField()
     
     class Meta:
-        model = CourseOverview
+        # model = CourseOverview
         fields = ['id', 'course_name', 'date_created']
 
     def get_date_created(self, instance):

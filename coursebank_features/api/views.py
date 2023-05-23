@@ -53,7 +53,7 @@ class MostPopularCoursesAPIView(APIView):
         
 class TrendingCoursesAPIView(APIView):
     def get(self, request):
-        #try:
+        try:
             # Get the course enrollments in the last 120 days
             course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=120))
 
@@ -81,7 +81,7 @@ class TrendingCoursesAPIView(APIView):
 
             # Sort the trending courses by enrollment count in descending order
             sorted_courses = sorted(trending_courses, key=lambda x: x['enrollment_count'], reverse=True)
-            print('########', sorted_courses)
+
             # Get the top 10 trending courses
             top_trending_courses = sorted_courses[:10]
 
@@ -90,8 +90,8 @@ class TrendingCoursesAPIView(APIView):
 
             # Return the enrollment data as a JSON response
             return Response(serializer.data, status=status.HTTP_200_OK)
-        #except CourseOverview.DoesNotExist:
-        #    return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except CourseOverview.DoesNotExist:
+           return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 class FreeCoursesAPIView(APIView):
     def get(self, request):
