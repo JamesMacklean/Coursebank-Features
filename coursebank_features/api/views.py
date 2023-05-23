@@ -136,18 +136,18 @@ class LatestCoursesAPIView(APIView):
         try:
             
             # Get top 10 newest courses
-            course_overviews = LearningContext.objects.exclude(id__in=EXCLUDED_COURSES).order_by('published_at')[:10]
+            course_overviews = LearningContext.objects.exclude(context_key__in=EXCLUDED_COURSES).order_by('published_at')[:10]
             # course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES).order_by('-created')[:10]
             
             courses = []
             for course_overview in course_overviews:
                 
                 courses.append({
-                    'course_id': course_overview.id,
+                    'course_id': course_overview.context_key,
                     'course_name': course_overview.title,
                     'date_created': course_overview.published_at,
                 })
-                
+            print('########', courses)
             # Serialize course data
             serializer = LatestCoursesSerializer(courses, many=True)
 
