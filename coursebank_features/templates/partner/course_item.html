@@ -1,0 +1,17 @@
+<div id="partner-course-{{ course.id }}" class="text-center mt-4 col-sm-6">
+  <div class="courses course-card mx-xs-auto card h-100">
+    <img src="{{ course.course_image_url }}" class="img-thumbnail img-fluid card-img-top" alt="Course Picture">
+    <div class="card-body">
+      <h4 class="card-title">{{ course.display_name }}</h4>
+      <p class="card-text">
+        {% if course.start_display != None %}
+        Starts: {{course.start_display}}
+        {% else %}
+        Starts: {{course.start}}
+        {% endif %}
+      </p>
+      <hr>
+      <a href="{% url 'about_course' course_id=course.id %}" class="btn btn-success">Enroll Now</a>
+    </div>
+  </div>
+</div>
