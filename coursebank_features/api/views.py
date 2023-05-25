@@ -24,7 +24,7 @@ class CourseTagAPIView(APIView):
 @permission_classes([AllowAny])
 class MostPopularCoursesAPIView(APIView):
     def get(self, request):
-        try:
+        # try:
             # Get all course overviews
             course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
             
@@ -55,8 +55,8 @@ class MostPopularCoursesAPIView(APIView):
             # Return the enrollment data as a JSON response
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        except CourseOverview.DoesNotExist:
-            return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
+        # except CourseOverview.DoesNotExist:
+        #     return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 # publicized API
 @permission_classes([AllowAny])
