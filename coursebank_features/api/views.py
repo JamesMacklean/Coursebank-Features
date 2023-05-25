@@ -62,7 +62,7 @@ class MostPopularCoursesAPIView(APIView):
 @permission_classes([AllowAny])
 class TrendingCoursesAPIView(APIView):
     def get(self, request):
-        # try:
+        try:
             # Get the course enrollments in the last 120 days
             course_enrollments = CourseEnrollment.objects.filter(created__gte=timezone.now() - timezone.timedelta(days=30))
             
@@ -134,8 +134,8 @@ class TrendingCoursesAPIView(APIView):
                 except CourseOverview.DoesNotExist:
                     return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
                 
-        # except CourseOverview.DoesNotExist:
-        #    return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except CourseOverview.DoesNotExist:
+           return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 # publicized API
 @permission_classes([AllowAny])
