@@ -9,7 +9,6 @@ from coursebank_features.api.variables import *
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.content.learning_sequences.models import LearningContext
-from django.middleware.common import CommonMiddleware
 
 
 class CourseTagAPIView(APIView):
@@ -19,11 +18,6 @@ class CourseTagAPIView(APIView):
         return Response(serializer.data)
 
 
-class CorsMiddleware(CommonMiddleware):
-    def process_response(self, request, response):
-        response["Access-Control-Allow-Origin"] = "*"
-        return response
-    
 class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
@@ -53,12 +47,9 @@ class MostPopularCoursesAPIView(APIView):
 
             # Serialize the enrollment data
             serializer = MostPopularCoursesSerializer(top_enrollments, many=True)
-            
-            response = Response(serializer.data, status=status.HTTP_200_OK)
-            return CorsMiddleware().process_response(request, response)
 
             # Return the enrollment data as a JSON response
-            # return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
