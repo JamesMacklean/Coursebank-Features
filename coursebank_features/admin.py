@@ -40,3 +40,7 @@ class SpecialCourseAdmin(admin.ModelAdmin):
 @admin.register(CourseBundle)
 class CourseBundleAdmin(admin.ModelAdmin):
     pass
+
+admin.site.register(Partner)
+admin.site.register(PartnerCourse)
+admin.site.register(Expert)

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from coursebank_features.forms import *
 from coursebank_features.models import *
@@ -118,7 +118,7 @@ def PartnersCatalogView(request):
             link_partners.append(course.partner)
     partners = Partner.objects.filter(is_active=True).order_by('-ranking')
     context = {'partners': partners, 'link_partners': link_partners}
-    return render(request, 'partners.html', context)
+    return render(request, 'partner/partners.html', context)
 
 def PartnerView(request,partner_name):
     """ renders partner and corresponding experts and courses in its own partner page """
@@ -133,7 +133,7 @@ def PartnerView(request,partner_name):
     is_multiple_courses = len(courses) > 1
     context = {'partner': partner,  'courses': courses,
                'experts': experts, 'is_multiple_courses': is_multiple_courses}
-    return render(request, 'partner.html', context)
+    return render(request, 'partner/partner.html', context)
 
 def PartnerCourseView(request,partner_name,course_id):
     """ renders course in its own course page """
@@ -141,7 +141,7 @@ def PartnerCourseView(request,partner_name,course_id):
     partner_course = get_object_or_404(PartnerCourse, course_id=course_id)
     course_key = CourseKey.from_string(course_id)
     course = CourseOverview.get_from_id(course_key)
-    context = {'partner': partner, 'partner_course': partner_course, 'course': course}
+    context = {'partner': partner, 'ppartner/artner_course': partner_course, 'course': course}
     return render(request, 'partner_course.html', context)
 
 def ExpertView(request,partner_name,expert_id):
@@ -155,7 +155,7 @@ def ExpertView(request,partner_name,expert_id):
         courseoverview = CourseOverview.get_from_id(course_key)
         courses.append({'courseoverview':courseoverview, 'partner_course':partner_course})
     context = {'partner': partner, 'expert': expert, 'courses': courses}
-    return render(request, 'expert.html', context)
+    return render(request, 'partner/expert.html', context)
 
 # get list of all existing course ids
 # list_of_all_course_ids = CourseOverview.get_all_course_keys()
