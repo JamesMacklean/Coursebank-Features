@@ -4,4 +4,4 @@ def plugin_settings(settings):
         settings.FEATURES['ENABLE_MY_APP'] = True
         settings.MY_APP_POLICY = 'foo'
         settings.CORS_ORIGIN_ALLOW_ALL = True
-        settings.CORS_ALLOW_CREDENTIALS = True
+        settings.CORS_ALLOW_CREDENTIALS = False
