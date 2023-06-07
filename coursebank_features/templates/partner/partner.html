@@ -1,535 +1,140 @@
-{% extends "partner/base_partners.html" %}
+{% extends "partner/partners.html" %}
 
 {% block title %}Coursebank | {{ partner.name }}{% endblock %}
 
-{% block css %}
-<style>
-  header a {
-      color: #6CC3B1;
-  }
-
-  .hero-partner {
-    background-image: url('{{ partner.banner_url }}');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-width: 100%;
-    min-height: 22.5rem;
-    margin-top: -4.6rem;
-  }
-
-  .btn-success {
-      background-color: #6CC3B1;
-      border-color:  #6CC3B1;
-  }
-
-  .course-card {
-      border-top: 3px solid #6CC3B1;
-      min-width: 15rem;
-  }
-
-  .course-card hr {
-      width: 95%;
-      margin-left: auto;
-      margin-right: auto;
-  }
-  
-  #instruct {
-      margin-left: 28px;
-      margin-right: 28px;
-  }
-
-  .backgcolor {
-      background-color: #e8e8e8;
-  }
-
-  ul {
-      padding-left: 1rem;
-  }
-
-  #hyperLink {
-      padding-top: 14px;
-  }
-
-  ul#hyperLink li {
-      display: inline;
-      letter-spacing: 2px;
-      font-weight: bold;
-  }
-
-  ul#hyperLink a {
-      text-decoration: none;
-      color: #6CC3B1;
-  }
-  
-  ul#hyperLink a:hover {
-      color: #28826F;
-  }
-
-  .partner-profile-card.course-card.mx-auto.card {
-      width: 18rem;
-  }
-  
-   div#fb-partner a, div#domain-partner a {
-      text-decoration: none;
-      color: #000000;
-  }
-
-    div#fb-partner a:hover, div#domain-partner a:hover {
-      color: #6e6d7c;
-  }
-
-  .about-text {
-      text-align: justify;
-  }
-
-   .h4, .nav-link, .navbar-light .navbar-toggler {
-      color: #6CC3B1 !important;
-      border-color: rgb(108, 195, 177) !important;
-  }
-  
-  .navbar-light .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 195, 177, 1.0%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-  }
-  
-  .nav-link:hover {
-      color: #28826F !important;
-  }
-  
-  .nav-item {
-      padding-left: 18px !important;
-      padding-right: 18px !important;
-  }
-
-  .profile-color {
-      background-color: #6CC3B1;
-  }
-
-  .profile-color .h5 {
-      color: #FFFFFF;
-      padding-left: 0.9rem;
-      padding-top: 0.5rem;
-
-  }
-
-  .course-card .card-text {
-      font-style: italic;
-      opacity: 0.5;
-  }
-  
-  .course-card img {
-      height: 200px;
-  }
-
-  .name {
-      color: #6CC3B1;
-      white-space: nowrap;
-      position: relative;
-      right: 5rem;
-  }
-
-  .profession {
-      color: #575757;
-      white-space: nowrap;
-      position: relative;
-      right: 5rem;
-      font-size: 14px;
-  }
-  
-  .courses h4 {
-      color: #303030;
-  }
-  
-  .card-text {
-      font-size: 14px;
-  }
-
-
-  /* MEDIA QUERIES */
-
-  @media (max-width: 1920px){
-      .hero-partner {
-          min-height: 31rem;
-      }
-  }
-
-  @media (max-width: 1807px) {
-      .backgcolor {
-          margin-top: -1.1rem;
-      }
-  }
-  
-  @media (max-width: 1400px) and (min-width: 1377px){
-
-      .card-title {
-         font-size: 17px;
-      }
-    
-      .card-text {
-         font-size: 14px;
-      }
-
-  }
-
-  @media (max-width: 1377px) {
-  
-      .hero-partner {
-          min-height: 25.5rem;
-          margin-top: -4.55rem;
-      }
-      
-  }
-
-
-  @media (max-width: 1200px) {
-      .hero-partner {
-          min-height: 21rem;
-      }
-
-      .partner-instructors .name, .partner-instructors .profession {
-        clear: right;
-      }
-      
-      
-      .card-text {
-          font-size: 11px;
-      }
-  }
-
-  @media (max-width: 991px) {
-  
-      .links, .card-text, .navbar-nav {
-          text-align: center;
-      }
-
-      .hero-partner {
-          min-height: 20rem;
-      }
-
-      .partner-profile {
-          margin-top: 1.5rem;
-      }
-
-       .partner-profile-card.course-card.mx-auto.card {
-          width: unset;
-      }
-
-      #courses, .about-text, #about, .name, .profession, #instructors, .instructor-image {
-          text-align: center;
-      }
-
-      .name,  .profession {
-          position: unset;
-          right: unset;
-      }
-
-      #courses {
-          margin-top: 5rem;
-      }
-      
-  }
-
-  @media (max-width: 952px) {
-      .hero-partner {
-          background-image: url('{{ partner.banner_tablet_url }}');
-          min-height: 25rem;
-      }
-  }
-
-  @media (max-width: 826px) {
-      .hero-partner {
-          min-height: 23rem;
-      }
-  }
-
-  @media (min-width: 667px) and (max-width: 768px) {
-  
-      .hero-partner {
-          background-image: url('{{ partner.banner_mobile_url }}');
-          min-height: 29rem;
-      }
-      
-      .about-text {
-          min-width: 100%;
-          text-align: center;
-      }
-      
-      .backgcolor {
-          margin-top: -1.4rem;
-      }
-      
-      .card-text {
-          font-size: 10px;
-      }
-
-  }
-
-  @media (min-width: 608px) and (max-width: 655px) {
-      .hero-partner {
-          min-height: 26rem;
-      }
-      
-      .backgcolor {
-          margin-top: -1.3rem;
-      }
-      
-      
-      .card-text {
-          font-size: 10px;
-      }
-  }
-
-
-  @media (min-width: 576px) and (max-width: 607px) {
-      .hero-partner {
-          min-height: 24rem;
-      }
-  }
-
-  @media (max-width: 575px) {
-      .hero-partner {
-          min-height: 21rem;
-      }
-      
-      .backgcolor {
-          margin-top: -1rem;
-      }
-      
-      .card-text {
-          font-size: 13px;
-      }
-  }
-
-  @media (max-width: 420px) {
-  
-      .hero-partner {
-          min-height: 17rem;
-      }
-      
-      .backgcolor {
-          margin-top: -0.77rem;
-      }
-  }
-
-  @media (max-width: 375px) {
-  
-      .hero-partner {
-          min-height: 16rem;
-      }
-  }
-
-  @media (max-width: 320px) {
-      .hero-partner {
-          min-height: 14rem;
-      }
-
-      ul {
-          padding-left: 0rem;
-          font-size: 14px;
-      }
-  }
-
-  @media (max-width: 280px) {
-  
-      .hero-partner {
-          min-height: 12rem;
-      }
-      
-      #instruct {
-          margin-left: 18px;
-          margin-right: 18px;
-      }
-  }
-
-  /* End of Media Queries */
-
-
-    /* Footer */
-    
-    footer {
-        background-color: #484848;
-    }
-
-    footer h5 {
-        font-size: 16px;
-        color: white;
-    }
-
-    footer hr {
-        color: white;
-    }
-
-    .footer-copyright {
-        color: white;
-        opacity: 0.5;
-    }
-
-    footer a {
-        text-decoration: none;
-        color: white;
-        font-size: 14px;
-    }
-
-    footer a:hover {
-        color: #dcdbe1;
-    }
-
-    .footer-img {
-        height: 3.7rem;
-    }
-    
-    .fb-icon, .copyright {
-        text-align: center;
-    }
-
-
-    @media (max-width: 991px) {
-        .footer-img {
-            height: 2.6rem;
-        }
-
-        footer h5{
-            font-size: 14px;
-        }
-
-        footer a {
-            font-size: 12px;
-        }
-    }
-
-
-    @media (max-width: 767px) {
-
-
-        footer {
-            text-align: center;
-        }
-
-        .footer-copyright {
-            margin-left: unset;
-        }
-
-
-        #footer-content {
-            padding-top: 1.7rem;
-        }
-
-        footer .py-5 {
-            padding-top: unset !important;
-            padding-bottom: unset !important;
-        }
-
-    }
-
-</style>
-{% endblock %}
-
 {% block body %}
-<div style="font-family: 'Lato', sans-serif;">
-<!-- <div class="bootstrap-iso" style="font-family: 'Lato', sans-serif;"> -->
-<!-- start: boostrap-iso -->
-
-  <!-- Hero Section -->
-  <section class="hero-partner"></section>
-
-  <!-- Hyperlinks -->
-  <div class="backgcolor links">
-    <div class="container-md">
-      <div class="row">
-        <div class="col-12">
-          <ul id="hyperLink">
-            <a href="#courses"><li>Courses</li></a>
-            <a href="#instructors" id="instruct"><li>Instructors</li></a>
-            <a href="#about"><li>About</li></a>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Page Content -->
-  <div class="container mb-4 mt-5">
-    <div class="row mx-sm-auto">
-         <div class="col-lg-4 order-md-last">
-            <!-- Partner's Profile -->
-            <div id="partner-profile-{{ partner.id }}" class="col-md-12 col-lg partner-profile">
-              <div class="partner-profile-card course-card ms-auto card">
-                <div class="profile-color">
-                  <div class="h5">PROFILE</div>
-                </div>
-                  <div class="card-body">
-      
-                  <!-- Domain -->
-                  {% if partner.website_url != '' %}
-                  <div id="domain-partner" class="row">
-                      <div class="col-2">
-                          <i class="fas fa-globe"></i>
-                      </div>
-                      <div class="col-10">
-                          <a href="{{ partner.website_url }}"><p>Partner Website</p></a>
-                      </div>
-                      </div><br>
-                  {% endif %}
-      
-                  <!-- Facebook Page  -->
-                  {% if partner.socmed_url != '' %}
-                  <div id="fb-partner" class="row">
-                      <div class="col-2">
-                          <i class="fab fa-facebook"></i>
-                      </div>
-                      <div class="col-10">
-                          <a href="{{ partner.socmed_url }}"><p>Partner Facebook</p></a>
-                      </div>
-                      </div><br>
-                  {% endif %}
-      
-                  <!-- Address -->
-                  <div id="location-partner" class="row">
-                      <div class="col-2">
-                          <i class="fas fa-map-marker"></i>
-                      </div>
-                      <div class="col-10">
-                           <p class="card-text">{{ partner.info }}</p>
-                      </div>
-                  </div>
-                  
-                  </div>
-              </div>
+<section class="page-banner-flat">
+    <div class="contained-wrapper">
+        <div class="d-flex flex-wrap flex-md-nowrap">
+            <div class="me-5">
+                <img src="{{ partner.logo_url }}" width="250px" height="250px" />
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+                <h1 class="mb-3 mt-3 mt-md-0">{{ partner.name }}</h1>
+                <p class="mb-0">{{ partner.description }}</p>
             </div>
         </div>
-        
-        <div class="col-lg-8">
-            <div class="row g-3">
+    </div>
 
-                <!-- Courses -->
-                <div class="h4" id="courses"><strong>Available Courses</strong></div>
-          
+</section>
+
+<div class="bg-light-1">
+    <div class="contained-wrapper pt-6 pb-6">
+        <section class="section-courses-container">
+            <div class="section-header d-flex align-items-center">
+                <h3 class="section-title me-auto">Courses and Specialization</h3>
+            </div>
+            <div class="row pt-3 gutter-2rem">
                 {% for course in courses %}
-                  {% include "course_item.html" %}
-                {% endfor %}
-
-                
-                <!-- Instructors -->
-                <div class="h4 mx-sm-auto mt-5" id="instructors"><strong>Instructors</strong></div>
-                {% for expert in experts %}
-                  {% include "expert_item.html" %}
-                {% endfor %}
-                
-
-                <!-- About -->
-                <div class="h4 mt-5" id="about"><strong>About {{ partner.name }}</strong></div>
-                <div class="about-text mx-xs-auto mx-sm-auto w-100">
-                  {{ partner.description|safe }}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="{% url 'about_course' course_id=course.id %}">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%" src="{{ partner.logo_url }}" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">{{ partner.name }}</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    {{ course.display_name }}
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">
+                                    {% if course.start_display != None %}
+                                        {{course.start_display}}
+                                    {% else %}
+                                        {{course.start}}
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-
+                {% endfor %}
             </div>
-        </div>
-        
-        
+        </section>
     </div>
-  </div>
+</div>
 
-<!-- end: boostrap-iso -->
+<div class="bg-gradient-img">
+    <div class="contained-wrapper pt-6 pb-6">
+        <section class="category-section">
+            <div class="section-header d-flex align-items-center">
+                <h3 class="section-title me-auto text-white">Browse by Category</h3>
+                <a href="" class="fw-bold text-white">View all Courses</a>
+            </div>
+            <div class="row mt-1 gutter-2rem">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/management.png" />
+                            <h4 class="mb-0 py-3">Management</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/engineering.png" />
+                            <h4 class="mb-0 py-3">Engineering</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/sales.png" />
+                            <h4 class="mb-0 py-3">Sales</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/marketing.png" />
+                            <h4 class="mb-0 py-3">Marketing</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/finance.png" />
+                            <h4 class="mb-0 py-3">Finance</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/HR.png" />
+                            <h4 class="mb-0 py-3">HR</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/IT.png" />
+                            <h4 class="mb-0 py-3">IT</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/operation.png" />
+                            <h4 class="mb-0 py-3">Operations</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 
 {% endblock %}
