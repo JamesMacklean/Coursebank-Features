@@ -3,4 +3,3 @@ def plugin_settings(settings):
     # For example:
         settings.FEATURES['ENABLE_MY_APP'] = True
         settings.MY_APP_POLICY = 'foo'
-        settings.MIDDLEWARE.append('yourappname.cors_middleware.CorsMiddleware')
