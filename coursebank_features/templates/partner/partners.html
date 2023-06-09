@@ -8,13 +8,36 @@
 <br>
 <br>
 {% endif %}
-<div style="background: linear-gradient(90deg, rgba(56, 122, 166, 0.7) 0.52%, rgba(58, 168, 161, 0.7) 50.45%, rgba(193, 205, 94, 0.7) 100%),url('./images/page-banners/partner-bg.png');">
-    <div class="contained-wrapper">
-        <section class="section-gradient-page-title">
-            <h1 class="page-title">Meet our Partners</h1>
-        </section>
-    </div>
+<div class="contained-wrapper">
+  <section class="section-gradient-page-title">
+      <h1 class="page-title">Meet our Partners</h1>
+  </section>
 </div>
+
+<div class="bg-light-1 mt-5 pb-6">
+<section class="section-partner-landing">
+  <div class="contained-wrapper">
+      <div class="row g-5">
+        {% for partner in partners %}
+          <div class="col-12 col-md-6 col-lg-3">
+              <a href="{% url 'coursebank_features:partner' partner_name=partner.slugName %}">
+                  <div class="partner-item-lg d-flex flex-column">
+                      <img src="{{ partner.logo_url }}" width="auto" height="auto" />
+                      <p>
+                          <span>{{ partner.name }}</span> {{partner.description}}
+                      </p>
+                      <div class="d-flex w-100">
+                          <button class="btn btn-primary mt-2 w-100">Go to website</button>
+                      </div>
+                  </div>
+              </a>
+          </div> 
+          {% endfor %}
+      </div>
+  </div>
+</section>
+</div>
+
 <div class="bg-light-1 mt-5 pb-6">
     <section class="section-partner-landing">
         <div class="contained-wrapper">
