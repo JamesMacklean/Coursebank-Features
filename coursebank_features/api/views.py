@@ -6,9 +6,6 @@ from rest_framework import status
 from coursebank_features.api.serializers import *
 from coursebank_features.api.variables import *
 
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import AllowAny
-
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.content.learning_sequences.models import LearningContext
@@ -20,8 +17,6 @@ class CourseTagAPIView(APIView):
         serializer = CourseTagSerializer(course_tags, many=True)
         return Response(serializer.data)
 
-# publicized API
-@permission_classes([AllowAny])
 class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
@@ -58,8 +53,6 @@ class MostPopularCoursesAPIView(APIView):
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-# publicized API
-@permission_classes([AllowAny])
 class TrendingCoursesAPIView(APIView):
     def get(self, request):
         try:
@@ -137,8 +130,6 @@ class TrendingCoursesAPIView(APIView):
         except CourseOverview.DoesNotExist:
            return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-# publicized API
-@permission_classes([AllowAny])
 class FreeCoursesAPIView(APIView):
     def get(self, request):
         try:
@@ -177,8 +168,6 @@ class FreeCoursesAPIView(APIView):
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-# publicized API
-@permission_classes([AllowAny])
 class LatestCoursesAPIView(APIView):
     def get(self, request):
         try:
