@@ -3,7 +3,7 @@
 {% block title %}Coursebank | {{ partner.name }}{% endblock %}
 
 {% block body %}
-<section class="page-banner-flat">
+<section class="hero-partner">
     <div class="contained-wrapper">
         <div class="d-flex flex-wrap flex-md-nowrap">
             <div class="me-5">
@@ -60,81 +60,17 @@
     </div>
 </div>
 
-<div class="bg-gradient-img">
-    <div class="contained-wrapper pt-6 pb-6">
-        <section class="category-section">
-            <div class="section-header d-flex align-items-center">
-                <h3 class="section-title me-auto text-white">Browse by Category</h3>
-                <a href="" class="fw-bold text-white">View all Courses</a>
-            </div>
-            <div class="row mt-1 gutter-2rem">
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="">
-                        <div class="d-flex bg-white align-items-center category-item py-4">
-                            <img class="me-3" height="auto" width="35px" src="./images/categories/management.png" />
-                            <h4 class="mb-0 py-3">Management</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="">
-                        <div class="d-flex bg-white align-items-center category-item py-4">
-                            <img class="me-3" height="auto" width="35px" src="./images/categories/engineering.png" />
-                            <h4 class="mb-0 py-3">Engineering</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="">
-                        <div class="d-flex bg-white align-items-center category-item py-4">
-                            <img class="me-3" height="auto" width="35px" src="./images/categories/sales.png" />
-                            <h4 class="mb-0 py-3">Sales</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="">
-                        <div class="d-flex bg-white align-items-center category-item py-4">
-                            <img class="me-3" height="auto" width="35px" src="./images/categories/marketing.png" />
-                            <h4 class="mb-0 py-3">Marketing</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="">
-                        <div class="d-flex bg-white align-items-center category-item py-4">
-                            <img class="me-3" height="auto" width="35px" src="./images/categories/finance.png" />
-                            <h4 class="mb-0 py-3">Finance</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="">
-                        <div class="d-flex bg-white align-items-center category-item py-4">
-                            <img class="me-3" height="auto" width="35px" src="./images/categories/HR.png" />
-                            <h4 class="mb-0 py-3">HR</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="">
-                        <div class="d-flex bg-white align-items-center category-item py-4">
-                            <img class="me-3" height="auto" width="35px" src="./images/categories/IT.png" />
-                            <h4 class="mb-0 py-3">IT</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <a href="">
-                        <div class="d-flex bg-white align-items-center category-item py-4">
-                            <img class="me-3" height="auto" width="35px" src="./images/categories/operation.png" />
-                            <h4 class="mb-0 py-3">Operations</h4>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
+{% include 'partner/browse-by-category.html' %}
+<style>
+.hero-partner {
+    background-image: url('{{ partner.banner_url }}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+    min-height: 22.5rem;
+    margin-top: -4.6rem;
+    }
+</style>
 
 {% endblock %}
