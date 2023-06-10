@@ -1,5 +1,12 @@
 {% extends 'main_django.html' %}
+{% block headextra %}
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
+{% endblock %}
 {% block body %}
 <div class="full-width-wrapper sticky-page-nav">
     <div class="contained-wrapper">
@@ -154,6 +161,9 @@
 </div>
 
 <style>
+body{
+    font-family: 'Montserrat', sans-serif !important;
+}
 .lakip-landing{
     height: 100vh;
 }
@@ -161,10 +171,13 @@
     width: 100%;
     height: 100%;
 }
+.swiper-slide {
+background-position: center;
+background-size: cover;
+}
 .swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+display: block;
+width: 100%;
 }
 .sticky-page-nav {
     background-color: #035234 !important;
