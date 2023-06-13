@@ -10,8 +10,6 @@ from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.content.learning_sequences.models import LearningContext
 
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 
 class CourseTagAPIView(APIView):
     def get(self, request, *args, **kwargs):
@@ -19,7 +17,6 @@ class CourseTagAPIView(APIView):
         serializer = CourseTagSerializer(course_tags, many=True)
         return Response(serializer.data)
 
-@method_decorator(csrf_exempt, name='dispatch')
 class MostPopularCoursesAPIView(APIView):
     def get(self, request):
         try:
@@ -51,13 +48,8 @@ class MostPopularCoursesAPIView(APIView):
             serializer = MostPopularCoursesSerializer(top_enrollments, many=True)
 
             # Return the enrollment data as a JSON response
-            # return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
-            ###### CORS
-            response = Response(serializer.data, status=status.HTTP_200_OK)
-            response["Access-Control-Allow-Origin"] = "*"  # Allow all origins
-            return response
-            
         except CourseOverview.DoesNotExist:
             return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
         
