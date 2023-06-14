@@ -7,7 +7,7 @@ def plugin_settings(settings):
 
     # Optional: Customize CORS headers if needed
     settings.CORS_ALLOW_CREDENTIALS = True
-    settings.CORS_ALLOWED_ORIGINS = ['https://tmtg-clone.click/']
+    settings.CORS_ALLOWED_ORIGINS = ['https://tmtg-clone.click']
     settings.CORS_ALLOWED_METHODS = ['GET', 'POST']
     settings.CORS_ALLOWED_HEADERS = ['*']
 
