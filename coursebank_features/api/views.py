@@ -11,11 +11,45 @@ from openedx.core.djangoapps.content.course_overviews.models import CourseOvervi
 from openedx.core.djangoapps.content.learning_sequences.models import LearningContext
 
 
+
 class CourseTagAPIView(APIView):
     def get(self, request, *args, **kwargs):
         course_tags = CourseTag.objects.all()
         serializer = CourseTagSerializer(course_tags, many=True)
         return Response(serializer.data)
+
+class CoursesAPIView(APIView):
+    def get(self, request):
+        try:
+            # Get all course overviews
+            course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
+            
+            # Get enrollment counts for each course
+            enrollments = []
+            for course_overview in course_overviews:                    
+                enrollment_end = course_overview.enrollment_end
+                if enrollment_end is None or enrollment_end > timezone.now():
+                    enrollment_count = CourseEnrollment.objects.filter(
+                        course_id=course_overview.id,
+                        is_active=True
+                    ).count()
+                    enrollments.append({
+                        'course_id': course_overview.id,
+                        'course_name': course_overview.display_name,
+                        'enrollment_count': enrollment_count,
+                    })
+
+            # Sort the enrollments list by enrollment count in descending order
+            sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
+
+            # Serialize the enrollment data
+            serializer = MostPopularCoursesSerializer(sorted_enrollments, many=True)
+
+            # Return the enrollment data as a JSON response
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except CourseOverview.DoesNotExist:
+            return Response({'error': 'Course not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 class MostPopularCoursesAPIView(APIView):
     def get(self, request):

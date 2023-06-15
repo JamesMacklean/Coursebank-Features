@@ -10,5 +10,6 @@ urlpatterns = [
     path('courses/trending/', TrendingCoursesAPIView.as_view(), name='trending-courses'),
     path('courses/free/', FreeCoursesAPIView.as_view(), name='free-courses'),
     path('courses/latest/', LatestCoursesAPIView.as_view(), name='latest-courses'),
+    path('courses/', CoursesAPIView.as_view(), name='courses'),
 
 ]
