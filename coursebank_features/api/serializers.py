@@ -37,6 +37,15 @@ class CourseTagSerializer(serializers.ModelSerializer):
         model = CourseTag
         fields = ['id', 'course_id', 'course_display_name', 'primary_topic', 'subtopic', 'skills', 'organization']
         
+class CoursesSerializer(serializers.Serializer):
+    course_id = serializers.CharField()
+    course_name = serializers.CharField()
+    enrollment_count = serializers.IntegerField()
+
+    class Meta:
+        model = CourseOverview
+        fields = ('id', 'course_name', 'enrollment_count')
+
 class MostPopularCoursesSerializer(serializers.Serializer):
     course_id = serializers.CharField()
     course_name = serializers.CharField()
