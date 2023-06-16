@@ -39,7 +39,7 @@ class CoursesAPIView(APIView):
                         'course_name': course_overview.display_name,
                     }
                     
-                    learning_context = LearningContext.objects.filter(context_key=course_overview.id).exists()
+                    learning_context = LearningContext.objects.filter(context_key=course_overview.id)
 
                     if learning_context:
                         course_info['date_published'] = learning_context.published_at,
