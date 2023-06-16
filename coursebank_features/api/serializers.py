@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from coursebank_features.models import *
-from datetime import datetime
 
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
@@ -50,11 +49,8 @@ class CoursesSerializer(serializers.Serializer):
         fields = ('id', 'course_name', 'enrollment_count', 'published_at', 'mode')
 
     def get_date_published(self, instance):
-        date_published = instance['date_published']
-        if date_published:
-            date_published = datetime.strptime(date_published, '%Y-%m-%d %H:%M:%S')
-            return date_published.strftime('%Y-%m-%d %H:%M:%S')
-        return ''
+        return instance['date_published'].strftime('%Y-%m-%d %H:%M:%S')
+
     
 class MostPopularCoursesSerializer(serializers.Serializer):
     course_id = serializers.CharField()

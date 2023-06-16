@@ -42,7 +42,7 @@ class CoursesAPIView(APIView):
                     learning_context = LearningContext.objects.get(context_key=course_overview.id)
 
                     if learning_context:
-                        course_info['date_published'] = learning_context.published_at,
+                        course_info['date_published'] = learning_context.published_at
                     else:
                         course_info['date_published'] = ''
                         
