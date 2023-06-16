@@ -32,15 +32,20 @@ class CoursesAPIView(APIView):
                     enrollment_count = CourseEnrollment.objects.filter(
                         course_id=course_overview.id,
                         is_active=True
-                    
                     ).count()
+                    
                     course_info = {
                         'course_id': course_overview.id,
                         'course_name': course_overview.display_name,
-                        'start_date': course_overview.enrollment_start,
-                        'end_date': course_overview.enrollment_end,
                     }
                     
+                    learning_context = LearningContext.objects.filter(context_key=course_overview.id).exists()
+
+                    if learning_context:
+                        course_info['date_published'] = learning_context.published_at,
+                    else:
+                        course_info['date_published'] = ''
+                        
                     enrolled_in_honor = CourseEnrollment.objects.filter(
                         course_id=course_overview.id,
                         is_active=True,

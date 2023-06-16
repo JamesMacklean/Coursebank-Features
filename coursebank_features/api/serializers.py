@@ -41,25 +41,15 @@ class CoursesSerializer(serializers.Serializer):
     course_id = serializers.CharField()
     course_name = serializers.CharField()
     enrollment_count = serializers.IntegerField()
-    start_date = serializers.SerializerMethodField()
-    end_date = serializers.SerializerMethodField()
     mode = serializers.CharField()
-    
+    date_published = serializers.SerializerMethodField()
+
     class Meta:
         model = CourseOverview
-        fields = ('id', 'course_name', 'enrollment_count', 'start_date', 'end_date', 'mode')
+        fields = ('id', 'course_name', 'enrollment_count', 'published_at', 'mode')
 
-    def get_start_date(self, instance):
-        start_date = instance.get('start_date')
-        if start_date is not None:
-            return start_date.strftime('%Y-%m-%d %H:%M:%S')
-        return None
-    
-    def get_end_date(self, instance):
-        end_date = instance.get('end_date')
-        if end_date is not None:
-            return end_date.strftime('%Y-%m-%d %H:%M:%S')
-        return None
+    def get_date_published(self, instance):
+        return instance['date_published'].strftime('%Y-%m-%d %H:%M:%S')
     
 class MostPopularCoursesSerializer(serializers.Serializer):
     course_id = serializers.CharField()
