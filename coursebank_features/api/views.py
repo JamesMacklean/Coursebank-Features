@@ -25,7 +25,7 @@ class CoursesAPIView(APIView):
             course_overviews = CourseOverview.objects.exclude(id__in=EXCLUDED_COURSES)
             
             # Get enrollment counts for each course
-            enrollments = []
+            course_data = []
             for course_overview in course_overviews:                    
                 enrollment_end = course_overview.enrollment_end
                 if enrollment_end is None or enrollment_end > timezone.now():
@@ -33,14 +33,27 @@ class CoursesAPIView(APIView):
                         course_id=course_overview.id,
                         is_active=True
                     ).count()
-                    enrollments.append({
+                    
+                    course_data.append({
                         'course_id': course_overview.id,
                         'course_name': course_overview.display_name,
                         'enrollment_count': enrollment_count,
+                        'start_date': course_overview.enrollment_start,
+                        'end_date': course_overview.enrollment_end,
                     })
-
+                    
+                    enrolled_in_honor = CourseEnrollment.objects.filter(
+                    course_id=course_overview.id,
+                    is_active=True,
+                    mode='honor'
+                    ).exists()
+                    
+                    if enrolled_in_honor:
+                        course_data.append({
+                            'mode': 'honor'
+                        })  
             # Sort the enrollments list by enrollment count in descending order
-            sorted_enrollments = sorted(enrollments, key=lambda x: x['enrollment_count'], reverse=True)
+            sorted_enrollments = sorted(course_data, key=lambda x: x['enrollment_count'], reverse=True)
 
             # Serialize the enrollment data
             serializer = MostPopularCoursesSerializer(sorted_enrollments, many=True)
