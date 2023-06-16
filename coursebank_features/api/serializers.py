@@ -50,10 +50,16 @@ class CoursesSerializer(serializers.Serializer):
         fields = ('id', 'course_name', 'enrollment_count', 'start_date', 'end_date', 'mode')
 
     def get_start_date(self, instance):
-        return instance['start_date'].strftime('%Y-%m-%d %H:%M:%S')
+        start_date = instance.get('start_date')
+        if start_date is not None:
+            return start_date.strftime('%Y-%m-%d %H:%M:%S')
+        return None
     
     def get_end_date(self, instance):
-        return instance['end_date'].strftime('%Y-%m-%d %H:%M:%S')
+        end_date = instance.get('end_date')
+        if end_date is not None:
+            return end_date.strftime('%Y-%m-%d %H:%M:%S')
+        return None
     
 class MostPopularCoursesSerializer(serializers.Serializer):
     course_id = serializers.CharField()
