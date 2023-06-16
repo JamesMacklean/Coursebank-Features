@@ -49,7 +49,9 @@ class CoursesAPIView(APIView):
                     
                     if enrolled_in_honor:
                         course_info['mode'] = 'honor'
-                    
+                    else:
+                        course_info['mode'] = ''
+                        
                     # Add enrollment_count key to course_info dictionary
                     course_info['enrollment_count'] = enrollment_count
                     
