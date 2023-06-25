@@ -1,0 +1,680 @@
+{% extends 'main_django.html' %}
+{% block body %}
+<div class="bg-gradient-img">
+    <div class="contained-wrapper pt-5 pb-5">
+        <section class="category-section">
+            <div class="section-header d-flex align-items-center">
+                <h3 class="section-title me-auto text-white">Browse by Category</h3>
+                <a href="" class="fw-bold text-white">View all Courses</a>
+            </div>
+            <div class="row mt-1 gutter-2rem">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/management.png" />
+                            <h4 class="mb-0 py-3">Management</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px"
+                                src="./images/categories/engineering.png" />
+                            <h4 class="mb-0 py-3">Engineering</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/sales.png" />
+                            <h4 class="mb-0 py-3">Sales</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/marketing.png" />
+                            <h4 class="mb-0 py-3">Marketing</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/finance.png" />
+                            <h4 class="mb-0 py-3">Finance</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/HR.png" />
+                            <h4 class="mb-0 py-3">HR</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/IT.png" />
+                            <h4 class="mb-0 py-3">IT</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="">
+                        <div class="d-flex bg-white align-items-center category-item py-4">
+                            <img class="me-3" height="auto" width="35px" src="./images/categories/operation.png" />
+                            <h4 class="mb-0 py-3">Operations</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="">
+    <div class="contained-wrapper pt-5 pb-5">
+        <section class="section-courses-container">
+            <div class="section-header d-flex align-items-center">
+                <h3 class="section-title me-auto">Top Rated Courses</h3>
+                <a href="" class="fw-bold">View all Courses</a>
+            </div>
+            <div class="row pt-3 gutter-2rem">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #d94cdc">
+                                Business
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-2.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Project Management Fundamentals
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #e39600">
+                                Communication
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-3.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Communication Enhancement Course
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #e36d00">
+                                Marketing
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-2.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #d94cdc">
+                                Business
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="">
+    <div class="contained-wrapper pt-5 pb-5">
+        <section class="section-courses-container">
+            <div class="section-header d-flex align-items-center">
+                <h3 class="section-title me-auto">Recently Launched Courses</h3>
+                <a href="" class="fw-bold">View all Courses</a>
+            </div>
+            <div class="row pt-3 gutter-2rem">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #d94cdc">
+                                Business
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-2.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Project Management Fundamentals
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #e39600">
+                                Communication
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-3.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Communication Enhancement Course
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #e36d00">
+                                Marketing
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-2.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #d94cdc">
+                                Business
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+ <div class="">
+    <div class="contained-wrapper pt-5 pb-5">
+        <section class="section-courses-container">
+            <div class="section-header d-flex align-items-center">
+                <h3 class="section-title me-auto">Most Popular Certifications</h3>
+                <a href="" class="fw-bold">View all Courses</a>
+            </div>
+            <div class="row pt-3 gutter-2rem">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #d94cdc">
+                                Business
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-2.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Project Management Fundamentals
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #e39600">
+                                Communication
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-3.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Communication Enhancement Course
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #e36d00">
+                                Marketing
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-2.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #d94cdc">
+                                Business
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+ <div class="">
+    <div class="contained-wrapper pt-5 pb-5">
+        <section class="section-courses-container">
+            <div class="section-header d-flex align-items-center">
+                <h3 class="section-title me-auto">Prepare fot Industry</h3>
+                <a href="" class="fw-bold">View all Courses</a>
+            </div>
+            <div class="row pt-3 gutter-2rem">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #d94cdc">
+                                Business
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-2.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Project Management Fundamentals
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #e39600">
+                                Communication
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-3.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Communication Enhancement Course
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #e36d00">
+                                Marketing
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder-2.png" />
+                                    <h2 class="course-title">Coursebank</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #387aa6">
+                                Information Technology
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder-2.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="course-single-page.html">
+                        <div class="course-item">
+                            <div class="category-badge" style="background-color: #d94cdc">
+                                Business
+                            </div>
+                            <img class="img-item" height="auto" width="100%"
+                                src="./images/course-placeholder.png" />
+                            <div class="course-details-container">
+                                <div class="d-flex align-items-center">
+                                    <img class="me-1" height="auto" width="32px"
+                                        src="./images/course-company-placeholder.png" />
+                                    <h2 class="course-title">I ACADEMY</h2>
+                                </div>
+                                <p class="course-description mt-2 pb-3">
+                                    Using HTML and CSS to design website
+                                </p>
+                                <div class="course-start">Class Starts:</div>
+                                <span class="course-start-date">May 1, 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
