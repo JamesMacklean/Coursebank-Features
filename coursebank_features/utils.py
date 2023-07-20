@@ -99,6 +99,7 @@ def export_learner_profiles(active, course_id, email_address=None):
                     "email": p.email,
                     "created": p.date_joined,
                     "last_login": p.last_login,
+                    "is_active":p.is_active
                 })
             except UserProfile.DoesNotExist:
                 user_list.append({
@@ -108,6 +109,7 @@ def export_learner_profiles(active, course_id, email_address=None):
                     "email": p.email,
                     "created": p.date_joined,
                     "last_login": p.last_login,
+                    "is_active": p.is_active
                 })
         file_name = '/home/ubuntu/tempfiles/export_learner_profiles_{}.csv'.format(tnow)
         with open(file_name, mode='wb') as csv_file:
@@ -118,7 +120,8 @@ def export_learner_profiles(active, course_id, email_address=None):
                 'Username',
                 'Email',
                 'Created',
-                'Last Login'
+                'Last Login',
+                'Active'
                 ])
 
             for u in user_list:
@@ -129,6 +132,7 @@ def export_learner_profiles(active, course_id, email_address=None):
                     u['email'],
                     u['created'],
                     u['last_login'],
+                    u['is_active'],
                     ])
 
         if email_address:
@@ -162,6 +166,7 @@ def export_learner_profiles(active, course_id, email_address=None):
                 "email": e.user.email,
                 "created": e.created,
                 "last_login": e.user.last_login,
+                "is_active": e.user.is_active,
                 "date_completed": date_completed
             })
         file_name = '/home/ubuntu/tempfiles/export_learner_profiles_{}.csv'.format(tnow)
@@ -174,6 +179,7 @@ def export_learner_profiles(active, course_id, email_address=None):
                 'Email',
                 'Date Enrolled',
                 'Last Login',
+                'Active',
                 'Date Completed',
                 ])
 
@@ -185,6 +191,7 @@ def export_learner_profiles(active, course_id, email_address=None):
                     u['email'],
                     u['created'],
                     u['last_login'],
+                    u['is_active'],
                     u['date_completed']
                     ])
 
