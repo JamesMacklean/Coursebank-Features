@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.models import User
 from opaque_keys.edx.keys import CourseKey
-from student.models import CourseEnrollment, UserProfile
+from common.djangoapps.student.models import CourseEnrollment, UserProfile
 from lms.djangoapps.certificates.api import get_certificate_for_user, GeneratedCertificate
 from openedx.core.djangoapps.course_groups.models import CourseUserGroup
 
