@@ -20,7 +20,7 @@ from openedx.core.djangoapps.course_groups.models import CourseUserGroup
 LOGGER = logging.getLogger(__name__)
 
 def export_learner_profiles(email_address=None):
-    tnow = date.now()
+    tnow = date.now().strftime('%Y-%m-%d')
     profiles = User.objects.all()
 
     fields = ['id', 'username', 'name', 'email', 'date_joined', 'is_active']
