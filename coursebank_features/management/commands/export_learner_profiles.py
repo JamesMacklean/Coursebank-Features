@@ -31,7 +31,7 @@ class Command(BaseCommand):
         # Create the email message with CSV attachment
         subject = 'Exported Coursebank Learner Profiles'
         body = 'Please find the attached CSV file containing the learner profiles'
-        sender_email = 'no-reply-coursebank-learner-profiles@tmtg-clone.click'
+        sender_email = 'no-reply-coursebank-learner-profiles@coursebank.ph'
 
         email = EmailMessage(
             subject=subject,
