@@ -15,7 +15,7 @@ urlpatterns = [
     path('api/', include('coursebank_features.api.urls')),
     ####################### COURSE BUNDLES ################
     # re_path(r'^bundles/(?P<slug>[\w-]+)/$', bundles, name='bundles'),
-    ####################### PARTNER #######################
+    ####################### PARTNERS ######################
     re_path(r'^partners/$', PartnersCatalogView, name='partners-catalog'),
     re_path(r'^partners/(?P<partner_name>[a-zA-Z\d-]+)/$', PartnerView, name='partner'),
     re_path(r'^partners/(?P<partner_name>[a-zA-Z\d-]+)/course/{}/$'.format(settings.COURSE_ID_PATTERN), PartnerCourseView, name='partner-course'),
