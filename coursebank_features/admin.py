@@ -13,33 +13,13 @@ class CourseTagAdmin(admin.ModelAdmin):
     def get_organization(self, obj):
         return ", ".join([str(organization) for organization in obj.organization.all()]) 
 
-####################### COURSE TAGS #######################
-@admin.register(CourseTag)
-class CourseTagAdmin (CourseTagAdmin):
-    pass
 
-@admin.register(PrimaryTopic)
-class PrimaryTopicAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
-
-@admin.register(SubTopic)
-class SubTopicAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)    
-
-@admin.register(Skill)
-class SkillAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
-
-@admin.register(Organization)
-class OrganizationAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
-
-@admin.register(SpecialCourse)
-class SpecialCourseAdmin(admin.ModelAdmin):
-    pass
-@admin.register(CourseBundle)
-class CourseBundleAdmin(admin.ModelAdmin):
-    pass
+# @admin.register(SpecialCourse)
+# class SpecialCourseAdmin(admin.ModelAdmin):
+#     pass
+# @admin.register(CourseBundle)
+# class CourseBundleAdmin(admin.ModelAdmin):
+#     pass
 
 admin.site.register(Partner)
 admin.site.register(PartnerCourse)
