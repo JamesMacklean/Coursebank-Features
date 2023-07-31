@@ -1,4 +1,4 @@
-{% extends 'bundles_base.html' %}
+{% extends 'main_django.html' %}
 {% load static %}
 {% block title %}{{bundle.name}} | {% endblock %}
 {% block headextra %}{% endblock %}
@@ -10,9 +10,9 @@
       <div class="contained-wrapper h-100">
         <div class="d-flex align-items-center h-100">
           <div class="col-12 col-md-8 d-flex flex-column">
-            <h1 class="pagebanner-title mb-3 text-left">{{ bundle.name }}</h1>
+            <h1 class="pagebanner-title mb-3 text-left">LAKIP</h1>
             <p class="pagebanner-desc mt-2">
-                {{ bundle.short_description }}
+               Localized Accessible Knowledge and Inclusive Platform
             </p>
           </div>
         </div>
@@ -27,14 +27,6 @@
         <a href="#faq">FAQ’s </a>
       </div>
     </div>
-  </div>
-
-  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="overview">
-  {% if bundle.name == "Future Skills Courses" %}
-    {% include "course_bundles/future_skills_overview.html" %}
-  {% elif bundle.name == "Soft Skills Courses" %}
-    {% include "course_bundles/soft_skills_overview.html" %}
-  {% endif %}
   </div>
 
   <div class="bg-light-1">
