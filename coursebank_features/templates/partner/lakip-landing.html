@@ -1,14 +1,18 @@
-{% extends 'main_django.html' %}
+{% extends 'bundles_base.html' %}
+{% load static %}
+{% block title %}{{bundle.name}} | {% endblock %}
+{% block headextra %}{% endblock %}
+
+
 {% block body %}
 <div class="full-width-wrapper">
     <section class="page-banner page-banner-1">
-      <div class="contained-wrapper">
+      <div class="contained-wrapper h-100">
         <div class="d-flex align-items-center h-100">
           <div class="col-12 col-md-8 d-flex flex-column">
-            <h1 class="pagebanner-title">Soft Skills Courses</h1>
+            <h1 class="pagebanner-title mb-3 text-left">{{ bundle.name }}</h1>
             <p class="pagebanner-desc mt-2">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur.
+                {{ bundle.short_description }}
             </p>
           </div>
         </div>
@@ -25,100 +29,12 @@
     </div>
   </div>
 
-  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder">
-    <div class="row">
-      <div class="col-12 col-md-6 order-1 order-md-0">
-        <div class="d-flex flex-column justify-content-center h-100">
-          <h2 class="font-42px pb-0 pb-md-3 mt-4 mt-md-0">
-            What is Soft Skills?
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 order-0 order-md-1">
-        <div class="d-flex h-100 align-items-center">
-          <img height="auto" width="100%" src="./images/softskill-placdeholder.png" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="contained-wrapper pt-6 pb-6">
-    <section class="will-learn-section">
-      <div class="section-header d-flex align-items-center">
-        <h3 class="section-title">What you will learn?</h3>
-      </div>
-      <div class="row pt-3 gy-2 gy-md-3 gx-3">
-        <div class="col-12 col-md-4">
-          <div class="learn-item">
-            <img src="./images/learn-icons/communication.png" height="48px" width="48px" />
-            <h4>Communication Skills</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4">
-          <div class="learn-item">
-            <img src="./images/learn-icons/leadership.png" height="48px" width="48px" />
-            <h4>Leadership & Management</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4">
-          <div class="learn-item">
-            <img src="./images/learn-icons/intelligence.png" height="48px" width="48px" />
-            <h4>Emotional Intelligence</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4">
-          <div class="learn-item">
-            <img src="./images/learn-icons/customer-service.png" height="48px" width="48px" />
-            <h4>Customer Service</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4">
-          <div class="learn-item">
-            <img src="./images/learn-icons/time-management.png" height="48px" width="48px" />
-            <h4>Time Management</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
-            </p>
-          </div>
-        </div>
-        <div class="col-12 col-md-4">
-          <div class="learn-item">
-            <img src="./images/learn-icons/team-building.png" height="48px" width="48px" />
-            <h4>Team Building</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="overview">
+  {% if bundle.name == "Future Skills Courses" %}
+    {% include "course_bundles/future_skills_overview.html" %}
+  {% elif bundle.name == "Soft Skills Courses" %}
+    {% include "course_bundles/soft_skills_overview.html" %}
+  {% endif %}
   </div>
 
   <div class="bg-light-1">
@@ -127,11 +43,6 @@
         <div class="section-header d-flex align-items-center">
           <h3 class="section-title me-auto">Soft Skills Courses</h3>
           <a href="" class="fw-bold">View All Soft Skills Courses</a>
-        </div>
-        <div class="section-tabs d-flex mt-4 pb-4">
-          <button class="btn btn-primary">Most Popular</button>
-          <button class="btn">Free</button>
-          <button class="btn">Trending</button>
         </div>
         <div class="row pt-3 gutter-2rem">
           <div class="col-12 col-md-6 col-lg-4">
@@ -262,7 +173,7 @@
           </div>
         </div>
         <div class="d-flex d-lg-none justify-content-center mt-5">
-          <a href="" class="fw-bold">View all Courses</a>
+          <a href="#" class="fw-bold">View all Courses</a>
         </div>
       </section>
     </div>
@@ -461,23 +372,15 @@
     </div>
   </div>
 
-  <section class="CTA-Main bg-cta-gradient">
-    <div class="contained-wrapper bg-overlay-img pt-6 pb-6">
-      <div class="col-12 col-md-12 col-lg-6 col-xl-5">
-        <div class="d-flex flex-column justify-content-center h-100">
-          <h1>Want to get the latest updates from us?</h1>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident.
-          </p>
-          <form class="d-flex">
-            <input type="text" class="form-control me-3" placeholder="Enter your email" />
-            <button class="btn text-primary">Subscribe</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+  
 {% endblock %}
