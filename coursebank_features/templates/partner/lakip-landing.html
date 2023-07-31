@@ -20,351 +20,193 @@
         </div>
       </div>
     </section>
-  </div>
+</div>
   <div class="full-width-wrapper sticky-page-nav">
     <div class="contained-wrapper">
       <div class="sticky-nav-content">
-        <a href="#overview">Overview </a>
-        <a href="#courses">Courses </a>
+        <a href="#overview">Overview</a>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#partners">Partners</a>
         <a href="#faq">FAQ</a>
       </div>
     </div>
   </div>
 
+  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="overview">
+    <div class="row">
+        <div class="col-12 col-md-6 order-1 order-md-0">
+        <div class="d-flex flex-column justify-content-center h-100">
+            <h2 class="font-42px pb-0 pb-md-3 mt-4 mt-md-0">
+            What is LAKIP?
+            </h2>
+            <p>
+                aims to offer a wide range of courses that have been thoughtfully translated into the <br>
+                Bisaya dialect, ensuring that individuals from diverse linguistic backgrounds, <br>
+                particularly those who speak the Cebuano language, can access and benefit from <br>
+                the learning materials. By incorporating localized translations, LAKIP promotes <br>
+                equal educational opportunities and fosters inclusivity by removing language barriers <br>
+                that may hinder individuals’ access to knowledge.
+            </p>
+        </div>
+        </div>
+        <div class="col-12 col-md-6 order-0 order-md-1">
+        <div class="d-flex h-100 align-items-center">
+            <img height="auto" width="100%" src="{% static 'images/futureskill-placeholder.png' %}" />
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="about">
+    <div class="row">
+        <div class="col-12 col-md-6 order-1 order-md-0">
+        <div class="d-flex flex-column justify-content-center h-100">
+            <h2 class="font-42px pb-0 pb-md-3 mt-4 mt-md-0">
+            About
+            </h2>
+        <p class="lakip">
+            The Department of Information and Communications Technology (DICT) - 10, through its ICT Literacy and Competency Development Bureau (ILCDB), also known as the training arm of the Department, is responsible for providing ICT training and capacity-building initiatives to the government workforce and ICT-enabled sectors. The ILCDB promotes and recognizes the vital role of information and communications technology in nation-building, promote digital literacy, ICT expertise, and knowledge-building among citizens to enable them to participate and compete in an evolving ICT age, and empower, through the use of ICT, the disadvantaged segments of the population, including the elderly, out-of-school youth, persons with disabilities and indigenous and minority groups.
+        </p>
+        <p class="lakip">
+            Recognizing the importance of inclusive education and the role of ICT in empowering disadvantaged segments of the population, DICT 10 has collaborated with Coursebank, a platform that offers a collection of educational resources, and the Local Government Unit of Cagayan de Oro City - Education Board to translate five pilot courses into the Bisaya dialect, targeting the constituents of Region 10. By providing educational resources in the local dialect, the initiative aims to increase inclusivity in the ICT field and enhance employment opportunities for individuals in the region.
+        </p>
+        </div>
+        </div>
+        <div class="col-12 col-md-6 order-0 order-md-1">
+        <div class="d-flex h-100 align-items-center">
+            <img height="auto" width="100%" src="{% static 'images/futureskill-placeholder.png' %}" />
+        </div>
+        </div>
+    </div>
+  </div>
+
   <div class="bg-light-1">
-    <div class="contained-wrapper pt-6 pb-6">
+    <div class="contained-wrapper pt-6 pb-6" id="courses">
       <section class="section-courses-container">
         <div class="section-header d-flex align-items-center">
-          <h3 class="section-title me-auto">Soft Skills Courses</h3>
-          <a href="" class="fw-bold">View All Soft Skills Courses</a>
+            <h3 class="section-title me-auto">Courses</h3>
         </div>
         <div class="row pt-3 gutter-2rem">
+
           <div class="col-12 col-md-6 col-lg-4">
-            <a href="course-single-page.html">
+            <a href="/courses/course-v1:DICT+FSA-BIS001+2023_Q2/about">
               <div class="course-item">
-                <div class="category-badge" style="background-color: #387aa6">
-                  Information Technology
-                </div>
-                <img height="auto" width="100%" src="./images/course-placeholder.png" />
+                <img height="auto" width="100%" src="https://coursebank.ph/asset-v1:DICT+FSA-BIS001+2023_Q2+type@asset+block@Microsoft-productivity-Tools-v1.jpg" />
                 <div class="course-details-container">
                   <div class="d-flex align-items-center">
-                    <img class="me-1" height="auto" width="32px" src="./images/course-company-placeholder.png" />
-                    <h2 class="course-title">I ACADEMY</h2>
+                    <h2 class="course-title"></h2>
                   </div>
-                  <p class="course-description mt-2 pb-3">
-                    Using HTML and CSS to design website
-                  </p>
-                  <div class="course-start">Class Starts:</div>
-                  <span class="course-start-date">May 1, 2023</span>
+                  <p class="course-description mt-2 pb-3">Microsoft Productivity Tools [Bisaya]</p>
+                  <div class="course-start">Course</div>
                 </div>
               </div>
             </a>
           </div>
+
           <div class="col-12 col-md-6 col-lg-4">
-            <a href="course-single-page.html">
+            <a href="/courses/course-v1:DICT+FSA-BIS002+2023_Q2/about">
               <div class="course-item">
-                <div class="category-badge" style="background-color: #d94cdc">
-                  Business
-                </div>
-                <img height="auto" width="100%" src="./images/course-placeholder-2.png" />
+                <img height="auto" width="100%" src="https://coursebank.ph/asset-v1:DICT+FSA-BIS002+2023_Q2+type@asset+block@Navigating-Google-Workspace-v1.jpg" />
                 <div class="course-details-container">
                   <div class="d-flex align-items-center">
-                    <img class="me-1" height="auto" width="32px" src="./images/course-company-placeholder-2.png" />
-                    <h2 class="course-title">Coursebank</h2>
+                    <h2 class="course-title"></h2>
                   </div>
-                  <p class="course-description mt-2 pb-3">
-                    Project Management Fundamentals
-                  </p>
-                  <div class="course-start">Class Starts:</div>
-                  <span class="course-start-date">May 1, 2023</span>
+                  <p class="course-description mt-2 pb-3">Navigating Google Workspace [Bisaya]</p>
+                  <div class="course-start">Course</div>
                 </div>
               </div>
             </a>
           </div>
+          
           <div class="col-12 col-md-6 col-lg-4">
-            <a href="course-single-page.html">
+            <a href="/courses/course-v1:DICT+FSA-BIS003+2023_Q2/about">
               <div class="course-item">
-                <div class="category-badge" style="background-color: #e39600">
-                  Communication
-                </div>
-                <img height="auto" width="100%" src="./images/course-placeholder-3.png" />
+                <img height="auto" width="100%" src="https://coursebank.ph/asset-v1:DICT+FSA-BIS003+2023_Q2+type@asset+block@Canva_for_Graphic_Design.png" />
                 <div class="course-details-container">
                   <div class="d-flex align-items-center">
-                    <img class="me-1" height="auto" width="32px" src="./images/course-company-placeholder-2.png" />
-                    <h2 class="course-title">Coursebank</h2>
+                    <h2 class="course-title"></h2>
                   </div>
-                  <p class="course-description mt-2 pb-3">
-                    Communication Enhancement Course
-                  </p>
-                  <div class="course-start">Class Starts:</div>
-                  <span class="course-start-date">May 1, 2023</span>
+                  <p class="course-description mt-2 pb-3">Canva for Graphic Design [Bisaya]</p>
+                  <div class="course-start">Course</div>
                 </div>
               </div>
             </a>
           </div>
-          <div class="col-12 col-md-6 col-lg-4">
-            <a href="course-single-page.html">
-              <div class="course-item">
-                <div class="category-badge" style="background-color: #e36d00">
-                  Marketing
-                </div>
-                <img height="auto" width="100%" src="./images/course-placeholder.png" />
-                <div class="course-details-container">
-                  <div class="d-flex align-items-center">
-                    <img class="me-1" height="auto" width="32px" src="./images/course-company-placeholder-2.png" />
-                    <h2 class="course-title">Coursebank</h2>
-                  </div>
-                  <p class="course-description mt-2 pb-3">
-                    Using HTML and CSS to design website
-                  </p>
-                  <div class="course-start">Class Starts:</div>
-                  <span class="course-start-date">May 1, 2023</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4">
-            <a href="course-single-page.html">
-              <div class="course-item">
-                <div class="category-badge" style="background-color: #387aa6">
-                  Information Technology
-                </div>
-                <img height="auto" width="100%" src="./images/course-placeholder-2.png" />
-                <div class="course-details-container">
-                  <div class="d-flex align-items-center">
-                    <img class="me-1" height="auto" width="32px" src="./images/course-company-placeholder.png" />
-                    <h2 class="course-title">I ACADEMY</h2>
-                  </div>
-                  <p class="course-description mt-2 pb-3">
-                    Using HTML and CSS to design website
-                  </p>
-                  <div class="course-start">Class Starts:</div>
-                  <span class="course-start-date">May 1, 2023</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-md-6 col-lg-4">
-            <a href="course-single-page.html">
-              <div class="course-item">
-                <div class="category-badge" style="background-color: #d94cdc">
-                  Business
-                </div>
-                <img height="auto" width="100%" src="./images/course-placeholder.png" />
-                <div class="course-details-container">
-                  <div class="d-flex align-items-center">
-                    <img class="me-1" height="auto" width="32px" src="./images/course-company-placeholder.png" />
-                    <h2 class="course-title">I ACADEMY</h2>
-                  </div>
-                  <p class="course-description mt-2 pb-3">
-                    Using HTML and CSS to design website
-                  </p>
-                  <div class="course-start">Class Starts:</div>
-                  <span class="course-start-date">May 1, 2023</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="d-flex d-lg-none justify-content-center mt-5">
-          <a href="#" class="fw-bold">View all Courses</a>
+
         </div>
       </section>
+
+    <div class="text-center mt-3 p-5">
+        <h2 class="mb-3 lakip text-white">Start Learning. It's Free.</h2>
+            <p class="mb-5 lakip">The local DICT online courses are free for everyone. Apply for access and wait for your invite via email. <br>
+                Meanwhile, make sure to have registered an account at coursebank.ph.</p>
+            <a href="https://forms.gle/NkukAGAix2cwXgBu7" class="btn btn-lakip mt-2 lakip">APPLY NOW</a>
+    </div>
+
     </div>
   </div>
 
-  <div class="" id="faq">
-    <div class="contained-wrapper pt-6 pb-6">
-      <section class="section-courses-container">
-        <div class="section-header d-flex align-items-center">
-          <h3 class="section-title me-auto">Frequently Asked Questions</h3>
+  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="partners">
+    <h2 class="text-center">Proponents</h2>
+    <div class="row">
+        <div class="col-12 col-md-6 order-1 order-md-0">
+            <div class="d-flex flex-column justify-content-center h-100">
+                <img src="https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/lakip/lakip-dict.png" alt="DICT region10">
+            </div>
         </div>
-        <div class="accordion mt-4" id="accordionQuestions">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <button class="accordion-button d-flex">
-                  <span class="me-auto">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
-                  </span>
-                  <div>
-                    <div class="icon-container">
-                      <i class="bi bi-chevron-down"></i>
-                    </div>
-                  </div>
-
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-              data-bs-parent="#collapseOne">
-              <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes
-                control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                this with
-                custom CSS or overriding our default variables. It's also worth noting that just about
-                any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
+        <div class="col-12 col-md-6 order-0 order-md-1">
+            <div class="d-flex h-100 align-items-center">
+                <img src="https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/lakip/lakip-cdo.png" alt="Cagayan De Oro">
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <button class="accordion-button d-flex">
-                  <span class="me-auto">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
-                  </span>
-                  <div>
-                    <div class="icon-container">
-                      <i class="bi bi-chevron-down"></i>
-                    </div>
-                  </div>
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-              data-bs-parent="#collapseTwo">
-              <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes
-                control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                this with
-                custom CSS or overriding our default variables. It's also worth noting that just about
-                any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <button class="accordion-button d-flex">
-                  <span class="me-auto">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
-                  </span>
-                  <div>
-                    <div class="icon-container">
-                      <i class="bi bi-chevron-down"></i>
-                    </div>
-                  </div>
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-              data-bs-parent="#collapseThree">
-              <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes
-                control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                this with
-                custom CSS or overriding our default variables. It's also worth noting that just about
-                any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFour">
-              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <button class="accordion-button d-flex">
-                  <span class="me-auto">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
-                  </span>
-                  <div>
-                    <div class="icon-container">
-                      <i class="bi bi-chevron-down"></i>
-                    </div>
-                  </div>
-                </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-              data-bs-parent="#collapseFour">
-              <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes
-                control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                this with
-                custom CSS or overriding our default variables. It's also worth noting that just about
-                any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFive">
-              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                <button class="accordion-button d-flex">
-                  <span class="me-auto">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
-                  </span>
-                  <div>
-                    <div class="icon-container">
-                      <i class="bi bi-chevron-down"></i>
-                    </div>
-                  </div>
-                </button>
-            </h2>
-            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-              data-bs-parent="#collapseFive">
-              <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes
-                control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                this with
-                custom CSS or overriding our default variables. It's also worth noting that just about
-                any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingSix">
-              <div class="d-flex accordion-container" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                <button class="accordion-button d-flex">
-                  <span class="me-auto">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
-                  </span>
-                  <div>
-                    <div class="icon-container">
-                      <i class="bi bi-chevron-down"></i>
-                    </div>
-                  </div>
-                </button>
-            </h2>
-            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-              data-bs-parent="#collapseSix">
-              <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                the collapse
-                plugin adds the appropriate classes that we use to style each element. These classes
-                control the overall
-                appearance, as well as the showing and hiding via CSS transitions. You can modify any of
-                this with
-                custom CSS or overriding our default variables. It's also worth noting that just about
-                any HTML can go
-                within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
+    </div>
+    <h2 class="text-center">Partners</h2>
+    <div class="row">
+        <div class="col-12 col-md-6 order-1 order-md-0">
+            <div class="d-flex flex-column justify-content-center h-100">
+                <img src="https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/lakip/lakip-cb.png" alt="coursebank">
+            </div>
+        </div>
+        <div class="col-12 col-md-6 order-0 order-md-1">
+            <div class="d-flex h-100 align-items-center">
+                <img src="https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/lakip/lakip-deped.png" alt="DepEd Region 10">
+            </div>
+        </div>
     </div>
   </div>
+
+  <div id="faq" class="mt-3 full-width-wrapper lakip-faq p-5">
+    <section class="section-courses-container contained-wrapper-lakip">
+        <h3 class="lakip fw-bold text-white">Frequently Asked Questions</h3>
+        <div class="row mt-3 gutter-2rem">
+            <div class="accordion1">
+                <div class="accordion1-item mb-2">
+                    <div class="accordion1-item-header">
+                        <p class="m-0 lakip">Are the courses Free?</p>
+                    </div>
+                    <div class="accordion1-item-body">
+                        <div class="accordion1-item-body-content">
+                            <p class="lakip">The courses under this project is free. This initiative is fully funded by the Department of Information and Communications Technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion1">
+                <div class="accordion1-item mb-2">
+                    <div class="accordion1-item-header">
+                        <p class="m-0 lakip">How can I access the courses?</p>
+                    </div>
+                    <div class="accordion1-item-body">
+                        <div class="accordion1-item-body-content">
+                            <p class="lakip">You can apply access to the courses by accomplishing an application form. The project staff will send the invite via your registered email address. Make sure that you first have a coursebank account.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
 <script src="{% static 'js/scripts.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
