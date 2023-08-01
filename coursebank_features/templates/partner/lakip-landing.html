@@ -21,7 +21,7 @@
       </div>
     </section>
 </div>
-  <div class="full-width-wrapper sticky-page-nav">
+  <div class="full-width-wrapper">
     <div class="contained-wrapper">
       <div class="sticky-nav-content">
         <a href="#overview">Overview</a>
@@ -207,7 +207,75 @@
         </div>
     </section>
 </div>
-
+<style>
+    /* ACCORDION */
+.accordion1{
+    width: 90%;
+    max-width: 1000px;
+}
+.accordion1-item{
+    background-color: #fff;
+    color: #111;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.accordion1-item-header{
+    padding: 0.5rem 3rem 0.5rem 1rem;
+    min-height: 3.5rem;
+    line-height: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.accordion1-item-header:after{
+    content: "\002B";
+    font-size: 2rem;
+    position: absolute;
+    right: 1rem;
+}
+.accordion1-item-header.active:after{
+    content: "\2212";
+}
+.accordion1-item-body{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-in-out;
+    }
+.accordion1-item-body-content{
+    padding: 1rem;
+    line-height: 1.5rem;
+    border-top: 1.5px solid;
+    border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+.accordion1 a{
+    color: #247BA0;
+}
+html {
+    scroll-behavior: smooth !important;
+  }
+</style>
+<script>
+    const accordionItemHeaders = document.querySelectorAll(".accordion1-item-header");
+    accordionItemHeaders.forEach(accordionItemHeader => {
+        accordionItemHeader.addEventListener("click", event => {
+            const currentlyActiveAccordionItemHeader = document.querySelector(".accordion1-item-header.active");
+            if(currentlyActiveAccordionItemHeader && currentlyActiveAccordionItemHeader!==accordionItemHeader){
+                currentlyActiveAccordionItemHeader.classList.toggle("active");
+                currentlyActiveAccordionItemHeader.nextElementSibling.style.maxHeight = 0;
+            }
+            accordionItemHeader.classList.toggle("active");
+            const accordionItemBody = accordionItemHeader.nextElementSibling;
+            if(accordionItemHeader.classList.contains("active")){
+                accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+            }
+            else{
+                accordionItemBody.style.maxHeight = 0;
+            }
+        });
+    });
+</script>
 <script src="{% static 'js/scripts.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
