@@ -33,51 +33,42 @@
     </div>
   </div>
 
-  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="overview">
-    <div class="row">
-        <div class="col-12 col-md-6 order-1 order-md-0">
-        <div class="d-flex flex-column justify-content-center h-100">
-            <h2 class="font-42px pb-0 pb-md-3 mt-4 mt-md-0">
-            LAKIP
-            </h2>
-            <p>
-                aims to offer a wide range of courses that have been thoughtfully translated into the
-                Bisaya dialect, ensuring that individuals from diverse linguistic backgrounds,
-                particularly those who speak the Cebuano language, can access and benefit from
-                the learning materials. By incorporating localized translations, LAKIP promotes
-                equal educational opportunities and fosters inclusivity by removing language barriers
-                that may hinder individuals’ access to knowledge.
-            </p>
+  <div class="contained-wrapper pt-6 pb-6">
+    <section class="section-about">
+        <div class="row gx-5 py-5">
+            <div class="col-12 col-md-6">
+                <h4 class="mb-4">LAKIP</h4>
+                <p>
+                    aims to offer a wide range of courses that have been thoughtfully translated into the
+                    Bisaya dialect, ensuring that individuals from diverse linguistic backgrounds,
+                    particularly those who speak the Cebuano language, can access and benefit from
+                    the learning materials. By incorporating localized translations, LAKIP promotes
+                    equal educational opportunities and fosters inclusivity by removing language barriers
+                    that may hinder individuals’ access to knowledge.
+                </p>
+            </div>
+            <div class="col-12 col-md-6">
+                <img width="100%" height="100%" style="object-fit: cover;" src="https://coursebank-static-assets.s3.ap-northeast-1.amazonaws.com/partners/lakipv2_1.png" />
+            </div>
         </div>
-        </div>
-        <div class="col-12 col-md-6 order-0 order-md-1">
-        <div class="d-flex h-100 align-items-center">
-            <img height="auto" width="100%" src="{% static 'images/futureskill-placeholder.png' %}" />
-        </div>
-        </div>
-    </div>
-  </div>
+        <div class="row gx-5 py-5">
+            <div class="col-12 col-md-6">
+                <img width="100%" height="100%" style="object-fit: cover;" src="https://coursebank-static-assets.s3.ap-northeast-1.amazonaws.com/partners/lakipv2_2.png" />
+            </div>
+            <div class="col-12 col-md-6">
+                <h4 class="mb-4 mt-4 mt-md-0">About</h4>
+                <p >
+                    The Department of Information and Communications Technology (DICT) - 10, through its ICT Literacy and Competency Development Bureau (ILCDB), also known as the training arm of the Department, is responsible for providing ICT training and capacity-building initiatives to the government workforce and ICT-enabled sectors. The ILCDB promotes and recognizes the vital role of information and communications technology in nation-building, promote digital literacy, ICT expertise, and knowledge-building among citizens to enable them to participate and compete in an evolving ICT age, and empower, through the use of ICT, the disadvantaged segments of the population, including the elderly, out-of-school youth, persons with disabilities and indigenous and minority groups.
+                </p>
+                <p>
+                    Recognizing the importance of inclusive education and the role of ICT in empowering disadvantaged segments of the population, DICT 10 has collaborated with Coursebank, a platform that offers a collection of educational resources, and the Local Government Unit of Cagayan de Oro City - Education Board to translate five pilot courses into the Bisaya dialect, targeting the constituents of Region 10. By providing educational resources in the local dialect, the initiative aims to increase inclusivity in the ICT field and enhance employment opportunities for individuals in the region.
+                </p>
+            </div>
 
-  <div class="contained-wrapper pt-6 pb-6 wide-detail-placeholder" id="about">
-    <div class="row">
-        <div class="col-12 col-md-6 order-1 order-md-0">
-        <div class="d-flex flex-column justify-content-center h-100">
-            <img height="auto" width="100%" src="{% static 'images/futureskill-placeholder.png' %}" />
         </div>
-        </div>
-        <div class="col-12 col-md-6 order-0 order-md-1">
-        <div class="d-flex h-100 align-items-center flex-column">
-            <h2 class="section-title me-auto mb-3">About</h2>
-            <p class="lakip">
-                The Department of Information and Communications Technology (DICT) - 10, through its ICT Literacy and Competency Development Bureau (ILCDB), also known as the training arm of the Department, is responsible for providing ICT training and capacity-building initiatives to the government workforce and ICT-enabled sectors. The ILCDB promotes and recognizes the vital role of information and communications technology in nation-building, promote digital literacy, ICT expertise, and knowledge-building among citizens to enable them to participate and compete in an evolving ICT age, and empower, through the use of ICT, the disadvantaged segments of the population, including the elderly, out-of-school youth, persons with disabilities and indigenous and minority groups.
-            </p>
-            <p class="lakip">
-                Recognizing the importance of inclusive education and the role of ICT in empowering disadvantaged segments of the population, DICT 10 has collaborated with Coursebank, a platform that offers a collection of educational resources, and the Local Government Unit of Cagayan de Oro City - Education Board to translate five pilot courses into the Bisaya dialect, targeting the constituents of Region 10. By providing educational resources in the local dialect, the initiative aims to increase inclusivity in the ICT field and enhance employment opportunities for individuals in the region.
-            </p>
-        </div>
-        </div>
-    </div>
-  </div>
+
+    </section>
+</div>
 
   <div class="bg-light-1">
     <div class="contained-wrapper pt-6 pb-6" id="courses">
@@ -155,7 +146,7 @@
         </div>
         <div class="col-12 col-md-6 order-0 order-md-1">
             <div class="d-flex h-100 align-items-center">
-                <img src="https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/lakip/lakip-cdo.png" alt="Cagayan De Oro" style="max-width: 200px;">
+                <img src="https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/lakip/lakip-cdo.png" alt="Cagayan De Oro" style="max-width: 200px; max-height: 200px;">
             </div>
         </div>
     </div>
@@ -168,15 +159,17 @@
         </div>
         <div class="col-12 col-md-6 order-0 order-md-1">
             <div class="d-flex h-100 align-items-center">
-                <img src="https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/lakip/lakip-deped.png" alt="DepEd Region 10" style="max-width: 200px;">
+                <img src="https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/lakip/lakip-deped.png" alt="DepEd Region 10" style="max-width: 200px; max-height: 200px;">
             </div>
         </div>
     </div>
   </div>
 
   <div id="faq" class="contained-wrapper pt-6 pb-6">
-    <section class="section-courses-container contained-wrapper-lakip">
-        <h3 class="section-title me-auto">Frequently Asked Questions</h3>
+    <section class="section-courses-container">
+        <div class="section-header d-flex align-items-center">
+            <h3 class="section-title me-auto">Frequently Asked Questions</h3>
+        </div>
         <div class="row mt-3 gutter-2rem flex-column">
             <div class="accordion1">
                 <div class="accordion1-item mb-2">
@@ -205,6 +198,7 @@
         </div>
     </section>
 </div>
+
 <style>
     /* ACCORDION */
 .accordion1{
