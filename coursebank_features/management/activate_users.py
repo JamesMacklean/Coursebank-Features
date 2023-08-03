@@ -21,5 +21,5 @@ class Command(BaseCommand):
             count = count + 1
             user.is_active = True
             user.save()
-
+    
         self.stdout.write(self.style.SUCCESS(f'Successfully activated {count} inactive users.'))
