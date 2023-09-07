@@ -2,6 +2,9 @@ from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
+from django.contrib.auth.models import User
+from .serializers import UserSerializer
 
 from coursebank_features.api.serializers import *
 from coursebank_features.api.variables import *
@@ -71,3 +74,7 @@ class CoursesAPIView(APIView):
 #         bundles = CourseBundle.objects.all()
 #         serializer = CourseBundleSerializer(bundles, many=True)
 #         return Response(serializer.data)
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
