@@ -44,7 +44,7 @@ class Command(BaseCommand):
         # Send the email with the CSV attachment
         subject = 'Exported Data from Django User Model'
         body = 'Please find the attached CSV file containing the data.'
-        sender_email = 'sender@example.com'  # Replace with the sender email address
+        sender_email = 'learn@coursebank.ph'  # Replace with the sender email address
 
         msg = MIMEMultipart()
         msg['From'] = sender_email
