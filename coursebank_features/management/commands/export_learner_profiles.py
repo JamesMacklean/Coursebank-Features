@@ -27,8 +27,9 @@ class Command(BaseCommand):
         for user in queryset:
             csv_data.append({
                 'id': user.id,
-                'name': user.get_full_name(),
+                # 'name': user.get_full_name(),
                 'username': user.username,
+                'email': user.email,
                 'date_joined': user.date_joined,
                 'is_active': user.is_active,
             })
