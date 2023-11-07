@@ -21,6 +21,46 @@
     <div class="contained-wrapper pt-6 pb-6">
         <section class="section-courses-container">
             <div class="section-header d-flex align-items-center">
+                <h3 class="section-title me-auto">About</h3>
+            </div>
+            <div class="row pt-3 gutter-2rem">
+               <!-- Domain -->
+               {% if partner.website_url != '' %}
+               <div id="domain-partner" class="row">
+                   <div class="col-2">
+                       <i class="fa-solid fa-globe"></i>
+                   </div>
+                   <div class="col-10">
+                       <a href="{{ partner.website_url }}"><p>Website</p></a>
+                   </div>
+                   </div><br>
+               {% endif %}
+   
+               <!-- Facebook Page  -->
+               {% if partner.socmed_url != '' %}
+               <div id="fb-partner" class="row">
+                   <div class="col-2">
+                       <i class="fab fa-facebook"></i>
+                   </div>
+                   <div class="col-10">
+                       <a href="{{ partner.socmed_url }}"><p>Facebook</p></a>
+                   </div>
+                   </div><br>
+               {% endif %}
+               {% if partner.org == 'thecentre' %}
+               <div id="tw-partner" class="row">
+                 <div class="col-2">
+                     <i class="fab fa-twitter"></i>
+                 </div>
+                 <div class="col-10">
+                     <a href="https://twitter.com/the_centre_ph"><p>Twitter</p></a>
+                 </div>
+                 </div><br>
+               {% endif %}
+            </div>
+        </section>
+        <section class="section-courses-container">
+            <div class="section-header d-flex align-items-center">
                 <h3 class="section-title me-auto">Courses and Specialization</h3>
             </div>
             <div class="row pt-3 gutter-2rem">
@@ -28,14 +68,11 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <a href="{% url 'about_course' course_id=course.id %}">
                         <div class="course-item">
-                            <div class="category-badge" style="background-color: #387aa6">
-                                Information Technology
-                            </div>
-                            <img class="img-item" height="auto" width="100%" src="{{ partner.logo_url }}" />
+                            <img class="img-item" height="auto" width="100%" src="{{ course.course_image_url }}" />
                             <div class="course-details-container">
                                 <div class="d-flex align-items-center">
                                     <img class="me-1" height="auto" width="32px"
-                                        src="./images/course-company-placeholder.png" />
+                                        src="{{ partner.logo_url }}" />
                                     <h2 class="course-title">{{ partner.name }}</h2>
                                 </div>
                                 <p class="course-description mt-2 pb-3">
