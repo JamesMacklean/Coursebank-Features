@@ -27,8 +27,9 @@ class Command(BaseCommand):
         for user in queryset:
             csv_data.append({
                 'id': user.id,
-                'name': user.get_full_name(),
+                # 'name': user.get_full_name(),
                 'username': user.username,
+                'email': user.email,
                 'date_joined': user.date_joined,
                 'is_active': user.is_active,
             })
@@ -44,7 +45,7 @@ class Command(BaseCommand):
         # Send the email with the CSV attachment
         subject = 'Exported Data from Django User Model'
         body = 'Please find the attached CSV file containing the data.'
-        sender_email = 'sender@example.com'  # Replace with the sender email address
+        sender_email = 'learn@coursebank.ph'  # Replace with the sender email address
 
         msg = MIMEMultipart()
         msg['From'] = sender_email

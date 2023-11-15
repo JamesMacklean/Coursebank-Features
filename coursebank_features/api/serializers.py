@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from coursebank_features.models import *
+from django.contrib.auth.models import User
 
 from common.djangoapps.student.models import CourseEnrollment
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
@@ -23,4 +24,10 @@ class CoursesSerializer(serializers.Serializer):
 #     class Meta:
 #         model = CourseBundle
 #         fields = ('name','slug', 'long_description', 'image_url')        
-        
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email')
+
