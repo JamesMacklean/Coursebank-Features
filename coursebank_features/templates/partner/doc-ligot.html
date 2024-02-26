@@ -1,0 +1,242 @@
+{% extends 'main_django.html' %}
+{% load static %}
+{% block title %}Coursebank | Doc Ligot{% endblock %}
+{% block headextra %}{% endblock %}
+
+
+{% block body %}
+<div class="full-width-wrapper">
+    <section class="page-banner page-banner-4">
+      <div class="contained-wrapper h-100">
+        <div class="d-flex align-items-center h-100">
+          <div class="col-12 col-md-8 d-flex flex-column">
+            <h1 class="pagebanner-title mb-3 text-left">
+                Doc Ligot
+            </h1>
+            <p class="pagebanner-desc mt-2">
+               {% comment %} description {% endcomment %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+  <div class="full-width-wrapper sticky-page-nav" style="position: inherit !important;">
+    <div class="contained-wrapper">
+      <div class="sticky-nav-content">
+        <a href="#overview">Overview</a>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#partners">Partners</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="contained-wrapper pt-6 pb-6" id="overview">
+    <section class="section-about">
+        {% comment %} <div class="row gx-5 py-5">
+            <div class="col-12 col-md-6">
+                <h4 class="mb-4">LAKIP</h4>
+                <p>
+                    aims to offer a wide range of courses that have been thoughtfully translated into the
+                    Bisaya dialect, ensuring that individuals from diverse linguistic backgrounds,
+                    particularly those who speak the Bisayan language, can access and benefit from
+                    the learning materials. By incorporating localized translations, LAKIP promotes
+                    equal educational opportunities and fosters inclusivity by removing language barriers
+                    that may hinder individuals’ access to knowledge.
+                </p>
+            </div>
+            <div class="col-12 col-md-6">
+                <img width="100%" style="object-fit: cover;" src="https://coursebank-static-assets.s3.ap-northeast-1.amazonaws.com/partners/lakipv2_1.png" />
+            </div>
+        </div> {% endcomment %}
+        <div class="row gx-5 py-5">
+            <div class="col-12 col-md-6">
+                <img width="100%" style="object-fit: cover;" src="https://coursebank-static-assets.s3.ap-northeast-1.amazonaws.com/partners/lakipv2_2.png" />
+            </div>
+            <div class="col-12 col-md-6">
+                <h4 class="mb-4 mt-4 mt-md-0">About</h4>
+                <p>
+                    Data analyst, researcher, software developer, entrepreneur and technologist. Advocate for data literacy, AI ethics, data ethics and social impact from data. His current work focuses on human rights, public health, food security, political risk and fighting disinformation and infodemics through the use of computational social science, social listening, remote sensing, artificial intelligence and data engineering. <br>
+                    Founder of CirroLytix, a social impact AI company, and Data Ethics PH, an online community focused on social issues such as data privacy, data security, AI-driven discrimination, data liabilities, data ownership rights, and data poverty. Three-time global winner of the NASA and ESA International Space Apps Challenges, his team's award winning dengue surveillance application, AEDES, has been backed by the Group on Earth Observations (GEO), the Digital Public Goods Alliance (DPGA) and the UNICEF Innovation Fund. <br>
+                    Co-authored the Masters in Applied Business Analytics degree of the University of Asia and the Pacific, and led the development of the nationwide data science education program Project SPARTA. Co-founded the Analytics Association of the Philippines (AAP) and is a Board of Trustees member of the Philippine Center for Investigative Journalism (PCIJ). <br>
+                    Passionate about using big data and AI to make a positive difference in the world and creating a better future for society as it transitions through the Fourth Industrial Revolution.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+</div>
+
+  <div class="bg-light-1">
+    <div class="contained-wrapper pt-6 pb-6" id="courses">
+      <section class="section-courses-container">
+        <div class="section-header d-flex align-items-center">
+            <h3 class="section-title me-auto">Courses</h3>
+        </div>
+        <div class="row pt-5 gutter-2rem courses-list-container">
+
+          <div class="col-12 col-md-6 col-lg-4 course-item-container">
+              <a href="/courses/course-v1:DICT+FSA-BIS001+2023_Q2/about">
+                  <div class="course-item">
+                  <img class="img-item" width="100%" src="https://coursebank.ph/asset-v1:DICT+FSA-BIS001+2023_Q2+type@asset+block@Microsoft-productivity-Tools-v1.jpg" />
+                  <div class="course-details-container">
+                  <div class="d-flex align-items-center p-2">
+                  <p class="course-description mt-2 pb-3 lakip"> Microsoft Productivity Tools [Bisaya]</p>
+                  </div>
+                  <p class="course-start lakip p-2">Course</p>
+                  </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      </section>
+
+    {% comment %} <div class="text-center mt-3 p-5">
+        <h2 class="font-42px pb-0 pb-md-3 mt-4 mt-md-0mb-3">Start Learning. It's Free.</h2>
+            <p class="mb-5">The local DICT online courses are free for everyone. Apply for access and wait for your invite via email. <br>
+                Meanwhile, make sure to have registered an account at coursebank.ph.</p>
+            <a href="https://forms.gle/NkukAGAix2cwXgBu7" class="btn btn-primary mt-2">APPLY NOW</a>
+    </div> {% endcomment %}
+
+    </div>
+  </div>
+
+    
+    <div class="contained-wrapper">
+        <div class="col-12">
+            <div class="d-flex flex-column justify-content-center h-100 align-items-center p-3">
+                <h2 class="font-42px pb-0 pb-md-3 mt-4 mt-md-0mb-3 text-center" id="partners">Proponents</h2>
+                <img class="p-3" src="https://coursebank-static-assets.s3.ap-northeast-1.amazonaws.com/partners/proponents.png" alt="DICT region10" width="400px">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="d-flex flex-column justify-content-center h-100 align-items-center p-3">
+                <h2 class="font-42px pb-0 pb-md-3 mt-4 mt-md-0mb-3 text-center">Partners</h2>
+                <img class="p-3" src="https://coursebank-static-assets.s3.ap-northeast-1.amazonaws.com/partners/partners.png" alt="coursebank" width="400px">
+            </div>
+        </div>
+    </div>
+
+  <div id="faq" class="contained-wrapper pt-6 pb-6">
+    <section class="section-courses-container">
+        <div class="section-header d-flex align-items-center">
+            <h3 class="section-title me-auto">Frequently Asked Questions</h3>
+        </div>
+        <div class="row mt-3 gutter-2rem flex-column">
+            <div class="accordion1">
+                <div class="accordion1-item mb-2">
+                    <div class="accordion1-item-header">
+                        <p class="m-0 lakip">Are the courses Free?</p>
+                    </div>
+                    <div class="accordion1-item-body">
+                        <div class="accordion1-item-body-content">
+                            <p class="lakip">The courses under this project is free. This initiative is fully funded by the Department of Information and Communications Technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion1">
+                <div class="accordion1-item mb-2">
+                    <div class="accordion1-item-header">
+                        <p class="m-0 lakip">How can I access the courses?</p>
+                    </div>
+                    <div class="accordion1-item-body">
+                        <div class="accordion1-item-body-content">
+                            <p class="lakip">You can apply access to the courses by accomplishing an application form. The project staff will send the invite via your registered email address. Make sure that you first have a coursebank account.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+.page-banner-4{
+    background: linear-gradient(90deg, rgba(56,122,166,0.7) .52%, rgba(58,168,161,0.7) 50.45%, rgba(193,205,94,0.7) 100%),url(https://coursebank-static-assets-tmtg.s3.ap-northeast-1.amazonaws.com/docligot-hero.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+    /* ACCORDION */
+.accordion1{
+    width: 90%;
+    max-width: 1000px;
+}
+.accordion1-item{
+    background-color: #fff;
+    color: #111;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.accordion1-item-header{
+    padding: 0.5rem 3rem 0.5rem 1rem;
+    min-height: 3.5rem;
+    line-height: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.accordion1-item-header:after{
+    content: "\002B";
+    font-size: 2rem;
+    position: absolute;
+    right: 1rem;
+}
+.accordion1-item-header.active:after{
+    content: "\2212";
+}
+.accordion1-item-body{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-in-out;
+    }
+.accordion1-item-body-content{
+    padding: 1rem;
+    line-height: 1.5rem;
+    border-top: 1.5px solid;
+    border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+.accordion1 a{
+    color: #247BA0;
+}
+html {
+    scroll-behavior: smooth !important;
+  }
+</style>
+<script>
+    const accordionItemHeaders = document.querySelectorAll(".accordion1-item-header");
+    accordionItemHeaders.forEach(accordionItemHeader => {
+        accordionItemHeader.addEventListener("click", event => {
+            const currentlyActiveAccordionItemHeader = document.querySelector(".accordion1-item-header.active");
+            if(currentlyActiveAccordionItemHeader && currentlyActiveAccordionItemHeader!==accordionItemHeader){
+                currentlyActiveAccordionItemHeader.classList.toggle("active");
+                currentlyActiveAccordionItemHeader.nextElementSibling.style.maxHeight = 0;
+            }
+            accordionItemHeader.classList.toggle("active");
+            const accordionItemBody = accordionItemHeader.nextElementSibling;
+            if(accordionItemHeader.classList.contains("active")){
+                accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+            }
+            else{
+                accordionItemBody.style.maxHeight = 0;
+            }
+        });
+    });
+</script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+  
+{% endblock %}
