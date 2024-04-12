@@ -20,6 +20,6 @@ urlpatterns = [
     re_path(r'^partners/(?P<partner_name>[a-zA-Z\d-]+)/$', PartnerView, name='partner'),
     re_path(r'^partners/(?P<partner_name>[a-zA-Z\d-]+)/course/{}/$'.format(settings.COURSE_ID_PATTERN), PartnerCourseView, name='partner-course'),
     re_path(r'^partners/(?P<partner_name>[a-zA-Z\d-]+)/expert/(?P<expert_id>\d+)$', ExpertView, name='expert'),
-    path('lakip/', TemplateView.as_view(template_name="partner/new-lakip-landing.html"), name='lakip'),
+    path('dict-lakip/', TemplateView.as_view(template_name="partner/new-lakip-landing.html"), name='lakip'),
     path('docligot/', TemplateView.as_view(template_name="partner/doc-ligot.html"), name='docligot'),
 ]
