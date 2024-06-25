@@ -42,7 +42,8 @@ class Command(BaseCommand):
                     'Course Name': course.display_name,
                     'Has Certificate': certificate_exists
                 })
-
+            self.stdout.write(self.style.SUCCESS(f'Successfully gathered data for {course.display_name}'))
+            
         # Create a CSV file in-memory
         csv_file_path = 'enrollment_info.csv'
         with open(csv_file_path, 'w', newline='') as f:
