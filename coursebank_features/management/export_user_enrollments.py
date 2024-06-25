@@ -5,11 +5,14 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
-from your_app.models import Course, Enrollment, Certificate  # Adjust the import as per your models
+from course_modes.models import CourseMode
+from opaque_keys.edx.keys import CourseKey
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
+from lms.djangoapps.certificates.models import GeneratedCertificate
+from common.djangoapps.student.models import CourseEnrollment
 
 class Command(BaseCommand):
-    help = 'Export data from Django User model to a CSV file and send it via email'
+    help = 'Export enrollment and certification data from Django models to a CSV file and send it via email'
 
     def add_arguments(self, parser):
         parser.add_argument('-e', '--recipient_email', type=str, help='Recipient email address')
@@ -21,40 +24,37 @@ class Command(BaseCommand):
             self.stderr.write('Recipient email address is required. Please provide it using -e option.')
             return
 
-        queryset = User.objects.all()
+        # Fetch live courses from Django models
+        live_courses = CourseOverview.objects.filter(is_enrollable=True)
 
-        # Prepare the CSV data as a list of dictionaries
-        csv_data = []
-        for user in queryset:
-            # Get user's courses and certificate status
-            enrollments = Enrollment.objects.filter(user=user).select_related('course')
-            courses = [{'course_name': enrollment.course.name,
-                        'has_certificate': Certificate.objects.filter(user=user, course=enrollment.course).exists()}
-                       for enrollment in enrollments]
-            
-            csv_data.append({
-                'id': user.id,
-                'username': user.username,
-                'email': user.email,
-                'date_joined': user.date_joined,
-                'is_active': user.is_active,
-                'courses': courses
-            })
+        # Prepare the enrollment data
+        enrollment_data = []
+        for course in live_courses:
+            course_key = CourseKey.from_string(course.id)
+
+            # Fetch enrollments and certificates
+            enrollments = CourseEnrollment.objects.filter(course_id=course_key)
+            for enrollment in enrollments:
+                user = enrollment.user
+                certificate_exists = GeneratedCertificate.objects.filter(user=user, course_id=course_key).exists()
+                enrollment_data.append({
+                    'User': user.username,
+                    'Course ID': course.id,
+                    'Course Name': course.display_name,
+                    'Has Certificate': certificate_exists
+                })
 
         # Create a CSV file in-memory
-        csv_file_path = 'exported_data.csv'
+        csv_file_path = 'enrollment_info.csv'
         with open(csv_file_path, 'w', newline='') as f:
-            fieldnames = ['id', 'username', 'email', 'date_joined', 'is_active', 'courses']
+            fieldnames = ['User', 'Course ID', 'Course Name', 'Audit', 'Verified', 'Honor', 'Has Certificate']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
-            for data in csv_data:
-                # Convert the courses list to a string representation
-                data['courses'] = ', '.join([f"{course['course_name']} (Certificate: {course['has_certificate']})" for course in data['courses']])
-                writer.writerow(data)
+            writer.writerows(enrollment_data)
 
         # Send the email with the CSV attachment
-        subject = 'Exported Data from Django User Model'
-        body = 'Please find the attached CSV file containing the data.'
+        subject = 'Enrollment and Certification Data from Django Models'
+        body = 'Please find the attached CSV file containing the enrollment and certification data.'
         sender_email = 'learn@coursebank.ph'  # Replace with the sender email address
 
         msg = MIMEMultipart()
@@ -76,11 +76,11 @@ class Command(BaseCommand):
         smtp_server = 'smtp.sendgrid.net'
         smtp_port = 587 
         smtp_username = 'apikey'
-        smtp_password = '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'  # Replace with your SMTP password
+        smtp_password = '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'
 
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()
             server.login(smtp_username, smtp_password)
             server.sendmail(sender_email, recipient_email, msg.as_string())
 
-        self.stdout.write(self.style.SUCCESS(f'Data exported and sent to {recipient_email} successfully'))
+        self.stdout.write(self.style.SUCCESS(f'Enrollment and certification data exported and sent to {recipient_email} successfully'))
