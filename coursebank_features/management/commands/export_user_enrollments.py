@@ -24,7 +24,7 @@ class Command(BaseCommand):
             return
 
         # Fetch live courses from Django models
-        live_courses = CourseOverview.objects.filter.all()
+        live_courses = CourseOverview.objects.all()
 
         # Prepare the enrollment data
         enrollment_data = []
