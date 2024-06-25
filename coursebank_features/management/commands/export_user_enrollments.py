@@ -5,7 +5,6 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from django.core.management.base import BaseCommand
-from course_modes.models import CourseMode
 from opaque_keys.edx.keys import CourseKey
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from lms.djangoapps.certificates.models import GeneratedCertificate
