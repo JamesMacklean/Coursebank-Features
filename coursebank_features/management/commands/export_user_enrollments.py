@@ -29,13 +29,13 @@ class Command(BaseCommand):
         # Prepare the enrollment data
         enrollment_data = []
         for course in live_courses:
-            course_key = CourseKey.from_string(course.id)
+            # course_key = CourseKey.from_string(course.id)
 
             # Fetch enrollments and certificates
-            enrollments = CourseEnrollment.objects.filter(course_id=course_key)
+            enrollments = CourseEnrollment.objects.filter(course_id=course.id)
             for enrollment in enrollments:
                 user = enrollment.user
-                certificate_exists = GeneratedCertificate.objects.filter(user=user, course_id=course_key).exists()
+                certificate_exists = GeneratedCertificate.objects.filter(user=user, course_id=course.id).exists()
                 enrollment_data.append({
                     'User': user.username,
                     'Course ID': course.id,
