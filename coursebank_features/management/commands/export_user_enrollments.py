@@ -78,7 +78,6 @@ class Command(BaseCommand):
 
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()
-            # server.login(smtp_username, smtp_password)
             server.sendmail(sender_email, recipient_email, msg.as_string())
 
         self.stdout.write(self.style.SUCCESS(f'Enrollment and certification data exported and sent to {recipient_email} successfully'))
