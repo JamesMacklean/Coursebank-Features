@@ -71,12 +71,12 @@ class Command(BaseCommand):
         # Connect to SMTP server and send the email
         smtp_server = 'smtp.sendgrid.net'
         smtp_port = 587 
-        smtp_username = 'apikey'
-        smtp_password = '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'
+        # smtp_username = 'apikey'
+        # smtp_password = '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'
 
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()
-            server.login(smtp_username, smtp_password)
+            # server.login(smtp_username, smtp_password)
             server.sendmail(sender_email, recipient_email, msg.as_string())
 
         self.stdout.write(self.style.SUCCESS(f'Enrollment data exported and sent to {recipient_email} successfully'))
